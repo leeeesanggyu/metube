@@ -7,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import com.metube.user.vo.userVO;
 
 public interface userService {
-
-	int onePlus(int num) throws Exception;
 	
 	List<userVO> getUserList(userVO vo) throws Exception;
 	

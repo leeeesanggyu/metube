@@ -26,13 +26,17 @@
 			}
 			document.login_form.action="/loginCheck.do"
 			document.login_form.submit();
+		}),
+		$("#btn-signUp").click(function(){
+			location.href="/signUpPage.do"
 		})
 	})
 </script>
 </head>
 <body>
 <center>
-<br><br><br><br><br><br><br>
+<br><br><h1>METUBE</h1>
+<br><br><br>
 	<h2>Login</h2>
 	
 	<form name="login_form" method="post">
@@ -41,6 +45,7 @@
 		pw: <input type="password" name="password" id="password"><br><br>
 		
 		<button type="button" id="btn-login">login</button>
+		<button type="button" id="btn-signUp">signUp</button>
 	</form>
 	<c:if test="${msg == 'fail'}">
 		<div style="color: red">

@@ -10,7 +10,7 @@ public interface userDAO {
 	
 	List<userVO> getUserList(userVO vo) throws Exception;
 	
-	boolean loginCheck(userVO vo) throws Exception;
+	userVO loginCheck(userVO vo) throws Exception;
 	
 	userVO noPwUser(userVO vo) throws Exception;
 		

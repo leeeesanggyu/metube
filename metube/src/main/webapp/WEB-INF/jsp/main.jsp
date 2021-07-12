@@ -12,11 +12,11 @@
 %>
 </head>
 <body>
-<c:if test="${msg == 'success'}">
-	<h2>session email: ${sessionScope.email }</h2>
-	<h2>session name: ${sessionScope.name}</h2>
-	
-	<%=email %><%=name %>
-</c:if>
+<center>
+	<c:if test="${msg == 'success'}">
+		<h2>session email: <%=email %></h2>
+		<h2>session name: <%=name %></h2>
+	</c:if>
+</center>
 </body>
 </html>

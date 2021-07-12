@@ -9,11 +9,10 @@
         FROM user_info 
     </select>
     
-    <select id="selectUserName" resultType="userVO">
-    	SELECT name 
+    <select id="getUserPassword" resultType="userVO">
+    	SELECT password, email, name
 		FROM user_info 
 		WHERE email = #{email}
-		AND PASSWORD = #{password}
     </select>
     
     <select id="noPwUser" resultType="userVO">

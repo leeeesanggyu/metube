@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.metube.hash.BCrypt;
 import com.metube.user.dao.userDAO;
 import com.metube.user.vo.userVO;
 
@@ -19,14 +20,6 @@ public class userServiceImpl implements userService{
 	@Resource(name = "userDAO")
 	private userDAO user_DAO;
 	
-	/**
-	 * Test Service
-	 */
-	@Override
-	public int onePlus(int num) throws Exception {
-		return num + 1;
-	}
-	
 	@Override
 	public List<userVO> getUserList(userVO vo) throws Exception {
 		System.out.println("userService - getUserList");
@@ -36,16 +29,21 @@ public class userServiceImpl implements userService{
 	@Override
 	public boolean loginCheck(userVO vo, HttpSession session) throws Exception {
 		System.out.println("userService - loginCheck");
-		boolean result = user_DAO.loginCheck(vo);
-		if(result) {
-			userVO vo2 = noPwUser(vo);
-			
+		System.out.println("==========================================================================================");
+		System.out.println("login password : " + vo.getPassword());
+		userVO hash_password = user_DAO.loginCheck(vo);	//해쉬된 비밀번호 찾기
+		System.out.println("hash password : " + hash_password.getPassword());
+		System.out.println("==========================================================================================");
+
+		if(BCrypt.checkpw(vo.getPassword(),hash_password.getPassword())) {
+			System.out.println("비밀번호 비교 결과: 같음");
 			//session 등록
-			session.setAttribute("email", vo2.getEmail());
-			session.setAttribute("name", vo2.getName());
+			session.setAttribute("email", hash_password.getEmail());
+			session.setAttribute("name", hash_password.getName());
+			return true;
 		}
-		
-		return result;
+		System.out.println("비밀번호 비교 결과: 다름");
+		return false;
 	}
 
 	@Override

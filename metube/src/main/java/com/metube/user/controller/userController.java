@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.metube.hash.BCrypt;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
 
@@ -19,21 +20,6 @@ public class userController {
 
 	@Resource(name = "UserService")
 	private userService userService;
-	
-	/**
-	 * Test Controller
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/mainTest.do")
-	public String mainTest(ModelMap model) throws Exception {
-		System.out.println("main controller");
-		int num = userService.onePlus(3);
-		
-		model.addAttribute("result", num);
-		return "test";
-	}
 	
 	/**
 	 * 유저 전체 목록을 조회한다
@@ -60,7 +46,7 @@ public class userController {
 	}
 	
 	/**
-	 * 로그인 하는 로직
+	 * 로그인을 정의한다
 	 * @param vo
 	 * @param session
 	 * @return
@@ -84,7 +70,7 @@ public class userController {
 	}
 	
 	/**
-	 * 로그아웃
+	 * 로그아웃을 정의한다
 	 * @param vo
 	 * @param session
 	 * @return
@@ -106,9 +92,22 @@ public class userController {
 		return "signUp";
 	}
 	
+	/**
+	 * 회원가입을 정의한다.
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/signUp.do")
 	public ModelAndView signUp(@ModelAttribute userVO vo) throws Exception {
 		System.out.println("userController - signUp");
+		System.out.println("==========================================================================================");
+		System.out.println("password: " + vo.getPassword());
+		String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
+		vo.setPassword(hash_Password);
+		System.out.println("hash password: " + vo.getPassword());
+		System.out.println("==========================================================================================");
+
 		userService.signUp(vo);
 		
 		ModelAndView mv = new ModelAndView();

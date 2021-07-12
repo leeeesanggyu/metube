@@ -20,10 +20,10 @@ public class userDAOImpl extends mysqlAbstractMapper implements userDAO{
 	}
 
 	@Override
-	public boolean loginCheck(userVO vo) throws Exception {
+	public userVO loginCheck(userVO vo) throws Exception {
 		System.out.println("userDAO - loginCheck");
-		userVO result = selectOne("userDAO.selectUserName", vo);
-		return (result == null) ?false :true;
+		userVO result = selectOne("userDAO.getUserPassword", vo);
+		return result;
 	}
 	
 	@Override

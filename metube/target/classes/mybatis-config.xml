@@ -4,5 +4,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.metube.user.vo.userVO" alias="userVO" />
+        <typeAlias type="com.metube.post.vo.postVO" alias="postVO" />
+        
     </typeAliases>
 </configuration>

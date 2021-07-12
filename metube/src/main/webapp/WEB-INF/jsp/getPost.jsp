@@ -4,13 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%
-	int dap = (int)request.getAttribute("result");
-%>
-<title>Insert title here</title>
+
+<title></title>
 </head>
 <body>
-HELLO~ <br>
-result : " <%=dap %> " 
+<jsp:forward page="/getPostList.do"/>
 </body>
 </html>

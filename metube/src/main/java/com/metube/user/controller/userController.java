@@ -22,7 +22,7 @@ public class userController {
 	private userService userService;
 	
 	/**
-	 * 유저 전체 목록을 조회한다
+	 * 유저 전체 목록을 조회한다.
 	 * @param vo
 	 * @param model
 	 * @return
@@ -36,7 +36,7 @@ public class userController {
 	}
 	
 	/**
-	 * 로그인 페이지로 이동한다
+	 * 로그인 페이지로 이동한다.
 	 * @return
 	 * @throws Exception
 	 */
@@ -46,7 +46,7 @@ public class userController {
 	}
 	
 	/**
-	 * 로그인을 정의한다
+	 * 로그인을 정의한다.
 	 * @param vo
 	 * @param session
 	 * @return
@@ -59,8 +59,7 @@ public class userController {
 		
 		ModelAndView mv = new ModelAndView();
 		if(result) {
-			mv.setViewName("main");
-			mv.addObject("msg", "success");
+			mv.setViewName("getPost");
 		}
 		else {
 			mv.setViewName("login");
@@ -70,7 +69,7 @@ public class userController {
 	}
 	
 	/**
-	 * 로그아웃을 정의한다
+	 * 로그아웃을 정의한다.
 	 * @param vo
 	 * @param session
 	 * @return
@@ -87,6 +86,11 @@ public class userController {
 		return mv;
 	}
 	
+	/**
+	 * 회원가입 페이지로 이동한다.
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/signUpPage.do")
 	public String signUpPage() throws Exception {
 		return "signUp";
@@ -112,6 +116,21 @@ public class userController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login");
+		return mv;
+	}
+	
+	/**
+	 * 본인의 정보를 가져온다.
+	 * @param vo
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/getUser.do")
+	public ModelAndView getUser(@ModelAttribute userVO vo, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("getUserPage");
+		mv.addObject("userInfo", userService.getUser(vo, session));
 		return mv;
 	}
 }

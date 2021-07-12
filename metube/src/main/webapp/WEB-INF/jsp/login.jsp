@@ -35,14 +35,13 @@
 </head>
 <body>
 <center>
-<br><br><h1>METUBE</h1>
-<br><br><br>
-	<h2>Login</h2>
-	
+<br><br><br><br><br><br>
+<a href="login.do"><img src="/resources/images/logo.png" width="350"></a>
+<br><br><br>	
 	<form name="login_form" method="post">
-		email   : <input name="email" id="email"><br><br>
+		email <input name="email" id="email"><br><br>
 		&nbsp;&nbsp;&nbsp;
-		pw: <input type="password" name="password" id="password"><br><br>
+		pw <input type="password" name="password" id="password"><br><br>
 		
 		<button type="button" id="btn-login">login</button>
 		<button type="button" id="btn-signUp">signUp</button>

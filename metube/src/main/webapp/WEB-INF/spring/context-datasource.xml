@@ -15,9 +15,9 @@
     <!-- JDBC-PostgreSQL -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://211.63.236.6:5444/salgu2" />
-        <property name="username" value="eduMng"/>
-        <property name="password" value="1q2w3e4r!@"/>
+        <property name="url" value="jdbc:postgresql://127.0.0.1:5432/metube" />
+        <property name="username" value="postgres"/>
+        <property name="password" value="812012"/>
     </bean>
 
 </beans>

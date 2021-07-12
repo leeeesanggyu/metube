@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="PostDAO">
+ 
+    <select id="postList" resultType="postVO">
+        SELECT *
+        FROM post
+    </select>
+    
+    <select id="createPost" resultType="postVO">
+    	INSERT INTO 
+			post
+		(
+			user_pk,
+			title,
+			description,
+			url,
+			comment_pk,
+			like_count,
+			view_count,
+			cover_img
+		)
+			VALUES
+		(
+			#{user_pk},
+			#{title},
+			#{description},
+			#{url},
+			#{comment_pk},			
+			#{like_count},			
+			#{view_count},
+			#{cover_img}
+		);
+    </select>
+     
+</mapper>
+

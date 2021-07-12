@@ -17,4 +17,6 @@ public interface userService {
 	void logout(HttpSession session) throws Exception;
 	
 	int signUp(userVO vo) throws Exception;
+
+	userVO getUser(userVO vo, HttpSession session) throws Exception;
 }

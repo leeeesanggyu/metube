@@ -38,8 +38,10 @@ public class userServiceImpl implements userService{
 		if(BCrypt.checkpw(vo.getPassword(),hash_password.getPassword())) {
 			System.out.println("비밀번호 비교 결과: 같음");
 			//session 등록
+			session.setAttribute("user_pk", hash_password.getPk());
 			session.setAttribute("email", hash_password.getEmail());
 			session.setAttribute("name", hash_password.getName());
+			session.setAttribute("role", hash_password.getRole());
 			return true;
 		}
 		System.out.println("비밀번호 비교 결과: 다름");
@@ -55,15 +57,20 @@ public class userServiceImpl implements userService{
 	public void logout(HttpSession session) throws Exception {
 		//세션 변수 개별 삭제
 		//session.removeAttribute("email");
-		
 		//세션 전체 초기화
 		session.invalidate();
 	}
 
 	@Override
 	public int signUp(userVO vo) throws Exception {
-		int result = user_DAO.signUp(vo);
-		return result;
+		return user_DAO.signUp(vo);
+	}
+
+	@Override
+	public userVO getUser(userVO vo, HttpSession session) throws Exception {
+		System.out.println("user service - session : " + session);
+		vo.setEmail((String)session.getAttribute("email"));
+		return user_DAO.loginCheck(vo);
 	}
 
 	

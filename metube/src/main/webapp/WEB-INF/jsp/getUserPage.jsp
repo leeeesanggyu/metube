@@ -5,12 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%
-	int dap = (int)request.getAttribute("result");
 %>
-<title>Insert title here</title>
+<title>getUserPage</title>
 </head>
 <body>
-HELLO~ <br>
-result : " <%=dap %> " 
+<%@ include file="header.jsp"%>
+	
+email: ${userInfo.email}<br>
+name: ${userInfo.name}<br>
+role: ${userInfo.role}<br>
+
 </body>
 </html>

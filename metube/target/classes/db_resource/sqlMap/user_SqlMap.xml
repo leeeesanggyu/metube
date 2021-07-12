@@ -9,8 +9,8 @@
         FROM user_info 
     </select>
     
-    <select id="getUserPassword" resultType="userVO">
-    	SELECT password, email, name
+    <select id="getUser" resultType="userVO">
+    	SELECT email, password, name, role, pk
 		FROM user_info 
 		WHERE email = #{email}
     </select>

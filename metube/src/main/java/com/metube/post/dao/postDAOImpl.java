@@ -27,5 +27,10 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 		System.out.println("postDAO - deletePost");
 		return delete("PostDAO.deletePost", vo);
 	}
+
+	@Override
+	public postVO selectOne(postVO vo) throws Exception {
+		return selectOne("PostDAO.selectPost", vo);
+	}
 }
 

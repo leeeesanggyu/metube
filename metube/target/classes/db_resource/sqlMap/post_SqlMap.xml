@@ -38,6 +38,12 @@
         DELETE FROM post
         WHERE PK = #{pk}
     </select>
+    
+    <select id="selectPost" resultType="postVO">
+        SELECT *
+        FROM post
+        WHERE PK = #{pk};
+    </select>
      
 </mapper>
 

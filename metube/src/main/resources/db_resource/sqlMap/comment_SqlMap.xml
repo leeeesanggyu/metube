@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="CommentDAO">
+
+    <select id="createComment" resultType="commentVO">
+    	INSERT INTO 
+			comment
+		(
+			post_pk,
+			user_pk,
+			content
+		)
+			VALUES
+		(
+			#{post_pk},
+			#{user_pk},
+			#{content}
+		);
+    </select>
+    
+    <select id="getComment" resultType="commentVO">
+    	SELECT *
+        FROM comment
+        WHERE post_pk = #{post_pk};
+    </select>
+   
+</mapper>
+

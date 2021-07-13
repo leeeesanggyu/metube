@@ -8,26 +8,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>getPostList</title>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#btn-comment").click(function(){
+			var content=$("#content").val();
 
+			if(content == ""){
+				alert("content insert");
+				$("#content").focus();
+				return;
+			}
+			
+			document.comment_form.action="/createComment.do"
+			document.comment_form.submit();
+		})
+	})
+</script>
 </head>
 <body>
 <%@ include file="header.jsp"%>
 <c:forEach var="postList" items="${postList}">
-		<div>
-			<p>===========================================</p>
-			<p>pk: ${postList.pk }</p>
-			<p>user_pk: ${postList.user_pk }</p>
-			<p>comment_pk: ${postList.comment_pk}</p>
+	
+	<div>
+		<a href="detailPost.do?post_pk=${postList.pk}">
+			<p>========================</p>
 			<p>title: ${postList.title}</p>
-			<p>description: ${postList.description }</p>
-			<p>url: ${postList.url }</p>
 			<p>cover_img: ${postList.cover_img }</p>
-			<p>like_count: ${postList.like_count }</p>
+			<p>user_pk: ${postList.user_pk }</p>
 			<p>view_count: ${postList.view_count }</p>
-			<p>===========================================</p>
-			<a href="deletePost_confirm.do?user_pk=${postList.user_pk}&post_pk=${postList.pk}&role=<%=role %>">삭제</a>
-			<br><br>
-		</div>
+			<p>========================</p>
+		</a>
+	</div>
+	
 </c:forEach>
 
 </body>

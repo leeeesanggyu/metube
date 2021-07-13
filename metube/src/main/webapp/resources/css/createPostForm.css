@@ -2,6 +2,7 @@
 h2 {
   color: RED;
   font-size: 2em;
+  font-weight: bold;
 }
 
 .login_id {

@@ -13,12 +13,17 @@ import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
+import com.metube.comment.service.commentService;
+import com.metube.comment.vo.commentVO;
 
 @Controller
 public class postController {
 
 	@Resource(name = "PostService")
 	private postService postService;
+	
+	@Resource(name = "CommentService")
+	private commentService commentService;
 	
 	@RequestMapping(value="/getPostList.do")
 	public ModelAndView getPostList(postVO vo) throws Exception {
@@ -40,7 +45,6 @@ public class postController {
 	@RequestMapping(value="/createPost.do")
 	public ModelAndView createPost(@ModelAttribute postVO vo) throws Exception {
 		System.out.println("postController - createPost");
-		System.out.println("안녕");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getPost");
 		mv.addObject("postList", postService.createPost(vo));
@@ -69,6 +73,24 @@ public class postController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getPost");
 		mv.addObject("postList", postService.deletePost(vo));
+		return mv;
+	}
+	
+	@RequestMapping(value="/detailPost.do", method = RequestMethod.GET)
+	public ModelAndView detailPost(int post_pk) throws Exception {
+		System.out.println("postController - detailPost");
+		
+		postVO vo = new postVO();
+		vo.setPk(post_pk);
+		
+		commentVO comment_vo = new commentVO();
+		comment_vo.setPost_pk(post_pk);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("detailPost");
+		mv.addObject("post", postService.detailPost(vo));
+		mv.addObject("comment", commentService.getComment(comment_vo));
+
 		return mv;
 	}
 	

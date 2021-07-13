@@ -11,5 +11,7 @@ public interface postDAO {
 	int createPost(postVO vo) throws Exception;
 
 	int deletePost(postVO vo) throws Exception;
+
+	postVO selectOne(postVO vo) throws Exception;
 }
 

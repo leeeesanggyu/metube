@@ -11,5 +11,7 @@ public interface postService {
 	int createPost(postVO vo) throws Exception;
 
 	int deletePost(postVO vo) throws Exception;
+
+	postVO detailPost(postVO vo) throws Exception;
 }
 

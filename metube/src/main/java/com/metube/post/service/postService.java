@@ -9,5 +9,7 @@ public interface postService {
 	List<postVO> getPostList(postVO vo) throws Exception;
 
 	int createPost(postVO vo) throws Exception;
+
+	int deletePost(postVO vo) throws Exception;
 }
 

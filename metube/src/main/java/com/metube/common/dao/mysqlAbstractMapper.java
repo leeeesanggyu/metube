@@ -51,5 +51,17 @@ public class mysqlAbstractMapper extends SqlSessionDaoSupport{
 	public int insert(String queryId, Object parameterObject) {
 		return getSqlSession().insert(queryId, parameterObject);
 	}
+	
+	/**
+	 * 삭제 처리 SQL mapping 을 실행한다.
+	 *
+	 * @param queryId - 삭제 처리 SQL mapping 쿼리 ID
+	 * @param parameterObject - 삭제 처리 SQL mapping 입력 데이터(일반적으로 key 조건)를  세팅한 파라메터 객체(보통 VO 또는 Map)
+	 *
+	 * @return DBMS가 지원하는 경우 delete 적용 결과 count
+	 */
+	public int delete(String queryId, Object parameterObject) {
+		return getSqlSession().delete(queryId, parameterObject);
+	}
 
 }

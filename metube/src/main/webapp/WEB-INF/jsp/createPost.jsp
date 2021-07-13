@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>metube</title>
-
+<link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -36,20 +36,35 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
-<br><br><br><br><br><br>
-<center>
-	<form name="upload_form" method="post">
-		title  : <input name="title" id="title"><br><br>
-		description: <input name="description" id="description"><br><br>
-		url: <input name="url" id="url"><br><br>
-		cover_img: <input name="cover_img" id="cover_img"><br><br>
-		pk:<%=user_pk %><input type="hidden" name="user_pk" id="user_pk" value=<%=user_pk %>><br><br>
-		<input type="hidden" name="comment_pk" id="comment_pk" value=0><br><br>
-		<input type="hidden" name="like_count" id="like_count" value=0><br><br>
-		<input type="hidden" name="view_count" id="view_count" value=0><br><br>
+<div class="wrap">
+    <div class="login">
+    	<h2>Create Post</h2>
+		<form name="upload_form" method="post" class="loginForm">
 		
-		<button type="button" id="btn-upload">Upload</button>
-	</form>
-</center>
+			<div class="login_id">
+				<h4>title</h4>
+				<input name="title" id="title">
+				<h4>description</h4>
+				<input name="description" id="description">
+				<h4>url</h4>
+				<input name="url" id="url">
+				<h4>cover_img</h4>
+				<input name="cover_img" id="cover_img">
+			</div>
+			
+			<input type="hidden" name="user_pk" id="user_pk" value=<%=user_pk %>>
+			<input type="hidden" name="comment_pk" id="comment_pk" value=0>
+			<input type="hidden" name="like_count" id="like_count" value=0>
+			<input type="hidden" name="view_count" id="view_count" value=0>
+			
+			<div class="submit">
+				<button type="button" id="btn-upload">Upload</button>
+			</div>
+			
+		</form>
+	</div>
+</div>
+
+
 </body>
 </html>

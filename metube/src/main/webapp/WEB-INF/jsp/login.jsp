@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>metube</title>
+<link rel="stylesheet" href="/resources/css/loginForm.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -35,27 +36,39 @@
 </head>
 <body>
 <center>
-<br><br><br><br><br><br>
-<a href="login.do"><img src="/resources/images/logo.png" width="350"></a>
-<br><br><br>	
-	<form name="login_form" method="post">
-		email <input name="email" id="email"><br><br>
-		&nbsp;&nbsp;&nbsp;
-		pw <input type="password" name="password" id="password"><br><br>
-		
-		<button type="button" id="btn-login">login</button>
-		<button type="button" id="btn-signUp">signUp</button>
-	</form>
-	<c:if test="${msg == 'fail'}">
-		<div style="color: red">
-			login fail
-		</div>
-	</c:if>
-	<c:if test="${msg == 'logout'}">
-		<div style="color: red">
-			success logout
-		</div>
-	</c:if>
+
 </center>
+
+<div class="wrap">
+    <div class="login">
+		<form name="login_form" method="post" class="loginForm">
+			<a href="login.do"><img src="/resources/images/logo.png" width="280"></a>
+			<div class="login_id">
+				<h4>E-mail</h4>
+				<input name="email" id="email" placeholder="Email">
+	        </div>
+			<div class="login_pw">
+	            <h4>Password</h4>
+	            <input type="password" name="password" id="password" placeholder="Password">
+	        </div>
+			<div class="submit">
+				<button type="button" id="btn-login">login</button><br><br>
+				<button type="button" id="btn-signUp">signUp</button>
+			</div>
+		</form>
+		<c:if test="${msg == 'fail'}">
+			<div style="color: red">
+				login fail
+			</div>
+		</c:if>
+		<c:if test="${msg == 'logout'}">
+			<div style="color: red">
+				logout success 
+			</div>
+		</c:if>
+	</div>
+</div>
+
+
 </body>
 </html>

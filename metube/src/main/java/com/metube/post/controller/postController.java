@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.service.postService;
@@ -39,10 +40,35 @@ public class postController {
 	@RequestMapping(value="/createPost.do")
 	public ModelAndView createPost(@ModelAttribute postVO vo) throws Exception {
 		System.out.println("postController - createPost");
-		System.out.println("vo.getTitle : " + vo.getTitle());
+		System.out.println("안녕");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getPost");
 		mv.addObject("postList", postService.createPost(vo));
+		return mv;
+	}
+	
+	@RequestMapping(value="/deletePost_confirm.do", method = RequestMethod.GET)
+	public ModelAndView deletePost_confirm(int user_pk, int post_pk, int role) throws Exception {
+		System.out.println("postController - deletePost_confirm");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("deletePost_confirm");
+		mv.addObject("user_pk", user_pk);
+		mv.addObject("post_pk", post_pk);
+		mv.addObject("role", role);
+
+		return mv;
+	}
+	
+	@RequestMapping(value="/deletePost.do", method = RequestMethod.GET)
+	public ModelAndView deletePost(int pk) throws Exception {
+		System.out.println("postController - deletePost");
+		postVO vo = new postVO();
+		vo.setPk(pk);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("getPost");
+		mv.addObject("postList", postService.deletePost(vo));
 		return mv;
 	}
 	

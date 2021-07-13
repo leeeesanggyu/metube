@@ -7,20 +7,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>header</title>
+<link rel="stylesheet" href="/resources/css/font.css" />
 <% 
 	String name = (String)session.getAttribute("name");
 	int user_pk = (int)session.getAttribute("user_pk");
-
+	String role = (String)session.getAttribute("role");
 %>
 </head>
 <body>
-<img src="/resources/images/logo.png" width="200">
+<a href="goHome.do"><img src="/resources/images/logo.png" width="200"></a>
 
-<hr><a href="goCreatePost.do">동영상 업로드</a>&nbsp;&nbsp;
-<a href="getUser.do">개인 정보 보기</a>
-<div style="float: right;">
-	<%=name %>님 안녕하세요.
-	<a href="logout.do">logout</a>
+<hr>
+<div class="menu">
+	<a href="goCreatePost.do">동영상 업로드</a>&nbsp;&nbsp;
+	<a href="getUser.do">개인 정보 보기</a>
+	<div style="float: right;">
+		<%=name %> 님 안녕하세요.
+		<a href="logout.do">Log-out</a>
+	</div>
 </div>
 <hr>		
 </body>

@@ -33,6 +33,11 @@
 			#{cover_img}
 		);
     </select>
+    
+    <select id="deletePost" resultType="postVO">
+        DELETE FROM post
+        WHERE PK = #{pk}
+    </select>
      
 </mapper>
 

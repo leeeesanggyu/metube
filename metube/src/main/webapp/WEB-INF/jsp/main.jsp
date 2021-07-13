@@ -7,10 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>getPostList</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+
 </head>
 <body>
 <%@ include file="header.jsp"%>
-
 <c:forEach var="postList" items="${postList}">
 		<div>
 			<p>===========================================</p>
@@ -24,8 +25,10 @@
 			<p>like_count: ${postList.like_count }</p>
 			<p>view_count: ${postList.view_count }</p>
 			<p>===========================================</p>
+			<a href="deletePost_confirm.do?user_pk=${postList.user_pk}&post_pk=${postList.pk}&role=<%=role %>">삭제</a>
 			<br><br>
 		</div>
 </c:forEach>
+
 </body>
 </html>

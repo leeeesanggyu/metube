@@ -26,5 +26,10 @@ public class commentServiceImpl implements commentService{
 		return commentDAO.getComment(vo);
 	}
 
+	@Override
+	public commentVO deleteComment(commentVO vo) throws Exception {
+		return commentDAO.deleteComment(vo);
+	}
+
 	
 }

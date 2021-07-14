@@ -24,6 +24,16 @@
         FROM comment
         WHERE post_pk = #{post_pk};
     </select>
+    
+    <select id="deleteComment" resultType="commentVO">
+    	DELETE FROM comment
+        WHERE pk = #{pk}
+        AND user_pk = #{user_pk}
+    </select>
    
+   	<select id="deletePostComment" resultType="commentVO">
+    	DELETE FROM comment
+        WHERE post_pk = #{post_pk}
+    </select>
 </mapper>
 

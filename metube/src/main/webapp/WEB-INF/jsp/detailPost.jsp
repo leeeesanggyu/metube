@@ -48,6 +48,7 @@
 				<p>user_pk: ${comment.user_pk }</p>
 				<p>content: ${comment.content }</p>
 				<p>========================</p>
+				
 			</div>
 		</c:forEach>
 		

@@ -1,6 +1,7 @@
 package com.metube.post.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,16 +26,22 @@ public class postController {
 	@Resource(name = "CommentService")
 	private commentService commentService;
 	
-	@RequestMapping(value="/getPostList.do")
-	public ModelAndView getPostList(postVO vo) throws Exception {
+	/**
+	 * 게시물 목록을 가져온다.
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/postList.do", method = RequestMethod.GET)
+	public ModelAndView getPostList() throws Exception {
 		System.out.println("postController - getPostList");
-		
+		postVO vo = new postVO();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
 		mv.addObject("postList", postService.getPostList(vo));
 		return mv;
 	}
 	
+	//??
 	@RequestMapping(value="/goCreatePost.do")
 	public ModelAndView goCreatePost() throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -42,7 +49,13 @@ public class postController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/createPost.do")
+	/**
+	 * 게시물을 작성한다
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/post.do", method = RequestMethod.POST)
 	public ModelAndView createPost(@ModelAttribute postVO vo) throws Exception {
 		System.out.println("postController - createPost");
 		ModelAndView mv = new ModelAndView();
@@ -50,36 +63,51 @@ public class postController {
 		mv.addObject("postList", postService.createPost(vo));
 		return mv;
 	}
-	
-	@RequestMapping(value="/deletePost_confirm.do", method = RequestMethod.GET)
-	public ModelAndView deletePost_confirm(int user_pk, int post_pk, int role) throws Exception {
-		System.out.println("postController - deletePost_confirm");
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("deletePost_confirm");
-		mv.addObject("user_pk", user_pk);
-		mv.addObject("post_pk", post_pk);
-		mv.addObject("role", role);
 
-		return mv;
-	}
-	
-	@RequestMapping(value="/deletePost.do", method = RequestMethod.GET)
-	public ModelAndView deletePost(int pk) throws Exception {
+	/**
+	 * 게시물을 삭제한다.
+	 * @param session
+	 * @param post_pk
+	 * @param user_pk
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/post.do", method = RequestMethod.DELETE)
+	public ModelAndView deletePost(
+			HttpSession session, int post_pk, int user_pk
+	) throws Exception {
 		System.out.println("postController - deletePost");
-		postVO vo = new postVO();
-		vo.setPk(pk);
+		int role = (int)session.getAttribute("role");
+		int s_user_pk = (int)session.getAttribute("user_pk");
 		
 		ModelAndView mv = new ModelAndView();
+		if(role > 1) {
+			if(user_pk == s_user_pk) {
+				postVO vo = new postVO();
+				vo.setPk(post_pk);
+				
+				mv.addObject("deletePost", postService.deletePost(vo));
+				mv.setViewName("getPost");
+				return mv;
+			}
+			mv.addObject("result", "mineFail");
+			mv.setViewName("getPost");
+			return mv;
+		}
+		mv.addObject("result", "roleFail");
 		mv.setViewName("getPost");
-		mv.addObject("postList", postService.deletePost(vo));
 		return mv;
 	}
 	
+	/**
+	 * 상세 게시물을 불러온다.
+	 * @param post_pk
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/detailPost.do", method = RequestMethod.GET)
 	public ModelAndView detailPost(int post_pk) throws Exception {
-		System.out.println("postController - detailPost");
-		
+		System.out.println("postController - detailPost");	
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
 		
@@ -87,10 +115,9 @@ public class postController {
 		comment_vo.setPost_pk(post_pk);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("detailPost");
 		mv.addObject("post", postService.detailPost(vo));
 		mv.addObject("comment", commentService.getComment(comment_vo));
-
+		mv.setViewName("detailPost");
 		return mv;
 	}
 	

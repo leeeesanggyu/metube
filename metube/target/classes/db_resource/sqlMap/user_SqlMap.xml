@@ -28,13 +28,15 @@
 		(
 			email, 
 			password, 
-			name 
+			name,
+			role
 		)
 			VALUES
 		(
 			#{email}, 
 			#{password}, 
-			#{name}
+			#{name},
+			#{role}
 		);
     	
     </select>

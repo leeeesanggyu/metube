@@ -68,7 +68,7 @@ public class userServiceImpl implements userService{
 
 	@Override
 	public userVO getUser(userVO vo, HttpSession session) throws Exception {
-		System.out.println("user service - session : " + session);
+		System.out.println("userService - getUser - session : " + session);
 		vo.setEmail((String)session.getAttribute("email"));
 		return user_DAO.loginCheck(vo);
 	}

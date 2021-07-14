@@ -3,6 +3,7 @@ package com.metube.comment.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,8 @@ public class commentServiceImpl implements commentService{
 	private commentDAO commentDAO;
 	
 	@Override
-	public int createComment(commentVO vo) throws Exception {
+	public int createComment(commentVO vo, HttpSession session) throws Exception {
+		vo.setUser_pk((int)session.getAttribute("user_pk"));
 		return commentDAO.createComment(vo);
 	}
 
@@ -27,7 +29,7 @@ public class commentServiceImpl implements commentService{
 	}
 
 	@Override
-	public commentVO deleteComment(commentVO vo) throws Exception {
+	public int deleteComment(commentVO vo) throws Exception {
 		return commentDAO.deleteComment(vo);
 	}
 

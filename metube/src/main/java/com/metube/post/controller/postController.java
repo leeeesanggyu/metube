@@ -44,7 +44,7 @@ public class postController {
 		System.out.println("postController - getPostList");
 		postVO vo = new postVO();
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main");
+		mv.setViewName("getPost");
 		mv.addObject("postList", postService.getPostList(vo));
 		return mv;
 	}

@@ -24,12 +24,20 @@ public class userController {
 	private userService userService;
 	
 	/**
+	 * main 페이지로 이동한다.
+	 */
+	@RequestMapping(value="/main.do")
+	public String goMain() throws Exception {
+		return "main";
+	}
+	
+	/**
 	 * 로그인 페이지로 이동한다.
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/login.do")
-	public String userLogin() throws Exception {
+	public String guUserLogin() throws Exception {
 		return "login";
 	}
 	
@@ -39,7 +47,7 @@ public class userController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/signUpPage.do")
-	public String signUpPage() throws Exception {
+	public String goSignUpPage() throws Exception {
 		return "signUp";
 	}
 	

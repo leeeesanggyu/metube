@@ -1,6 +1,7 @@
 package com.metube.comment.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,23 +18,35 @@ public class commentController {
 	@Resource(name = "CommentService")
 	private commentService commentService;
 	
-	@RequestMapping(value="/createComment.do")
-	public ModelAndView createComment(@ModelAttribute commentVO vo) throws Exception {
+	/**
+	 * 댓글을 작성한다.
+	 * @param vo : post_pk, content
+	 * @param session : user_pk
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/comment.do", method = RequestMethod.POST)
+	public ModelAndView createComment(@ModelAttribute commentVO vo, HttpSession session) throws Exception {
 		System.out.println("commentController - createComment");
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getPost");
-		mv.addObject("comment", commentService.createComment(vo));
+		mv.addObject("comment", commentService.createComment(vo, session));
 		return mv;
 	}
 	
-	@RequestMapping(value="/deleteComment.do", method = RequestMethod.GET)
-	public ModelAndView deleteComment(int pk, int user_pk) throws Exception {
+	/**
+	 * 댓글을 삭제한다.
+	 * @param pk
+	 * @param user_pk
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/comment.do", method = RequestMethod.DELETE)
+	public ModelAndView deleteComment(int pk, HttpSession session) throws Exception {
 		System.out.println("commentController - deleteComment");
-		
 		commentVO vo = new commentVO();
 		vo.setPk(pk);
-		vo.setUser_pk(user_pk);
+		vo.setUser_pk((int)session.getAttribute("user_pk"));
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getPost");

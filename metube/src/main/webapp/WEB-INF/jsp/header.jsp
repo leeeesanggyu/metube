@@ -23,7 +23,7 @@
 	<a href="/user/detail.do">개인 정보 보기</a>
 	<div style="float: right;">
 		<%=name %> 님 안녕하세요.
-		<a href="logout.do">Log-out</a>
+		<a href="/user/logout.do">Log-out</a>
 	</div>
 </div>
 <hr>		

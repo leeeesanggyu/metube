@@ -10,59 +10,35 @@
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
-<script>
-	$(document).ready(function(){
-		$("#btn-upload").click(function(){
-			var title=$("#title").val();
-			var description=$("#description").val();
-			var url=$("#url").val();
-			var cover_img=$("#cover_img").val();
-			if(title == ""){
-				alert("title insert");
-				$("#title").focus();
-				return;
-			}
-			if(description == ""){
-				alert("description insert");
-				$("#description").focus();
-				return;
-			}
-			
-			document.upload_form.action="/post/post.do"
-			document.upload_form.submit();
-		})
-	})
-</script>
+
 </head>
 <body>
 <%@ include file="header.jsp"%>
-
 <div class="wrap">
     <div class="login">
     	<h2>Create Post</h2>
-		<form name="upload_form" method="post" class="loginForm">
+		<form name="upload_form" id="upload_form" v-on:submit="upload">
 			<div class="login_id">
 				<h4>title</h4>
-				<input name="title" id="title">
+				<input v-model="title">
 				<h4>description</h4>
-				<input name="description" id="description">
+				<input v-model="description">
 				<h4>url</h4>
-				<input name="url" id="url">
+				<input v-model="url">
 				<h4>cover_img</h4>
-				<input name="cover_img" id="cover_img">
+				<input v-model="cover_img">
 			</div>
 
-			<input type="hidden" name="user_pk" id="user_pk" value=<%=user_pk %>>
-			<input type="hidden" name="comment_pk" id="comment_pk" value=0>
-			<input type="hidden" name="like_count" id="like_count" value=0>
-			<input type="hidden" name="view_count" id="view_count" value=0>
-
 			<div class="submit">
-				<button type="button" id="btn-upload">Upload</button>
+				<button type="submit" id="btn-upload">Upload</button>
 			</div>
 
 		</form>
 	</div>
 </div>
+<script>
+	var user_pk = <%=user_pk%>
+</script>
+<script src="/resources/js/createPost.js"></script>
 </body>
 </html>

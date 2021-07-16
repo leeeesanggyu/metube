@@ -5,8 +5,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.service.postService;
@@ -36,9 +38,6 @@ public class postController {
 		return mv;
 	}
 	
-	/**
-	 * 게시물 삭제 페이지로 간다.
-	 */
 	
 	/**
 	 * 게시물 목록을 가져온다.
@@ -61,13 +60,20 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@RequestMapping(value="/post.do", method = RequestMethod.POST)
-	public ModelAndView createPost(@ModelAttribute postVO vo) throws Exception {
+	public boolean createPost(@RequestBody postVO vo) throws Exception {
 		System.out.println("postController - createPost");
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("getPost");
-		mv.addObject("postList", postService.createPost(vo));
-		return mv;
+		System.out.println("request:" + vo.getTitle());
+		try {		
+			if(postService.createPost(vo) != 0) {
+				return true;
+			}
+			return false;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**

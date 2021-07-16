@@ -74,14 +74,17 @@
 		<form name="signUp_form" method="post">
 			<a href="login.do"><img src="/resources/images/logo.png" width="280"></a>
 			<div class="sign_id">
-				E-mail <input name="email" id="email" placeholder="example@naver.com"><br><br>
+				<h4>E-mail</h4> 
+				<input name="email" id="email" placeholder="example@naver.com"><br><br>
 			</div>
 			<div class="sign_pw">
-				Password <input type="password" name="password" id="password">
-				( 4자리 ~ 12자리 )<br><br>
+				<h4>Password</h4>
+				 <input type="password" name="password" id="password"placeholder="************">
+				<small>(4자리 ~ 12자리)</small><br><br>
 			</div>
 			<div class="sign_id">
-				Name: <input name="name" id="name" placeholder="이상규"><br><br>
+				<h4>Name</h4>
+				<input name="name" id="name" placeholder="이상규"><br><br>
 			</div>
 			<div class="submit">
 				<button type="button" id="btn-signUp">Sign Up</button>

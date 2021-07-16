@@ -28,7 +28,7 @@
 				return;
 			}
 			
-			document.upload_form.action="/createPost.do"
+			document.upload_form.action="/post/post.do"
 			document.upload_form.submit();
 		})
 	})

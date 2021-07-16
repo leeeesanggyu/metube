@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,12 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
-import com.metube.user.service.userService;
-import com.metube.user.vo.userVO;
 import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
 
 @Controller
+@RequestMapping(value="/post")
 public class postController {
 
 	@Resource(name = "PostService")
@@ -26,8 +24,12 @@ public class postController {
 	@Resource(name = "CommentService")
 	private commentService commentService;
 	
-	//??
-	@RequestMapping(value="/goCreatePost.do")
+	/**
+	 * 게시물 생성 페이지로 간다.
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/goCreate.do")
 	public ModelAndView goCreatePost() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("createPost");
@@ -35,16 +37,20 @@ public class postController {
 	}
 	
 	/**
+	 * 게시물 삭제 페이지로 간다.
+	 */
+	
+	/**
 	 * 게시물 목록을 가져온다.
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/postList.do", method = RequestMethod.GET)
+	@RequestMapping(value="/list.do")
 	public ModelAndView getPostList() throws Exception {
 		System.out.println("postController - getPostList");
 		postVO vo = new postVO();
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("getPost");
+		mv.setViewName("main");
 		mv.addObject("postList", postService.getPostList(vo));
 		return mv;
 	}
@@ -105,7 +111,7 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/detailPost.do", method = RequestMethod.GET)
+	@RequestMapping(value="/detail.do", method = RequestMethod.GET)
 	public ModelAndView detailPost(int post_pk) throws Exception {
 		System.out.println("postController - detailPost");	
 		postVO vo = new postVO();

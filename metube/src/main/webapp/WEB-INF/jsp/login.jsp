@@ -9,6 +9,7 @@
 <title>metube</title>
 <link rel="stylesheet" href="/resources/css/loginForm.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script>
 	$(document).ready(function(){
 		$("#btn-login").click(function(){
@@ -25,25 +26,32 @@
 				$("#password").focus();
 				return;
 			}
-			document.login_form.action="/loginCheck.do"
+			document.login_form.action="/user/check.do"
 			document.login_form.submit();
 		}),
 		$("#btn-signUp").click(function(){
-			location.href="/signUpPage.do"
+			location.href="/user/goSignUp.do"
 		})
 	})
+	<%
+	if(session.getAttribute("name") != null) {
+	%>
+		location.href="/post/list.do";
+	<%
+	}
+	%>
 </script>
+
+	
 </head>
 <body>
-<center>
-
-</center>
-
 <div class="wrap">
     <div class="login">
 		<form name="login_form" method="post" class="loginForm">
 			<a href="login.do"><img src="/resources/images/logo.png" width="280"></a>
 			<div class="login_id">
+			
+			
 				<h4>E-mail</h4>
 				<input name="email" id="email" placeholder="Email">
 	        </div>

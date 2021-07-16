@@ -18,6 +18,7 @@ import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
 
 @Controller
+@RequestMapping(value="/user")
 public class userController {
 
 	@Resource(name = "UserService")
@@ -46,7 +47,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/signUpPage.do")
+	@RequestMapping(value="/goSignUp.do")
 	public String goSignUpPage() throws Exception {
 		return "signUp";
 	}
@@ -58,7 +59,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/userList.do", method = RequestMethod.GET)
+	@RequestMapping(value="/list.do", method = RequestMethod.GET)
 	public ModelAndView getUserList() throws Exception {
 		System.out.println("userController - getUserList");
 		userVO vo = new userVO();
@@ -76,7 +77,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/loginCheck.do", method = RequestMethod.POST)
+	@RequestMapping(value="/check.do")
 	public ModelAndView loginCheck(@ModelAttribute userVO vo, HttpSession session) throws Exception {
 		System.out.println("userController - loginCheck");
 		
@@ -115,7 +116,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/signUp.do", method = RequestMethod.POST)
+	@RequestMapping(value="/sign.do", method = RequestMethod.POST)
 	public ModelAndView signUp(@ModelAttribute userVO vo) throws Exception {
 		System.out.println("userController - signUp");
 		System.out.println("==========================================================================================");
@@ -138,7 +139,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/user.do", method = RequestMethod.GET)
+	@RequestMapping(value="/detail.do", method = RequestMethod.GET)
 	public ModelAndView getUser(HttpSession session) throws Exception {
 		System.out.println("userController - getUser");
 		userVO vo = new userVO();

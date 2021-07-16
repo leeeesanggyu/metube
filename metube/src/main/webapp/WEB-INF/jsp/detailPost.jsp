@@ -60,7 +60,9 @@
 			<button type="button" id="btn-comment">댓글달기</button>
 		</form>
 		
-		<a href="deletePost_confirm.do?user_pk=${post.user_pk}&post_pk=${post.pk}&role=<%=role %>">게시물 삭제</a>
+		<button type="button" id="btn-delete-comment">
+			게시물 삭제
+		</button>
 		
 		<br><br>
 	</div>

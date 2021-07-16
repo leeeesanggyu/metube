@@ -19,7 +19,7 @@
 				return;
 			}
 			
-			document.comment_form.action="/createComment.do"
+			document.comment_form.action="/create.do"
 			document.comment_form.submit();
 		})
 	})
@@ -30,7 +30,7 @@
 <c:forEach var="postList" items="${postList}">
 	
 	<div>
-		<a href="detailPost.do?post_pk=${postList.pk}">
+		<a href="/post/detail.do?post_pk=${postList.pk}">
 			<p>========================</p>
 			<p>title: ${postList.title}</p>
 			<p>cover_img: ${postList.cover_img }</p>

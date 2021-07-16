@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.metube.post.vo.postVO;
 
 @Controller
-public class home {
+public class commonController {
 
 	@RequestMapping(value="/goHome.do")
 	public ModelAndView goHome(postVO vo) throws Exception {

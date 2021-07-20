@@ -9,6 +9,7 @@
 <title>metube</title>
 <link rel="stylesheet" href="/resources/css/loginForm.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 <script>
 	//정규표현식을 정의합니다. 
 	function email_check( email ) { 
@@ -17,7 +18,6 @@
 	}
 
 	$(document).ready(function(){
-		
 		// name 속성이 'email'인 input 이 focus를 잃었을때 처리한다. 
 		$("input[name='email']").blur(function(){ var email = $(this).val(); 
 		// 값을 입력안한경우는 아예 체크를 하지 않는다. 
@@ -28,71 +28,93 @@
 				return false; 
 			} 
 		});
-
-		출처: https://solbel.tistory.com/422 [개발자의 끄적끄적]
-		$("#btn-signUp").click(function(){
-			var email=$("#email").val();
-			var password=$("#password").val();
-			var name=$("#name").val();
-			var role=$("#role").val();
-			
-			if(email == ""){
-				alert("email insert");
-				$("#email").focus();
-				return;
-			}
-			if(password == ""){
-				alert("password insert");
-				$("#password").focus();
-				return;
-			}
-			if(name == ""){
-				alert("name insert");
-				$("#name").focus();
-				return;
-			}
-			if(name.length > 6 || name.length < 2){
-                alert("이름의 글자 수를 확인해주세요");
-                $("#name").focus();
-                return;
-            }
-			if(password.length > 12 || password.length < 4){
-                alert("비밀번호 글자 수를 확인해주세요");
-                $("#password").focus();
-                return;
-            }
-			document.signUp_form.action="/user/sign.do"
-			document.signUp_form.submit();
-		})
 	})
 </script>
 </head>
 <body>
-
-<div class="wrap">
-    <div class="login">
-		<form name="signUp_form" method="post">
-			<a href="login.do"><img src="/resources/images/logo.png" width="280"></a>
-			<div class="sign_id">
-				<h4>E-mail</h4> 
-				<input name="email" id="email" placeholder="example@naver.com"><br><br>
-			</div>
-			<div class="sign_pw">
-				<h4>Password</h4>
-				 <input type="password" name="password" id="password"placeholder="************">
-				<small>(4자리 ~ 12자리)</small><br><br>
-			</div>
-			<div class="sign_id">
-				<h4>Name</h4>
-				<input name="name" id="name" placeholder="이상규"><br><br>
-			</div>
-			<div class="submit">
-				<button type="button" id="btn-signUp">Sign Up</button>
-			</div>
-		</form>
+	<div class="wrap">
+	    <div class="login">
+			<form name="signUp_form" id="signUp_form" v-on:submit="signUp">
+				<a href="login.do"><img src="/resources/images/logo.png" width="280"></a>
+				
+				<div class="sign_id">
+					<h4>E-mail</h4> 
+					<input v-model="email" name="email" placeholder="example@naver.com" ><br><br>
+				</div>
+				<div class="sign_pw">
+					<h4>Password</h4>
+					 <input type="password" v-model="password" placeholder="************">
+					<small>(4자리 ~ 12자리)</small><br><br>
+				</div>
+				<div class="sign_id">
+					<h4>Name</h4>
+					<input v-model="name" placeholder="이상규"><br><br>
+				</div>
+				<div class="submit">
+					<button type="submit">Sign-Up</button>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
-	
-
 </body>
+<script>
+	new Vue({
+	    el: '#signUp_form',
+	    data: {
+	    	email: '',
+	    	password: '',
+	    	name: ''
+	    },
+	    methods: {
+	    	signUp: function(e) {
+	        	e.preventDefault();
+	
+	   			if(this.email == ""){
+	   				alert("email insert");
+	   				$(this.email).focus();
+	   				return;
+	   			}
+	   			if(this.password == ""){
+	   				alert("password insert");
+	   				$(this.password).focus();
+	   				return;
+	   			}
+	   			if(this.name == ""){
+	   				alert("name insert");
+	   				$(this.name).focus();
+	   				return;
+	   			}
+	   			if(this.name.length > 6 || this.name.length < 2){
+	                   alert("이름의 글자 수를 확인해주세요");
+	                   $(this.name).focus();
+	                   return;
+	            }
+	   			if(this.password.length > 12 || this.password.length < 4){
+	                   alert("비밀번호 글자 수를 확인해주세요");
+	                   $(this.password).focus();
+	                   return;
+	            }
+	    		
+	            const requestOptions = {
+	                    method: "POST",
+	                    headers: {
+	                 	   "Content-Type": "application/json" 
+	                    },
+	                    body: JSON.stringify({
+	                    	email: this.email, 
+	                    	password: this.password,
+	                    	name: this.name,
+	                    	role: this.role
+	                    })
+	            };
+	            fetch("/user/sign", requestOptions)
+	   				.then(res => {
+	   					location.href="/";
+	   				})
+	 				.catch(err => console.log(err))
+	            
+	        }
+	    }
+	});
+</script>
 </html>

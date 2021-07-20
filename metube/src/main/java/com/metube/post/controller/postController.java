@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +32,7 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/goCreate.do")
+	@RequestMapping(value="/goCreate")
 	public ModelAndView goCreatePost() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("createPost");
@@ -44,7 +45,7 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/list.do")
+	@RequestMapping(value="/list")
 	public ModelAndView getPostList() throws Exception {
 		System.out.println("postController - getPostList");
 		postVO vo = new postVO();
@@ -61,10 +62,9 @@ public class postController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/post.do", method = RequestMethod.POST)
+	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public boolean createPost(@RequestBody postVO vo) throws Exception {
 		System.out.println("postController - createPost");
-		System.out.println("request:" + vo.getTitle());
 		try {		
 			if(postService.createPost(vo) != 0) {
 				return true;
@@ -84,31 +84,24 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/post.do", method = RequestMethod.DELETE)
-	public ModelAndView deletePost(
-			HttpSession session, int post_pk, int user_pk
+	@ResponseBody
+	@RequestMapping(value="/{post_pk}", method = RequestMethod.DELETE)
+	public boolean deletePost(
+		@PathVariable("post_pk") int post_pk
 	) throws Exception {
 		System.out.println("postController - deletePost");
-		int role = (int)session.getAttribute("role");
-		int s_user_pk = (int)session.getAttribute("user_pk");
-		
-		ModelAndView mv = new ModelAndView();
-		if(role > 1) {
-			if(user_pk == s_user_pk) {
-				postVO vo = new postVO();
-				vo.setPk(post_pk);
-				
-				mv.addObject("deletePost", postService.deletePost(vo));
-				mv.setViewName("getPost");
-				return mv;
+		postVO vo = new postVO();
+		vo.setPk(post_pk);
+		try {		
+			if(postService.deletePost(vo) != 0) {
+				return true;
 			}
-			mv.addObject("result", "mineFail");
-			mv.setViewName("getPost");
-			return mv;
+			return false;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		mv.addObject("result", "roleFail");
-		mv.setViewName("getPost");
-		return mv;
+			
 	}
 	
 	/**
@@ -117,7 +110,7 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/detail.do", method = RequestMethod.GET)
+	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public ModelAndView detailPost(int post_pk) throws Exception {
 		System.out.println("postController - detailPost");	
 		postVO vo = new postVO();

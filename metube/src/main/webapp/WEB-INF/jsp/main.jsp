@@ -27,20 +27,18 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
-<c:forEach var="postList" items="${postList}">
-	
-	<div>
-		<a href="/post/detail.do?post_pk=${postList.pk}">
-			<p>========================</p>
-			<p>title: ${postList.title}</p>
-			<p>cover_img: ${postList.cover_img }</p>
-			<p>user_pk: ${postList.user_pk }</p>
-			<p>view_count: ${postList.view_count }</p>
-			<p>========================</p>
-		</a>
-	</div>
-	
-</c:forEach>
-
+	<c:forEach var="postList" items="${postList}">
+		<span>
+			<a href="/post/detail?post_pk=${postList.pk}">
+				<p>========================</p>
+				<p>title: ${postList.title}</p>
+				<p>cover_img: ${postList.cover_img }</p>
+				<p>user_pk: ${postList.user_pk }</p>
+				<p>view_count: ${postList.view_count }</p>
+				<p>create_at: ${postList.create_at }
+				<p>========================</p>
+			</a>
+		</span>
+	</c:forEach>
 </body>
 </html>

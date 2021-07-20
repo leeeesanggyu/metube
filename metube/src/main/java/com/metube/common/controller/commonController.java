@@ -9,7 +9,7 @@ import com.metube.post.vo.postVO;
 @Controller
 public class commonController {
 
-	@RequestMapping(value="/goHome.do")
+	@RequestMapping(value="/post/goHome.do")
 	public ModelAndView goHome(postVO vo) throws Exception {
 		System.out.println("commonController - goHome");
 		

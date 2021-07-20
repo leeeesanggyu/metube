@@ -13,6 +13,7 @@ import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
 
 @Controller
+@RequestMapping(value="/comment")
 public class commentController {
 
 	@Resource(name = "CommentService")
@@ -25,7 +26,7 @@ public class commentController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/comment.do", method = RequestMethod.POST)
+	@RequestMapping(value="/", method = RequestMethod.POST)
 	public ModelAndView createComment(@ModelAttribute commentVO vo, HttpSession session) throws Exception {
 		System.out.println("commentController - createComment");
 		ModelAndView mv = new ModelAndView();
@@ -41,7 +42,7 @@ public class commentController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/comment.do", method = RequestMethod.DELETE)
+	@RequestMapping(value="/", method = RequestMethod.DELETE)
 	public ModelAndView deleteComment(int pk, HttpSession session) throws Exception {
 		System.out.println("commentController - deleteComment");
 		commentVO vo = new commentVO();

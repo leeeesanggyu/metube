@@ -13,5 +13,4 @@ public interface commentDAO {
 
 	int deleteComment(commentVO vo) throws Exception;
 	
-	int deletePostComment(commentVO vo) throws Exception;
 }

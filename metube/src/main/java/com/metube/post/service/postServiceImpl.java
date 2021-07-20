@@ -35,10 +35,6 @@ public class postServiceImpl implements postService{
 	@Override
 	public int deletePost(postVO vo) throws Exception {
 		System.out.println("postService - deletePost");
-		
-		commentVO comment_vo = new commentVO();
-		comment_vo.setPost_pk(vo.getPk());
-		commentDAO.deletePostComment(comment_vo);
 		return postDAO.deletePost(vo);
 	}
 

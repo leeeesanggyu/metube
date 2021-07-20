@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.metube.hash.BCrypt;
+import com.metube.common.hash.BCrypt;
 import com.metube.user.dao.userDAO;
 import com.metube.user.vo.userVO;
 
@@ -55,6 +55,7 @@ public class userServiceImpl implements userService{
 	
 	@Override
 	public void logout(HttpSession session) throws Exception {
+		System.out.println("userService - logout");
 		//세션 변수 개별 삭제
 		//session.removeAttribute("email");
 		//세션 전체 초기화

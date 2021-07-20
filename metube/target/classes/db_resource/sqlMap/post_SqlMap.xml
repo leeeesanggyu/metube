@@ -36,7 +36,7 @@
     
     <select id="deletePost" resultType="postVO">
         DELETE FROM post
-        WHERE PK = #{pk}
+        WHERE pk = #{pk}
     </select>
     
     <select id="selectPost" resultType="postVO">

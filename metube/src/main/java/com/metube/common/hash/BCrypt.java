@@ -1,4 +1,4 @@
-package com.metube.hash;
+package com.metube.common.hash;
 
 //Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //

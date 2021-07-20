@@ -10,6 +10,7 @@ public class postVO {
 	private String cover_img;
 	private int like_count;
 	private int view_count;
+	private String create_at;
 	
 	public int getPk() {
 		return pk;
@@ -64,5 +65,11 @@ public class postVO {
 	}
 	public void setView_count(int view_count) {
 		this.view_count = view_count;
+	}
+	public String getCreate_at() {
+		return create_at;
+	}
+	public void setCreate_at(String create_at) {
+		this.create_at = create_at;
 	}
 }

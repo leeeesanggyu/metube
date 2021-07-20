@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.metube.hash.BCrypt;
+import com.metube.common.hash.BCrypt;
 import com.metube.post.vo.postVO;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
@@ -36,7 +36,7 @@ public class userController {
 	/**
 	 * main 페이지로 이동한다.
 	 */
-	@RequestMapping(value="/main.do")
+	@RequestMapping(value="/main")
 	public String goMain() throws Exception {
 		return "main";
 	}
@@ -46,7 +46,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/login.do")
+	@RequestMapping(value="/login")
 	public String guUserLogin() throws Exception {
 		return "login";
 	}
@@ -56,7 +56,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/goSignUp.do")
+	@RequestMapping(value="/goSignUp")
 	public String goSignUpPage() throws Exception {
 		return "signUp";
 	}
@@ -68,7 +68,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/list.do", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public ModelAndView getUserList() throws Exception {
 		System.out.println("userController - getUserList");
 		userVO vo = new userVO();
@@ -87,9 +87,9 @@ public class userController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/check.do", method = RequestMethod.POST)
+	@RequestMapping(value="/check", method = RequestMethod.POST)
 	public boolean loginCheck(
-			@RequestBody userVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response
+			@RequestBody userVO vo, HttpSession session
 	) throws Exception {
 		System.out.println("userController - loginCheck");		
 		try {		
@@ -110,15 +110,12 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout(HttpSession session) throws Exception {
+	@ResponseBody
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public boolean logout(HttpSession session) throws Exception {
 		System.out.println("userController - logout");
 		userService.logout(session);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login");
-		mv.addObject("msg", "logout");
-		return mv;
+		return true;
 	}
 	
 	/**
@@ -127,20 +124,24 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sign.do", method = RequestMethod.POST)
-	public ModelAndView signUp(@ModelAttribute userVO vo) throws Exception {
-		System.out.println("userController - signUp");
-		System.out.println("==========================================================================================");
-		System.out.println("password: " + vo.getPassword());
-		String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
-		vo.setPassword(hash_Password);
-		System.out.println("hash password: " + vo.getPassword());
-		System.out.println("==========================================================================================");
-		userService.signUp(vo);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login");
-		return mv;
+	@ResponseBody
+	@RequestMapping(value="/sign", method = RequestMethod.POST)
+	public boolean signUp(@RequestBody userVO vo) throws Exception {
+		try {
+			System.out.println("userController - signUp");
+			System.out.println("==========================================================================================");
+			System.out.println("password: " + vo.getPassword());
+			String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
+			vo.setPassword(hash_Password);
+			System.out.println("hash password: " + vo.getPassword());
+			System.out.println("==========================================================================================");
+			userService.signUp(vo);
+			
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
@@ -150,7 +151,7 @@ public class userController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/detail.do", method = RequestMethod.GET)
+	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public ModelAndView getUser(HttpSession session) throws Exception {
 		System.out.println("userController - getUser");
 		userVO vo = new userVO();

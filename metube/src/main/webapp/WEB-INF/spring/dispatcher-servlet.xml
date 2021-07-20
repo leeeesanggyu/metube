@@ -23,4 +23,6 @@
 	    p:prefix="/WEB-INF/jsp/" 
 	    p:suffix=".jsp"/>
 
+	<resources mapping="/resources/**" location="/resources/" />
+	
 </beans:beans>

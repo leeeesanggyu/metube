@@ -36,7 +36,7 @@
 			#{email}, 
 			#{password}, 
 			#{name},
-			#{role}
+			1
 		);
     	
     </select>

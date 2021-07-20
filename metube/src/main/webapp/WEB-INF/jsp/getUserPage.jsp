@@ -4,37 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%
-%>
+<link rel="stylesheet" href="/resources/css/getUserPage.css" />
 <title>getUserPage</title>
-<style>
-table.type09 {
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-
-}
-table.type09 thead th {
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	border-bottom: 3px solid RED;
-}
-table.type09 tbody th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-	background: #f3f6f7;
-}
-table.type09 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-}
-</style>
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -46,21 +17,31 @@ table.type09 td {
 				<th scope="cols">내용</th>
 			</tr>
 		</thead>
-	<tbody>
-		<tr>
-			<th scope="row">email</th>
-			<td>${userInfo.email}</td>
-		</tr>
-		<tr>
-			<th scope="row">name</th>
-			<td>${userInfo.name}</td>
-		</tr>
-		<tr>
-			<th scope="row">role</th>
-			<td>${userInfo.role}</td>
-		</tr>
-	</tbody>
-</table>
+		<tbody>
+			<tr>
+				<th scope="row">email</th>
+				<td>${userInfo.email}</td>
+			</tr>
+			<tr>
+				<th scope="row">name</th>
+				<td>${userInfo.name}</td>
+			</tr>
+			<tr>
+				<th scope="row">role</th>
+				<td>
+					<c:if test="${userInfo.role eq '1'}" >
+						Guest
+					</c:if>
+					<c:if test="${userInfo.role eq '2'}" >
+						User
+					</c:if>
+					<c:if test="${userInfo.role eq '3'}" >
+						Admin
+					</c:if>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </center>
 </body>
 </html>

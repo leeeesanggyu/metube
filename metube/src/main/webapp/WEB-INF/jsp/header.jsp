@@ -34,7 +34,11 @@
 	<hr>
 	<div class="menu">
 		<a href="/post/goCreate">동영상 업로드</a>&nbsp;&nbsp;
-		<a href="/user/detail">개인 정보 보기</a>
+		<a href="/user/detail/">개인 정보 보기</a>&nbsp;&nbsp;
+		<c:if test="${role eq '3'}" >
+			<a href="/user/search">회원 검색(Admin)</a>
+		</c:if>
+		
 		<div style="float: right;">
 			(<c:if test="${role eq '1'}" >
 				Guest
@@ -45,7 +49,7 @@
 			<c:if test="${role eq '3'}" >
 				Admin
 			</c:if>
-			) <%=name %> 님 안녕하세요.
+			) <%=name %> 님 안녕하세요..
 			<span id="logout">
 				<button @click="logout()">logout</button>
 			</span>
@@ -56,7 +60,6 @@
 <script>
 new Vue({
     el: '#logout',
-    
     methods: {
     	logout: function() {    		 
     		answer = confirm("정말 로그아웃 하시겠습니까 ?");

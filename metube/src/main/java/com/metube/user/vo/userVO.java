@@ -7,6 +7,7 @@ public class userVO {
 	private String password;
 	private String name;
 	private String role;
+	private int lock;
 	
 	public int getPk() {
 		return pk;
@@ -38,6 +39,11 @@ public class userVO {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+	public int getLock() {
+		return lock;
+	}
+	public void setLock(int lock) {
+		this.lock = lock;
+	}
 	
 }

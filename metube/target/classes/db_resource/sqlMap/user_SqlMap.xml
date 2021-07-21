@@ -15,6 +15,12 @@
 		WHERE email = #{email}
     </select>
     
+    <select id="nameGetUser" resultType="userVO">
+    	SELECT email, password, name, role, pk, lock
+		FROM user_info 
+		WHERE name = #{name}
+    </select>
+    
     <select id="noPwUser" resultType="userVO">
     	SELECT pk, name, email, role  
 		FROM user_info 
@@ -38,7 +44,6 @@
 			#{name},
 			1
 		);
-    	
     </select>
      
 </mapper>

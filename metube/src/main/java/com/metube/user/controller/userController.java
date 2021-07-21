@@ -1,6 +1,7 @@
 package com.metube.user.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,6 +64,16 @@ public class userController {
 	}
 	
 	/**
+	 * 회원 검색 페이지로 이동한다.
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/search")
+	public String goUserSearch() throws Exception {
+		return "userSearch";
+	}
+	
+	/**
 	 * 유저 전체 목록을 조회한다.
 	 * @param vo
 	 * @param model
@@ -75,7 +87,7 @@ public class userController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("userList", userService.getUserList(vo));
-		mv.setViewName("main");
+		mv.setViewName("userList");
 		return mv;
 	}
 	
@@ -159,6 +171,30 @@ public class userController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getUserPage");
 		mv.addObject("userInfo", userService.getUser(vo, session));
+		return mv;
+	}
+	
+	/**
+	 * 이름으로 유저 정보를 검색한다.
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/{name}", method = RequestMethod.GET)
+	public ModelAndView nameGetUser(@PathVariable("name") String name) throws Exception {
+		System.out.println("userController - nameGetUser");
+		userVO vo = new userVO();
+		vo.setName(name);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("nameUser");
+		
+		List<userVO> result = userService.nameGetUser(vo);
+		if(result == null) {
+			mv.addObject("userInfo");
+		}else {
+			mv.addObject("userInfo", result);
+		}
 		return mv;
 	}
 }

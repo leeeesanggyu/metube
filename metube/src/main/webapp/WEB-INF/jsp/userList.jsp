@@ -8,14 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>hi spring</h1>
-	<c:forEach var="user" items="${user}">
+<%@ include file="header.jsp"%>
+
+	<h3>user-list</h3>
+	<c:forEach var="userList" items="${userList}">
 		<div>
-			pk: ${user.pk }
-			이름: ${user.name}
-			이메일: ${user.email}
-			암호: ${user.password}
-			역할: ${user.role}
+			pk: ${userList.pk }<br>
+			이름: ${userList.name}<br>
+			이메일: ${userList.email}<br>
+			역할: ${userList.role}<br>
+			lock: ${userList.lock}<br><br>
 		</div>
 	</c:forEach>
 </body>

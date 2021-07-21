@@ -74,5 +74,11 @@ public class userServiceImpl implements userService{
 		return user_DAO.loginCheck(vo);
 	}
 
+	@Override
+	public List<userVO> nameGetUser(userVO vo) throws Exception {
+		System.out.println("userService - nameGetUser");
+		return user_DAO.nameGetUser(vo);
+	}
+
 	
 }

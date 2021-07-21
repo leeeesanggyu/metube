@@ -110,8 +110,8 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/detail", method = RequestMethod.GET)
-	public ModelAndView detailPost(int post_pk) throws Exception {
+	@RequestMapping(value="/detail/{post_pk}", method = RequestMethod.GET)
+	public ModelAndView detailPost(@PathVariable("post_pk") int post_pk) throws Exception {
 		System.out.println("postController - detailPost");	
 		postVO vo = new postVO();
 		vo.setPk(post_pk);

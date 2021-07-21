@@ -16,4 +16,6 @@ public interface userDAO {
 		
 	int signUp(userVO vo) throws Exception;
 
+	List<userVO> nameGetUser(userVO vo) throws Exception;
+
 }

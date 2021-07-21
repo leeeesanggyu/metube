@@ -29,7 +29,7 @@
 <%@ include file="header.jsp"%>
 	<c:forEach var="postList" items="${postList}">
 		<span>
-			<a href="/post/detail?post_pk=${postList.pk}">
+			<a href="/post/detail/${postList.pk}">
 				<p>========================</p>
 				<p>title: ${postList.title}</p>
 				<p>cover_img: ${postList.cover_img }</p>

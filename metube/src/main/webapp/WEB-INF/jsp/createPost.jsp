@@ -14,45 +14,53 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
-<script>
-	if(<%=role%> == "1"){
-		alert("Guest는 권한이 없습니다.");
-		history.go(-1);
-	}
-</script>
    	<h2>Create Post</h2><hr>
+   	
 	<form name="upload_form" id="upload_form" v-on:submit="upload">
+		<div class="submit">
+			<button type="submit" id="btn-upload">Upload</button>
+		</div>
 		<div class="login_id">
 			<h4>title</h4>
 			<input v-model="title">
-			
-			<!-- 2. TEXT 편집 툴을 사용할 textarea -->
-			<h4>description</h4>
-		    <textarea name="content" id="editor"></textarea>
-		    <script>
-		    	// 3. CKEditor5를 생성할 textarea 지정
-			    ClassicEditor
-			        .create( document.querySelector( '#editor' ) )
-			        .catch( error => {
-			            console.error( error );
-			        } );
-		    </script>
-			
 			<h4>url</h4>
 			<input v-model="url">
 			<h4>cover_img</h4>
 			<input v-model="cover_img">
 		</div>
-
-		<div class="submit">
-			<button type="submit" id="btn-upload">Upload</button>
-		</div>
 	</form>
-</body>
-<script>
-	var user_pk = <%=user_pk%>
-	var role = <%=role%>
 	
+	<!-- 2. TEXT 편집 툴을 사용할 textarea -->
+	<h4>description</h4>
+    <input name="content" id="editor">
+</body>
+
+<script>
+	//페이지 권한 설정
+	if(<%=role %> == "1"){
+		alert("Guest는 권한이 없습니다.");
+		history.go(-1);
+	}
+	
+	// 변수 선언
+	var user_pk = <%=user_pk%>;
+	var role = <%=role%>;
+ 	
+	//CKEditor5
+	let editor;
+	
+	ClassicEditor
+	    .create( document.querySelector( '#editor' ), {
+	    	
+	    } )
+	    .then( newEditer => {
+	       editor = newEditer;
+	    })
+	    .catch( error => {
+	        console.error( error );
+	    } );
+	
+	// vue
 	const upload_form = new Vue({
 	    el: '#upload_form',
 	    data: {
@@ -69,6 +77,9 @@
 	    	upload: function(e) {
 	        	e.preventDefault();
 	        	
+	        	const editorData = editor.getData();
+	        	this.description = editorData;
+	        		
 				if(this.title == ""){
 					alert("title insert", this.desciption);
 					$(this.title).focus();

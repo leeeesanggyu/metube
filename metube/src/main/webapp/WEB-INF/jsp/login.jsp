@@ -86,17 +86,6 @@
 					    <button type="button" id="btn-signUp" @click="onClickRedirect()">signUp</button>
 					</div>
 		        </form>
-		        
-				<c:if test="${msg == 'fail'}">
-					<div style="color: red">
-						login fail
-					</div>
-				</c:if>
-				<c:if test="${msg == 'logout'}">
-					<div style="color: red">
-						logout success 
-					</div>
-				</c:if>
 			</div>
 		</div>
 	</div>

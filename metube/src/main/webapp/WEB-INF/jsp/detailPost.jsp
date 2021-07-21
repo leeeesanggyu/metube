@@ -64,7 +64,7 @@
 		
 		<div id="app">
 			<button @click="deletePost">
-				게시물 삭제 user_pk : ${post.user_pk }, post_pk : ${post.pk }
+				게시물 삭제 
 			</button>
 		</div>
 		
@@ -89,34 +89,57 @@
 	    methods: {
 	    	
 	    	deletePost: function() {
-	        	if(this.user_pk != s_user_pk) {
-	    			alert("자신이 작성한 글만 삭제할 수 있습니다 ! ");
-	    			return;
+	    		if(user_role == 3){
+	    			answer = confirm("정말 삭제하시겠습니까?"+ URL);
+		            if (answer){
+		                const requestOptions = {
+		                        method: "DELETE",
+		                        headers: {
+		                     	   "Content-Type": "application/json" 
+		                        }
+		                    };
+		                 fetch(URL, requestOptions)
+		       				.then(res=>res.json())
+		     				.then(json=>{ 
+		     					console.log("fetch result: " + json);
+	     						location.href="/post/list.do";
+		     				})
+		     			.catch(err => console.log(err))
+		            }
+		            else{
+		          	  	return;
+		            }
+	    		}else{
+	    			if(this.user_pk != s_user_pk) {
+		    			alert("자신이 작성한 글만 삭제할 수 있습니다 !! ");
+		    			return;
+		    		}
+	    			else{
+	    				answer = confirm("정말 삭제하시겠습니까?");
+			            if (answer){
+			                const requestOptions = {
+			                        method: "DELETE",
+			                        headers: {
+			                     	   "Content-Type": "application/json" 
+			                        }
+			                    };
+			                 fetch(URL, requestOptions)
+			       				.then(res=>res.json())
+			     				.then(json=>{ 
+			     					console.log("fetch result: " + json);
+		     						location.href="/post/list.do";
+			     				})
+			     			.catch(err => console.log(err))
+			            }
+			            else{
+			          	  	return;
+			            }
+	    			}
 	    		}
-	        	
-	        	answer = confirm("정말 삭제하시겠습니까?"+ URL);
-	            if (answer){
-	                const requestOptions = {
-	                        method: "DELETE",
-	                        headers: {
-	                     	   "Content-Type": "application/json" 
-	                        }
-	                    };
-	                 fetch(URL, requestOptions)
-	       				.then(res=>res.json())
-	     				.then(json=>{ 
-	     					console.log("fetch result: " + json);
-     						location.href="/post/list.do";
-	     				})
-	     			.catch(err => console.log(err))
-	            }
-	            else{
-	          	  	return;
-	            }
-				 
-	            
+    			
+	    		
 	        }
-	    }
+	   }
 	});
 </script>
 </html>

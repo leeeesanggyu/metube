@@ -36,5 +36,11 @@ public class userDAOImpl extends mysqlAbstractMapper implements userDAO{
 		System.out.println("userDAO - signUp");
 		return insert("userDAO.signUp", vo);
 	}
+
+	@Override
+	public List<userVO> nameGetUser(userVO vo) throws Exception {
+		System.out.println("userDAO - nameGetUser");
+		return selectList("userDAO.nameGetUser", vo);
+	}
 	
 }

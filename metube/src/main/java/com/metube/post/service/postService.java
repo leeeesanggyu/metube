@@ -13,5 +13,7 @@ public interface postService {
 	int deletePost(postVO vo) throws Exception;
 
 	postVO detailPost(postVO vo) throws Exception;
+
+	int is_deletePost(postVO vo) throws Exception;
 }
 

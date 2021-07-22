@@ -10,7 +10,7 @@
     </select>
     
     <select id="getUser" resultType="userVO">
-    	SELECT email, password, name, role, pk
+    	SELECT email, password, name, role, pk, lock
 		FROM user_info 
 		WHERE email = #{email}
     </select>
@@ -46,5 +46,10 @@
 		);
     </select>
      
+    <select id="userLock" resultType="userVO">
+        UPDATE user_info 
+		SET lock = 1
+		WHERE pk = #{pk}
+    </select>
 </mapper>
 

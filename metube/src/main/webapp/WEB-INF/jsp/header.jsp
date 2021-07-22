@@ -15,6 +15,14 @@
 	String name = (String)session.getAttribute("name");
 	int user_pk = (int)session.getAttribute("user_pk");
 	String role = (String)session.getAttribute("role");
+	int lock = (int)session.getAttribute("lock");
+
+	if(lock == 1){
+%>
+		alert("회원님은 lock 상태 입니다.(관리자에게 나문희 )");
+		location.href="/user/lock/logout";
+<%
+	}
 	
 	String role_n = "";
 	if(role == "1"){

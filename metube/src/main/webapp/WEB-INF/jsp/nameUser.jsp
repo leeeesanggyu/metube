@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/resources/css/getUserPage.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 <title>getUserPage</title>
 </head>
 <body>
@@ -21,7 +22,11 @@
 			<tr>
 				<th scope="cols">계정 정보</th>
 				<th scope="cols">내용</th>
-				<th scope="cols"><button>계정 잠금</button></th>
+				<th scope="cols">
+					<div id="app">
+						<button @click="lock(${userInfo.pk})">계정 잠금</button>
+					</div>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,4 +65,26 @@
 </c:forEach>
 </center>
 </body>
+<script>	
+	new Vue({
+	    el: '#app',
+	    data: {
+	    	
+	    },
+	    methods: {
+	    	lock: function(user_pk) {
+	    		var URL = "/user/lock/" + user_pk;
+	    		
+	    		answer = confirm("해당 유저를 lock하시겠습니까 ?");
+	            if (answer){
+	            	location.href = URL;
+	            }
+	            else{
+	          	 	return;
+	            }
+	            
+	        }
+	    }
+	});
+</script>
 </html>

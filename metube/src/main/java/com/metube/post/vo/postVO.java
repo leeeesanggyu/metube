@@ -11,6 +11,9 @@ public class postVO {
 	private int like_count;
 	private int view_count;
 	private String create_at;
+	private String update_at;
+	private int kind;
+	private int is_delete;
 	
 	public int getPk() {
 		return pk;
@@ -71,5 +74,23 @@ public class postVO {
 	}
 	public void setCreate_at(String create_at) {
 		this.create_at = create_at;
+	}
+	public String getUpdate_at() {
+		return update_at;
+	}
+	public void setUpdate_at(String update_at) {
+		this.update_at = update_at;
+	}
+	public int getKind() {
+		return kind;
+	}
+	public void setKind(int kind) {
+		this.kind = kind;
+	}
+	public int getIs_delete() {
+		return is_delete;
+	}
+	public void setIs_delete(int is_delete) {
+		this.is_delete = is_delete;
 	}
 }

@@ -187,4 +187,21 @@ public class userController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/lock/{user_pk}", method = RequestMethod.GET)
+	public ModelAndView userLock(@PathVariable("user_pk") int user_pk) throws Exception {
+		userVO vo = new userVO();
+		vo.setPk(user_pk);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("getPost");
+		
+		try {
+			userService.userLock(vo);
+			return mv;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

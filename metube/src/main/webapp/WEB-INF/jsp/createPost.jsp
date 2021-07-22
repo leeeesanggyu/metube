@@ -42,7 +42,7 @@
 		history.go(-1);
 	}
 	
-	// 변수 선언
+	// 세션 받기
 	var user_pk = <%=user_pk%>;
 	var role = <%=role%>;
  	

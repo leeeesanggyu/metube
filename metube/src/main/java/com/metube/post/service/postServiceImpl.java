@@ -44,4 +44,9 @@ public class postServiceImpl implements postService{
 		return postDAO.selectOne(vo);
 	}
 
+	@Override
+	public int is_deletePost(postVO vo) throws Exception {
+		return postDAO.is_deletePost(vo);
+	}
+
 }

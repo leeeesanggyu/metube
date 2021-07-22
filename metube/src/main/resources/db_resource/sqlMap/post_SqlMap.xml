@@ -51,6 +51,12 @@
 		SET view_count = view_count + 1
 		WHERE pk = #{pk};
     </select>
+    
+    <select id="is_delete" resultType="postVO">
+        UPDATE post 
+		SET is_delete = 1
+		WHERE pk = #{pk};
+    </select>
      
      
     

@@ -21,4 +21,6 @@ public interface userService {
 	userVO getUser(userVO vo, HttpSession session) throws Exception;
 
 	List<userVO> nameGetUser(userVO vo) throws Exception;
+
+	int userLock(userVO vo) throws Exception;
 }

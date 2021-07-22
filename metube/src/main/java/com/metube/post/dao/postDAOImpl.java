@@ -31,8 +31,14 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 	}
 
 	@Override
-	public int update_view(postVO vo) {
+	public int update_view(postVO vo) throws Exception {
 		return update("PostDAO.update_view", vo);
+	}
+
+	@Override
+	public int is_deletePost(postVO vo) throws Exception {
+		return update("PostDAO.is_delete", vo);
+
 	}
 }
 

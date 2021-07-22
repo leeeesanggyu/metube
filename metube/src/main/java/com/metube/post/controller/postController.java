@@ -1,9 +1,12 @@
 package com.metube.post.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -72,6 +75,25 @@ public class postController {
 			return false;
 		}
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/admin/{post_pk}", method = RequestMethod.DELETE)
+	public boolean is_deletePost(
+			@PathVariable("post_pk") int post_pk
+	) throws Exception {
+		postVO vo = new postVO();
+		vo.setPk(post_pk);
+		try {		
+			if(postService.is_deletePost(vo) != 0) {
+				return true;
+			}
+			return false;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	/**
 	 * 게시물을 삭제한다.
@@ -97,7 +119,6 @@ public class postController {
 			e.printStackTrace();
 			return false;
 		}
-			
 	}
 	
 	/**
@@ -107,7 +128,10 @@ public class postController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/detail/{post_pk}", method = RequestMethod.GET)
-	public ModelAndView detailPost(@PathVariable("post_pk") int post_pk) throws Exception {
+	public ModelAndView detailPost(
+			@PathVariable("post_pk") int post_pk
+	) throws Exception {
+		
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
 		

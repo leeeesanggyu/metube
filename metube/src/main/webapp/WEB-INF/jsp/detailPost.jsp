@@ -79,7 +79,8 @@
 	var user_role = <%=role%>
 	
 	var URL = "/post/" + post_pk;
-	
+	var admin_URL = "/post/admin/" + post_pk;
+
 	new Vue({
 	    el: '#app',
 	    data: {
@@ -87,10 +88,9 @@
 	    	user_pk: p_user_pk
 	    },
 	    methods: {
-	    	
 	    	deletePost: function() {
 	    		if(user_role == 3){
-	    			answer = confirm("정말 삭제하시겠습니까?"+ URL);
+	    			answer = confirm("(Admin)정말 삭제하시겠습니까?"+ URL);
 		            if (answer){
 		                const requestOptions = {
 		                        method: "DELETE",
@@ -98,11 +98,11 @@
 		                     	   "Content-Type": "application/json" 
 		                        }
 		                    };
-		                 fetch(URL, requestOptions)
+		                 fetch(admin_URL, requestOptions)
 		       				.then(res=>res.json())
 		     				.then(json=>{ 
 		     					console.log("fetch result: " + json);
-	     						location.href="/post/list.do";
+	     						location.href="/post/list";
 		     				})
 		     			.catch(err => console.log(err))
 		            }
@@ -127,7 +127,7 @@
 			       				.then(res=>res.json())
 			     				.then(json=>{ 
 			     					console.log("fetch result: " + json);
-		     						location.href="/post/list.do";
+		     						location.href="/post/list";
 			     				})
 			     			.catch(err => console.log(err))
 			            }

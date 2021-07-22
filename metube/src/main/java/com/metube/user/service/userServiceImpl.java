@@ -36,6 +36,8 @@ public class userServiceImpl implements userService{
 			session.setAttribute("email", hash_password.getEmail());
 			session.setAttribute("name", hash_password.getName());
 			session.setAttribute("role", hash_password.getRole());
+			session.setAttribute("lock", hash_password.getLock());
+
 			return true;
 		}
 		System.out.println("비밀번호 비교 결과: 다름");
@@ -69,6 +71,11 @@ public class userServiceImpl implements userService{
 	@Override
 	public List<userVO> nameGetUser(userVO vo) throws Exception {
 		return user_DAO.nameGetUser(vo);
+	}
+
+	@Override
+	public int userLock(userVO vo) throws Exception {
+		return user_DAO.userLock(vo);
 	}
 
 	

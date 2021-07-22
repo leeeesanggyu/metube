@@ -18,4 +18,6 @@ public interface userDAO {
 
 	List<userVO> nameGetUser(userVO vo) throws Exception;
 
+	int userLock(userVO vo) throws Exception;
+
 }

@@ -15,31 +15,26 @@ public class userDAOImpl extends mysqlAbstractMapper implements userDAO{
 	
 	@Override
 	public List<userVO> getUserList(userVO vo) throws Exception {
-		System.out.println("userDAO - getUserList");
 		return selectList("userDAO.selectUserList", vo);
 	}
 
 	@Override
 	public userVO loginCheck(userVO vo) throws Exception {
-		System.out.println("userDAO - loginCheck");
 		return selectOne("userDAO.getUser", vo);
 	}
 	
 	@Override
 	public userVO noPwUser(userVO vo) throws Exception {
-		System.out.println("userDAO - noPwUser");
 		return selectOne("userDAO.noPwUser", vo);
 	}
 
 	@Override
 	public int signUp(userVO vo) throws Exception {
-		System.out.println("userDAO - signUp");
 		return insert("userDAO.signUp", vo);
 	}
 
 	@Override
 	public List<userVO> nameGetUser(userVO vo) throws Exception {
-		System.out.println("userDAO - nameGetUser");
 		return selectList("userDAO.nameGetUser", vo);
 	}
 	

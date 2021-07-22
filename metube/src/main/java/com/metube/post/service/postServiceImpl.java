@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metube.comment.dao.commentDAO;
 import com.metube.comment.vo.commentVO;
@@ -22,24 +24,23 @@ public class postServiceImpl implements postService{
 	
 	@Override
 	public List<postVO> getPostList(postVO vo) throws Exception {
-		System.out.println("postService - getPostList");
 		return postDAO.getPostList(vo);
 	}
 
 	@Override
 	public int createPost(postVO vo) throws Exception {
-		System.out.println("postService - createPost");
 		return postDAO.createPost(vo);
 	}
 
 	@Override
 	public int deletePost(postVO vo) throws Exception {
-		System.out.println("postService - deletePost");
 		return postDAO.deletePost(vo);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public postVO detailPost(postVO vo) throws Exception {
+		postDAO.update_view(vo);
 		return postDAO.selectOne(vo);
 	}
 

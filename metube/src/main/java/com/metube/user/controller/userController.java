@@ -82,7 +82,6 @@ public class userController {
 	 */
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public ModelAndView getUserList() throws Exception {
-		System.out.println("userController - getUserList");
 		userVO vo = new userVO();
 		
 		ModelAndView mv = new ModelAndView();
@@ -103,7 +102,6 @@ public class userController {
 	public boolean loginCheck(
 			@RequestBody userVO vo, HttpSession session
 	) throws Exception {
-		System.out.println("userController - loginCheck");		
 		try {		
 			if(userService.loginCheck(vo, session) == true) {
 				return true;
@@ -125,7 +123,6 @@ public class userController {
 	@ResponseBody
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public boolean logout(HttpSession session) throws Exception {
-		System.out.println("userController - logout");
 		userService.logout(session);
 		return true;
 	}
@@ -140,15 +137,10 @@ public class userController {
 	@RequestMapping(value="/sign", method = RequestMethod.POST)
 	public boolean signUp(@RequestBody userVO vo) throws Exception {
 		try {
-			System.out.println("userController - signUp");
-			System.out.println("==========================================================================================");
-			System.out.println("password: " + vo.getPassword());
 			String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
 			vo.setPassword(hash_Password);
-			System.out.println("hash password: " + vo.getPassword());
-			System.out.println("==========================================================================================");
-			userService.signUp(vo);
 			
+			userService.signUp(vo);
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -165,7 +157,6 @@ public class userController {
 	 */
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public ModelAndView getUser(HttpSession session) throws Exception {
-		System.out.println("userController - getUser");
 		userVO vo = new userVO();
 		
 		ModelAndView mv = new ModelAndView();
@@ -182,7 +173,6 @@ public class userController {
 	 */
 	@RequestMapping(value="/{name}", method = RequestMethod.GET)
 	public ModelAndView nameGetUser(@PathVariable("name") String name) throws Exception {
-		System.out.println("userController - nameGetUser");
 		userVO vo = new userVO();
 		vo.setName(name);
 		

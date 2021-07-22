@@ -22,18 +22,12 @@ public class userServiceImpl implements userService{
 	
 	@Override
 	public List<userVO> getUserList(userVO vo) throws Exception {
-		System.out.println("userService - getUserList");
 		return user_DAO.getUserList(vo);
 	}
 
 	@Override
 	public boolean loginCheck(userVO vo, HttpSession session) throws Exception {
-		System.out.println("userService - loginCheck");
-		System.out.println("==========================================================================================");
-		System.out.println("login password : " + vo.getPassword());
 		userVO hash_password = user_DAO.loginCheck(vo);	//해쉬된 비밀번호 찾기
-		System.out.println("hash password : " + hash_password.getPassword());
-		System.out.println("==========================================================================================");
 
 		if(BCrypt.checkpw(vo.getPassword(),hash_password.getPassword())) {
 			System.out.println("비밀번호 비교 결과: 같음");
@@ -55,7 +49,6 @@ public class userServiceImpl implements userService{
 	
 	@Override
 	public void logout(HttpSession session) throws Exception {
-		System.out.println("userService - logout");
 		//세션 변수 개별 삭제
 		//session.removeAttribute("email");
 		//세션 전체 초기화
@@ -69,14 +62,12 @@ public class userServiceImpl implements userService{
 
 	@Override
 	public userVO getUser(userVO vo, HttpSession session) throws Exception {
-		System.out.println("userService - getUser - session : " + session);
 		vo.setEmail((String)session.getAttribute("email"));
 		return user_DAO.loginCheck(vo);
 	}
 
 	@Override
 	public List<userVO> nameGetUser(userVO vo) throws Exception {
-		System.out.println("userService - nameGetUser");
 		return user_DAO.nameGetUser(vo);
 	}
 

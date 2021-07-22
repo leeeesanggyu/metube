@@ -13,5 +13,7 @@ public interface postDAO {
 	int deletePost(postVO vo) throws Exception;
 
 	postVO selectOne(postVO vo) throws Exception;
+
+	int update_view(postVO vo);
 }
 

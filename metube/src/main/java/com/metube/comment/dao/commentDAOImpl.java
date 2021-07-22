@@ -13,19 +13,16 @@ public class commentDAOImpl extends mysqlAbstractMapper implements commentDAO {
 
 	@Override
 	public int createComment(commentVO vo) throws Exception {
-		System.out.println("commentDAO - createComment");
 		return insert("CommentDAO.createComment", vo);
 	}
 
 	@Override
 	public List<commentVO> getComment(commentVO vo) throws Exception {
-		System.out.println("commentDAO - getComment");
 		return selectList("CommentDAO.getComment", vo);
 	}
 
 	@Override
 	public int deleteComment(commentVO vo) throws Exception {
-		System.out.println("commentDAO - deleteComment");
 		return delete("CommentDAO.deleteComment", vo);
 	}
 

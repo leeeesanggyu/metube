@@ -28,7 +28,6 @@ public class commentController {
 	 */
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public ModelAndView createComment(@ModelAttribute commentVO vo, HttpSession session) throws Exception {
-		System.out.println("commentController - createComment");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getPost");
 		mv.addObject("comment", commentService.createComment(vo, session));
@@ -44,7 +43,6 @@ public class commentController {
 	 */
 	@RequestMapping(value="/", method = RequestMethod.DELETE)
 	public ModelAndView deleteComment(int pk, HttpSession session) throws Exception {
-		System.out.println("commentController - deleteComment");
 		commentVO vo = new commentVO();
 		vo.setPk(pk);
 		vo.setUser_pk((int)session.getAttribute("user_pk"));

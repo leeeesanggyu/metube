@@ -38,8 +38,7 @@ public class postController {
 		mv.setViewName("createPost");
 		return mv;
 	}
-	
-	
+
 	/**
 	 * 게시물 목록을 가져온다.
 	 * @return
@@ -47,7 +46,6 @@ public class postController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView getPostList() throws Exception {
-		System.out.println("postController - getPostList");
 		postVO vo = new postVO();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
@@ -64,7 +62,6 @@ public class postController {
 	@ResponseBody
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public boolean createPost(@RequestBody postVO vo) throws Exception {
-		System.out.println("postController - createPost");
 		try {		
 			if(postService.createPost(vo) != 0) {
 				return true;
@@ -89,7 +86,6 @@ public class postController {
 	public boolean deletePost(
 		@PathVariable("post_pk") int post_pk
 	) throws Exception {
-		System.out.println("postController - deletePost");
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
 		try {		
@@ -112,7 +108,6 @@ public class postController {
 	 */
 	@RequestMapping(value="/detail/{post_pk}", method = RequestMethod.GET)
 	public ModelAndView detailPost(@PathVariable("post_pk") int post_pk) throws Exception {
-		System.out.println("postController - detailPost");	
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
 		

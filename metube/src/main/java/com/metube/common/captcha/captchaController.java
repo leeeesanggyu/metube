@@ -41,13 +41,8 @@ public class captchaController {
 	@PostMapping("/chkAnswer.do") 
 	@ResponseBody 
 	public void chkAnswer(@RequestBody() String ans, HttpServletRequest req, HttpServletResponse res) { 
-		System.out.println("=========chkAnswer==========");
 		String result = ""; 
-		
 		Captcha captcha = (Captcha) req.getSession().getAttribute(Captcha.NAME); 
-		System.out.println("captcha : " + captcha);
-		
-		System.out.println("answer : " + ans);
 		
 		if(ans!=null && !"".equals(ans)) { 
 			if(captcha.isCorrect(ans)) { 

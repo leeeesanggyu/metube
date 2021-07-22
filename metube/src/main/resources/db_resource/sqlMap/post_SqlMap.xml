@@ -5,7 +5,8 @@
  
     <select id="postList" resultType="postVO">
         SELECT *
-        FROM post
+		FROM post
+		ORDER BY pk DESC
     </select>
     
     <select id="createPost" resultType="postVO">
@@ -44,6 +45,14 @@
         FROM post
         WHERE PK = #{pk};
     </select>
+    
+    <select id="update_view" resultType="postVO">
+        UPDATE post 
+		SET view_count = view_count + 1
+		WHERE pk = #{pk};
+    </select>
      
+     
+    
 </mapper>
 

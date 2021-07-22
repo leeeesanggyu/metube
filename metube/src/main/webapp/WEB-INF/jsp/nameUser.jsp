@@ -24,7 +24,7 @@
 				<th scope="cols">내용</th>
 				<th scope="cols">
 					<div id="app">
-						<button @click="lock(${userInfo.pk})">계정 잠금</button>
+						<button @click="lock(${userInfo.pk}, ${userInfo.lock })">계정 잠금</button>
 					</div>
 				</th>
 			</tr>
@@ -58,7 +58,14 @@
 			</tr>
 			<tr>
 				<th scope="row">lock</th>
-				<td>${userInfo.lock}</td>
+				<td>
+					<c:if test="${userInfo.lock eq '0'}" >
+						정상
+					</c:if>
+					<c:if test="${userInfo.lock eq '1'}" >
+						잠금
+					</c:if>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -72,12 +79,30 @@
 	    	
 	    },
 	    methods: {
-	    	lock: function(user_pk) {
-	    		var URL = "/user/lock/" + user_pk;
+	    	lock: function(user_pk, lock) {
+	    		var URL = "/user/lock/";
 	    		
-	    		answer = confirm("해당 유저를 lock하시겠습니까 ?");
+	    		answer = confirm("해당 계정을 잠그시겠습니까? (잠금상태일경우 해제)");
 	            if (answer){
-	            	location.href = URL;
+	            	const requestOptions = {
+	 	                   method: "POST",
+	 	                   headers: {
+	 	                	   "Content-Type": "application/json" 
+	 	                   },
+	 	                   body: JSON.stringify({
+	 	                	   pk: user_pk,
+	 	                	   lock: lock
+	 	                   })
+	 	               };
+	 	            fetch(URL, requestOptions)
+	 	  				.then(res=>res.json())
+	 					.then(json=>{ 
+	 						if(json == true){
+	 							console.log("fetch result: " + json);
+	 							location.reload();
+	 						}
+	 					})
+	 					.catch(err => console.log(err))
 	            }
 	            else{
 	          	 	return;

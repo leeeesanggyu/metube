@@ -20,7 +20,6 @@
 	if(lock == 1){
 %>
 		alert("회원님은 lock 상태 입니다.(관리자에게 나문희 )");
-		location.href="/user/lock/logout";
 <%
 	}
 	

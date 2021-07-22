@@ -127,26 +127,7 @@ public class userController {
 		return true;
 	}
 	
-	/**
-	 * 회원가입을 정의한다.
-	 * @param vo email, password, name, role
-	 * @return
-	 * @throws Exception
-	 */
-	@ResponseBody
-	@RequestMapping(value="/sign", method = RequestMethod.POST)
-	public boolean signUp(@RequestBody userVO vo) throws Exception {
-		try {
-			String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
-			vo.setPassword(hash_Password);
-			
-			userService.signUp(vo);
-			return true;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+	
 	
 	/**
 	 * 자신의 정보를 가져온다.
@@ -188,20 +169,45 @@ public class userController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/lock/{user_pk}", method = RequestMethod.GET)
-	public ModelAndView userLock(@PathVariable("user_pk") int user_pk) throws Exception {
-		userVO vo = new userVO();
-		vo.setPk(user_pk);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("getPost");
-		
+	/**
+	 * 회원가입을 정의한다.
+	 * @param vo email, password, name, role
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/sign", method = RequestMethod.POST)
+	public boolean signUp(@RequestBody userVO vo) throws Exception {
 		try {
-			userService.userLock(vo);
-			return mv;
+			String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
+			vo.setPassword(hash_Password);
+			
+			userService.signUp(vo);
+			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
-			return null;
+			return false;
 		}
+	}
+	
+	/**
+	 * 
+	 * @param vo: pk, name, lock
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/lock", method = RequestMethod.POST)
+	public boolean userLock(@RequestBody userVO vo) throws Exception {
+		try {
+			userService.userLock(vo);
+			return true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		
 	}
 }

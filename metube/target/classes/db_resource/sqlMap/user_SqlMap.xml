@@ -47,8 +47,13 @@
     </select>
      
     <select id="userLock" resultType="userVO">
-        UPDATE user_info 
-		SET lock = 1
+        UPDATE user_info 		
+		<if test="lock eq 0">
+            SET lock = 1
+        </if>
+        <if test="lock eq 1">
+            SET lock = 0
+        </if>
 		WHERE pk = #{pk}
     </select>
 </mapper>

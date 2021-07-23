@@ -56,5 +56,10 @@
         </if>
 		WHERE pk = #{pk}
     </select>
+    
+    <select id="withdrawal" resultType="userVO">
+        DELETE FROM user_info
+		WHERE pk = #{pk}
+    </select>
 </mapper>
 

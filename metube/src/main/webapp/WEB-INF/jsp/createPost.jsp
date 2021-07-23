@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>metube</title>
+<title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -28,6 +28,13 @@
 			<h4>cover_img</h4>
 			<input v-model="cover_img">
 		</div>
+		<h4>게시판 선택</h4>
+		<select name="kind" v-model="kind">
+		    <option value="">== 게시판 선택 ==</option>
+		    <option value="1">광고 게시판</option>
+		    <option value="2">자유 게시판</option>
+		    <option value="3">공지 사항</option>
+	  	</select>
 	</form>
 	
 	<!-- 2. TEXT 편집 툴을 사용할 textarea -->
@@ -68,6 +75,7 @@
 	    	description: '',
 	    	url: '',
 	    	cover_img: '',
+	    	kind: '',
 	    	user_pk: user_pk,
 	    	comment_pk: 0,
 	    	like_count: 0,
@@ -76,10 +84,10 @@
 	    methods: {
 	    	upload: function(e) {
 	        	e.preventDefault();
-	        	
+	        	        	
 	        	const editorData = editor.getData();
 	        	this.description = editorData;
-	        		
+	        	
 				if(this.title == ""){
 					alert("title insert", this.desciption);
 					$(this.title).focus();
@@ -100,6 +108,11 @@
 					$(this.cover_img).focus();
 					return;
 				}
+				if(this.kind == ""){
+					alert("kind insert", this.kind);
+					$(this.kind).focus();
+					return;
+				}
 	            
 	            const requestOptions = {
 	                   method: "POST",
@@ -112,6 +125,7 @@
 	                	   url: this.url,
 	                	   cover_img: this.cover_img,
 	                	   user_pk: this.user_pk,
+	                	   kind: this.kind,
 	                	   comment_pk: this.comment_pk,
 	                	   like_count: this.like_count,
 	                	   view_count: this.view_count 

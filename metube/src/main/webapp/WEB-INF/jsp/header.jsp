@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>header</title>
+<title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/font.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -41,7 +41,7 @@
 	<hr>
 	<div class="menu">
 		<a href="/post/goCreate">동영상 업로드</a>&nbsp;&nbsp;
-		<a href="/user/detail/">개인 정보 보기</a>&nbsp;&nbsp;
+		<a href="/user/detail">개인 정보 보기</a>&nbsp;&nbsp;
 		<c:if test="${role eq '3'}" >
 			<a href="/user/search">회원 검색(Admin)</a>
 		</c:if>

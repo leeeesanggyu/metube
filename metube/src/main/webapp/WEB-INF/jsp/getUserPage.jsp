@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/resources/css/getUserPage.css" />
-<title>getUserPage</title>
+<title>MeTube</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -15,6 +16,11 @@
 			<tr>
 				<th scope="cols">계정 정보</th>
 				<th scope="cols">내용</th>
+				<th scope="cols">
+					<div id="app">
+						<button @click="withdrawal(${userInfo.pk})">회원 탈퇴</button>
+					</div>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,4 +50,43 @@
 	</table>
 </center>
 </body>
+<script>	
+	new Vue({
+	    el: '#app',
+	    data: {
+	    	
+	    },
+	    methods: {
+	    	withdrawal: function(pk) {
+	    		var URL = "/user/withdrawal/" + pk;
+	    		
+	    		answer = confirm("회원탈퇴 하시겠습니까 ?");
+	            if (answer){
+	            	const requestOptions = {
+	 	                   method: "DELETE",
+	 	                   headers: {
+	 	                	   "Content-Type": "application/json" 
+	 	                   },
+	 	                   body: JSON.stringify({
+	 	                	   
+	 	                   })
+	 	               };
+	 	            fetch(URL, requestOptions)
+	 	  				.then(res=>res.json())
+	 					.then(json=>{ 
+	 						if(json == true){
+	 							console.log("fetch result: " + json);
+	 							location.href="/";
+	 						}
+	 					})
+	 					.catch(err => console.log(err))
+	            }
+	            else{
+	          	 	return;
+	            }
+	            
+	        }
+	    }
+	});
+</script>
 </html>

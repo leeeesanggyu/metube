@@ -78,5 +78,10 @@ public class userServiceImpl implements userService{
 		return user_DAO.userLock(vo);
 	}
 
+	@Override
+	public int withdrawal(userVO vo) throws Exception {
+		return user_DAO.withdrawal(vo);
+	}
+
 	
 }

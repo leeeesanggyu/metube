@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/resources/css/getUserPage.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
-<title>getUserPage</title>
+<title>MeTube</title>
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -80,7 +80,7 @@
 	    },
 	    methods: {
 	    	lock: function(user_pk, lock) {
-	    		var URL = "/user/lock/";
+	    		var URL = "/user/lock";
 	    		
 	    		answer = confirm("해당 계정을 잠그시겠습니까? (잠금상태일경우 해제)");
 	            if (answer){

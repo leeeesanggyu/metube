@@ -9,6 +9,29 @@
 		ORDER BY pk DESC
     </select>
     
+    <!-- 게시판 종류별 쿼리 start-->
+    <select id="adList" resultType="postVO">
+        SELECT *
+		FROM post
+		WHERE kind = 1
+		ORDER BY pk DESC
+    </select>
+    
+    <select id="freeList" resultType="postVO">
+        SELECT *
+		FROM post
+		WHERE kind = 1
+		ORDER BY pk DESC
+    </select>
+    
+    <select id="noticeList" resultType="postVO">
+        SELECT *
+		FROM post
+		WHERE kind = 1
+		ORDER BY pk DESC
+    </select>
+    <!-- 게시판 종류별 쿼리 end -->
+    
     <select id="createPost" resultType="postVO">
     	INSERT INTO 
 			post
@@ -20,7 +43,8 @@
 			comment_pk,
 			like_count,
 			view_count,
-			cover_img
+			cover_img,
+			kind
 		)
 			VALUES
 		(
@@ -31,7 +55,8 @@
 			#{comment_pk},			
 			#{like_count},			
 			#{view_count},
-			#{cover_img}
+			#{cover_img},
+			#{kind}
 		);
     </select>
     

@@ -20,4 +20,6 @@ public interface userDAO {
 
 	int userLock(userVO vo) throws Exception;
 
+	int withdrawal(userVO vo) throws Exception;
+
 }

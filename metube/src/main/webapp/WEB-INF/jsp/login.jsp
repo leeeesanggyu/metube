@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>metube</title>
+<title>MeTube</title>
 <link rel="stylesheet" href="./resources/css/loginForm.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

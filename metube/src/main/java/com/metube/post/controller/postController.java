@@ -131,7 +131,6 @@ public class postController {
 	public ModelAndView detailPost(
 			@PathVariable("post_pk") int post_pk
 	) throws Exception {
-		
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
 		
@@ -144,6 +143,7 @@ public class postController {
 		mv.setViewName("detailPost");
 		return mv;
 	}
+	
 	
 	
 }

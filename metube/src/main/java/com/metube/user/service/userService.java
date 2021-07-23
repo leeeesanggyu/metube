@@ -23,4 +23,6 @@ public interface userService {
 	List<userVO> nameGetUser(userVO vo) throws Exception;
 
 	int userLock(userVO vo) throws Exception;
+
+	int withdrawal(userVO vo) throws Exception;
 }

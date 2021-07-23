@@ -1,20 +1,11 @@
 package com.metube.user.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,16 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.metube.common.hash.BCrypt;
-import com.metube.post.vo.postVO;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
 
 @Controller
 @RequestMapping(value="/user")
 public class userController {
-
+		
 	@Resource(name = "UserService")
 	private userService userService;
 	
@@ -49,7 +38,7 @@ public class userController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/login")
-	public String guUserLogin() throws Exception {
+	public String goUserLogin() throws Exception {
 		return "login";
 	}
 	
@@ -191,7 +180,7 @@ public class userController {
 	}
 	
 	/**
-	 * 
+	 * 유저에게 잠금을 건다.
 	 * @param vo: pk, name, lock
 	 * @return
 	 * @throws Exception
@@ -208,6 +197,24 @@ public class userController {
 			return false;
 		}
 
-		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/withdrawal/{user_pk}", method = RequestMethod.DELETE)
+	public boolean withdrawal(
+			@PathVariable("user_pk") int user_pk, HttpSession session
+	) throws Exception {
+		try {
+			userVO vo = new userVO();
+			vo.setPk(user_pk);
+			userService.withdrawal(vo);
+			userService.logout(session);
+			return true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

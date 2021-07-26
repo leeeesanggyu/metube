@@ -49,4 +49,14 @@ public class postServiceImpl implements postService{
 		return postDAO.is_deletePost(vo);
 	}
 
+	@Override
+	public List<postVO> getNoticeList(postVO vo) throws Exception {
+		return postDAO.getNoticeList(vo);
+	}
+
+	@Override
+	public int modifyPost(postVO vo) throws Exception {
+		return postDAO.modifyPost(vo);
+	}
+
 }

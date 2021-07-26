@@ -71,12 +71,17 @@ public class userController {
 	 */
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public ModelAndView getUserList() throws Exception {
-		userVO vo = new userVO();
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("userList", userService.getUserList(vo));
-		mv.setViewName("userList");
-		return mv;
+		try {
+			userVO vo = new userVO();
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("userList", userService.getUserList(vo));
+			mv.setViewName("userList");
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	/**
@@ -112,8 +117,13 @@ public class userController {
 	@ResponseBody
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public boolean logout(HttpSession session) throws Exception {
-		userService.logout(session);
-		return true;
+		try {
+			userService.logout(session);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	
@@ -127,12 +137,17 @@ public class userController {
 	 */
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public ModelAndView getUser(HttpSession session) throws Exception {
-		userVO vo = new userVO();
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("getUserPage");
-		mv.addObject("userInfo", userService.getUser(vo, session));
-		return mv;
+		try {
+			userVO vo = new userVO();
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("getUserPage");
+			mv.addObject("userInfo", userService.getUser(vo, session));
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	/**
@@ -143,19 +158,24 @@ public class userController {
 	 */
 	@RequestMapping(value="/{name}", method = RequestMethod.GET)
 	public ModelAndView nameGetUser(@PathVariable("name") String name) throws Exception {
-		userVO vo = new userVO();
-		vo.setName(name);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("nameUser");
-		
-		List<userVO> result = userService.nameGetUser(vo);
-		if(result == null) {
-			mv.addObject("userInfo");
-		}else {
-			mv.addObject("userInfo", result);
+		try {
+			userVO vo = new userVO();
+			vo.setName(name);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("nameUser");
+			
+			List<userVO> result = userService.nameGetUser(vo);
+			if(result == null) {
+				mv.addObject("userInfo");
+			}else {
+				mv.addObject("userInfo", result);
+			}
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return mv;
 	}
 	
 	/**

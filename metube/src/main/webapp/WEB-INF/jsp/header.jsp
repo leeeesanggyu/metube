@@ -17,12 +17,8 @@
 	String role = (String)session.getAttribute("role");
 	int lock = (int)session.getAttribute("lock");
 
-	if(lock == 1){
 %>
-		alert("회원님은 lock 상태 입니다.(관리자에게 나문희 )");
-<%
-	}
-	
+<%	
 	String role_n = "";
 	if(role == "1"){
 		role_n = "Guest";
@@ -37,11 +33,14 @@
 </script>
 </head>
 <body>
-	<a href="/post/list"><img src="/resources/images/logo.png" width="200"></a>
+	<a href="/post/list"><img src="/resources/images/logo.png" width="150"></a>
 	<hr>
 	<div class="menu">
 		<a href="/post/goCreate">동영상 업로드</a>&nbsp;&nbsp;
+		<a href="/post/notice/list">공지 사항</a>&nbsp;&nbsp;
+		<a href="/post/notice/list">구독(미구현)</a>&nbsp;&nbsp;
 		<a href="/user/detail">개인 정보 보기</a>&nbsp;&nbsp;
+		
 		<c:if test="${role eq '3'}" >
 			<a href="/user/search">회원 검색(Admin)</a>
 		</c:if>
@@ -56,7 +55,7 @@
 			<c:if test="${role eq '3'}" >
 				Admin
 			</c:if>
-			) <%=name %> 님 안녕하세요..
+			) <%=name %> 님
 			<span id="logout">
 				<button @click="logout()">logout</button>
 			</span>

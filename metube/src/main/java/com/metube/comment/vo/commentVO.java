@@ -5,6 +5,7 @@ public class commentVO {
 	private int post_pk;
 	private int user_pk;
 	private String content;
+	private String create_at;
 	
 	public int getPk() {
 		return pk;
@@ -29,6 +30,12 @@ public class commentVO {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getCreate_at() {
+		return create_at;
+	}
+	public void setCreate_at(String create_at) {
+		this.create_at = create_at;
 	}
 	
 	

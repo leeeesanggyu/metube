@@ -12,7 +12,7 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 
 	@Override
 	public List<postVO> getPostList(postVO vo) throws Exception {
-		return selectList("PostDAO.postList", vo);
+		return selectList("PostDAO.freeList", vo);
 	}
 
 	@Override
@@ -38,7 +38,16 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 	@Override
 	public int is_deletePost(postVO vo) throws Exception {
 		return update("PostDAO.is_delete", vo);
+	}
 
+	@Override
+	public List<postVO> getNoticeList(postVO vo) throws Exception {
+		return selectList("PostDAO.noticeList", vo);
+	}
+
+	@Override
+	public int modifyPost(postVO vo) throws Exception {
+		return update("PostDAO.modifYPost", vo);
 	}
 }
 

@@ -15,5 +15,9 @@ public interface postService {
 	postVO detailPost(postVO vo) throws Exception;
 
 	int is_deletePost(postVO vo) throws Exception;
+
+	List<postVO> getNoticeList(postVO vo) throws Exception;
+
+	int modifyPost(postVO vo) throws Exception;
 }
 

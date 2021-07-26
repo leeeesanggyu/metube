@@ -8,24 +8,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
-<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 <%@ include file="header.jsp"%>
-   	<h2>Create Post</h2><hr>
-   	
+   	<h2>Modify Post</h2><hr>
 	<form name="upload_form" id="upload_form" v-on:submit="upload">
 		<div class="submit">
 			<button type="submit" id="btn-upload">Upload</button>
 		</div>
 		<div class="login_id">
-			<h4>title</h4>
+			<h4>title ${post.title }</h4>
 			<input v-model="title">
-			<h4>url</h4>
+			<h4>url ${post.url }</h4>
 			<input v-model="url">
-			<h4>cover_img</h4>
+			<h4>cover_img ${post.cover_img}</h4>
 			<input v-model="cover_img">
 		</div>
 		<h4>게시판 선택</h4>
@@ -39,9 +37,10 @@
 	
 	<!-- 2. TEXT 편집 툴을 사용할 textarea -->
 	<h4>description</h4>
-    <input name="content" id="editor">
+    <textarea name="content" id="editor">
+    	${post.description}
+    </textarea>
 </body>
-
 <script>
 	//페이지 권한 설정
 	if(<%=role %> == "1"){
@@ -53,6 +52,8 @@
 	var user_pk = <%=user_pk%>;
 	var role = <%=role%>;
  	
+	var post_title =  ${post.title };
+	
 	//CKEditor5
 	let editor;
 	
@@ -71,15 +72,11 @@
 	const upload_form = new Vue({
 	    el: '#upload_form',
 	    data: {
-	    	title: '',
-	    	description: '',
-	    	url: '',
-	    	cover_img: '',
-	    	kind: '',
-	    	user_pk: user_pk,
-	    	comment_pk: 0,
-	    	like_count: 0,
-	    	view_count: 0,
+	    	title: 123,
+	    	url: 123,
+	    	cover_img: 123,
+	    	kind: 123,
+	    	description: ''
 	    },
 	    methods: {
 	    	upload: function(e) {
@@ -115,23 +112,20 @@
 				}
 	            
 	            const requestOptions = {
-	                   method: "POST",
+	                   method: "PUT",
 	                   headers: {
 	                	   "Content-Type": "application/json" 
 	                   },
 	                   body: JSON.stringify({
+	                	   pk: pk,
 	                	   title: this.title, 
 	                	   description: this.description,
 	                	   url: this.url,
 	                	   cover_img: this.cover_img,
-	                	   user_pk: this.user_pk,
-	                	   kind: this.kind,
-	                	   comment_pk: this.comment_pk,
-	                	   like_count: this.like_count,
-	                	   view_count: this.view_count 
+	                	   kind: this.kind
 	                   })
-	               };
-	            fetch("/post/create", requestOptions)
+	            };
+	            fetch("/post/modify", requestOptions)
 	  				.then(res=>res.json())
 					.then(json=>{ 
 						if(json == true){

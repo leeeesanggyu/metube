@@ -1,5 +1,9 @@
 package com.metube.post.controller;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -37,9 +41,14 @@ public class postController {
 	 */
 	@RequestMapping(value="/goCreate")
 	public ModelAndView goCreatePost() throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("createPost");
-		return mv;
+		try {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("createPost");
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -49,11 +58,35 @@ public class postController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView getPostList() throws Exception {
-		postVO vo = new postVO();
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main");
-		mv.addObject("postList", postService.getPostList(vo));
-		return mv;
+		try {
+			postVO vo = new postVO();
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("main");
+			mv.addObject("postList", postService.getPostList(vo));
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 공지사항을 가져온다.
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/notice/list")
+	public ModelAndView getNoticeList() throws Exception {
+		try {
+			postVO vo = new postVO();
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("main");
+			mv.addObject("postList", postService.getNoticeList(vo));
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	/**
@@ -76,7 +109,12 @@ public class postController {
 		}
 	}
 	
-	
+	/**
+	 * 운영자 게시물 삭제 처리
+	 * @param post_pk
+	 * @return
+	 * @throws Exception
+	 */
 	@ResponseBody
 	@RequestMapping(value="/admin/{post_pk}", method = RequestMethod.DELETE)
 	public boolean is_deletePost(
@@ -131,19 +169,71 @@ public class postController {
 	public ModelAndView detailPost(
 			@PathVariable("post_pk") int post_pk
 	) throws Exception {
-		postVO vo = new postVO();
-		vo.setPk(post_pk);
-		
-		commentVO comment_vo = new commentVO();
-		comment_vo.setPost_pk(post_pk);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("post", postService.detailPost(vo));
-		mv.addObject("comment", commentService.getComment(comment_vo));
-		mv.setViewName("detailPost");
-		return mv;
+		try {
+			postVO vo = new postVO();
+			vo.setPk(post_pk);
+			
+			commentVO comment_vo = new commentVO();
+			comment_vo.setPost_pk(post_pk);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("post", postService.detailPost(vo));
+			mv.addObject("comment", commentService.getComment(comment_vo));
+			mv.setViewName("detailPost");
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
+	/**
+	 * 게시물 수정 페이지로 간다.
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/goModify/{post_pk}")
+	public ModelAndView goModifyPost(@PathVariable("post_pk") int post_pk) throws Exception {
+		try {
+			ModelAndView mv = new ModelAndView();
+			postVO vo = new postVO();
+			vo.setPk(post_pk);
+			
+			mv.setViewName("modifyPost");
+			mv.addObject("post", postService.detailPost(vo));
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 게시물을 수정한다
+	 * @param vo: pk 수정할 게시물,
+	 * 			수정데이터: title, description
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/modify", method = RequestMethod.PUT)
+	public boolean modifyPost(@RequestBody postVO vo) throws Exception {
+		try {		
+			//현재 시간 구하기
+	        ZoneId zid = ZoneId.systemDefault();
+			ZonedDateTime datetime = ZonedDateTime.now(zid);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "uuuu-MM-dd HH:mm:ss" );
+	        String timeStamp = datetime.format(formatter);
+	        vo.setUpdate_at(timeStamp);
+	    
+			postService.modifyPost(vo);
+			System.out.println(postService.modifyPost(vo));
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	
 }

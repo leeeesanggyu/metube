@@ -9,22 +9,6 @@
 <title>MeTube</title>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
-<script>
-	$(document).ready(function(){
-		$("#btn-comment").click(function(){
-			var content=$("#content").val();
-
-			if(content == ""){
-				alert("content insert");
-				$("#content").focus();
-				return;
-			}
-			
-			document.comment_form.action="/comment"
-			document.comment_form.submit();
-		})
-	})
-</script>
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -40,33 +24,34 @@
 		<p>like_count: ${post.like_count }</p>
 		<p>view_count: ${post.view_count }</p>
 		<p>create_at: ${post.create_at }</p>
+		<p>update_at: ${post.update_at }</p>
 		<p>===========================================</p>
+		<div id="post">
+			<button @click="deletePost">
+				게시물 삭제 
+			</button>
+			<button @click="goModifyPost">
+				게시물 수정
+			</button>
+		</div><br>
+		
+		<form id="comment" v-on:submit="comment_upload">
+			댓글 <input v-model="content">
+			<button type="submit" id="btn-comment">댓글달기</button>
+		</form>
 		
 		<c:forEach var="comment" items="${comment}">
 			<div>
 				<p>========================</p>
-				<p>pk: ${comment.pk}</p>
-				<p>post_pk: ${comment.post_pk }</p>
 				<p>user_pk: ${comment.user_pk }</p>
 				<p>content: ${comment.content }</p>
+				<p>time: ${comment.create_at }</p>
+				<div id="comment_delete">
+					<button @click="deleteComment(${comment.pk }, ${comment.user_pk })">삭제</button>
+				</div>
 				<p>========================</p>
-				
 			</div>
 		</c:forEach>
-		
-		<form name="comment_form" method="post">
-			댓글 <input name="content" id="content">
-			<input type="hidden" name="user_pk" value=<%=user_pk%>>
-			<input type="hidden" name="post_pk" value=${post.pk }>
-			
-			<button type="submit" id="btn-comment">댓글달기</button>
-		</form>
-		
-		<div id="app">
-			<button @click="deletePost">
-				게시물 삭제 
-			</button>
-		</div>
 		
 		<br><br>
 	</div>
@@ -74,23 +59,24 @@
 
 <script>
 	var s_user_pk = <%=user_pk%> //세션
+	var user_role = <%=role%> //세션
 	var p_user_pk = ${post.user_pk }
 	var post_pk = ${post.pk}
-	var user_role = <%=role%>
 	
 	var URL = "/post/" + post_pk;
 	var admin_URL = "/post/admin/" + post_pk;
 
-	new Vue({
-	    el: '#app',
+	const post = new Vue({
+	    el: '#post',
 	    data: {
 	    	pk: post_pk,
-	    	user_pk: p_user_pk
+	    	user_pk: p_user_pk,
+	    	content: ''
 	    },
 	    methods: {
 	    	deletePost: function() {
 	    		if(user_role == 3){
-	    			answer = confirm("(Admin)정말 삭제하시겠습니까?"+ URL);
+	    			answer = confirm("(Admin)정말 삭제하시겠습니까?");
 		            if (answer){
 		                const requestOptions = {
 		                        method: "DELETE",
@@ -136,10 +122,99 @@
 			            }
 	    			}
 	    		}
-    			
-	    		
+	        },
+	        goModifyPost: function() {
+	        	if(this.user_pk != s_user_pk) {
+	    			alert("자신이 작성한 글만 수정할 수 있습니다 !! ");
+	    			return;
+	    		}
+    			location.href="/post/goModify/" + post_pk;
 	        }
 	   }
 	});
+	
+	const comment = new Vue({
+	    el: '#comment',
+	    data: {
+	    	pk: post.post_pk,
+	    	content: ''
+	    },
+	    methods: {
+	        comment_upload: function() {
+	        	if(this.content == ""){
+					alert("댓글 insert");
+					$(this.content).focus();
+					return;
+				}
+	        	const requestOptions = {
+                        method: "POST",
+                        headers: {
+                     	   "Content-Type": "application/json" 
+                        },
+	                  	body: JSON.stringify({
+	                	   post_pk: post_pk,
+	                	   content: this.content
+ 		                })
+                    };
+                 fetch("/comment/", requestOptions)
+       				.then(res=>res.json())
+     				.then(json=>{ 
+     					console.log("fetch result: " + json);
+ 						location.reload();
+     				})
+     			.catch(err => console.log(err))
+	        }
+	   }
+	});
+	const comment_delete = new Vue({
+	    el: '#comment_delete',
+	    data: {
+	    },
+	    methods: {
+	    	deleteComment: function(pk, c_pk) {
+    			answer = confirm("댓글을 삭제하시겠습니까?");
+    			if (answer){
+    				if(s_user_pk == c_pk) {
+	            		const requestOptions = {
+		                        method: "DELETE",
+		                        headers: {
+		                     	   "Content-Type": "application/json" 
+		                        }
+		                    };
+		                 fetch("/comment/" + pk, requestOptions)
+		       				.then(res=>res.json())
+		     				.then(json=>{ 
+		     					console.log("fetch result: " + json);
+		 						location.reload();
+		     				})
+		     			.catch(err => console.log(err))
+    				}
+    				else if(s_user_pk == 3){
+    					const requestOptions = {
+		                        method: "DELETE",
+		                        headers: {
+		                     	   "Content-Type": "application/json" 
+		                        }
+		                    };
+		                 fetch("/comment/" + pk, requestOptions)
+		       				.then(res=>res.json())
+		     				.then(json=>{ 
+		     					console.log("fetch result: " + json);
+		 						location.reload();
+		     				})
+		     			.catch(err => console.log(err))
+    				}
+    				else{
+    	    			alert("자신이 작성한 댓글만 삭제할 수 있습니다 !! ");
+ 						location.reload();
+    					return;
+    				}
+	    		}else{
+	    			return;
+	    		}
+    		}
+        }
+	});
+	
 </script>
 </html>

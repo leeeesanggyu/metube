@@ -5,12 +5,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
+import com.metube.post.vo.postVO;
 
 @Controller
 @RequestMapping(value="/comment")
@@ -26,12 +30,16 @@ public class commentController {
 	 * @return
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	public ModelAndView createComment(@ModelAttribute commentVO vo, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("getPost");
-		mv.addObject("comment", commentService.createComment(vo, session));
-		return mv;
+	public boolean createComment(@RequestBody commentVO vo, HttpSession session) throws Exception {
+		try {
+			commentService.createComment(vo, session);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
@@ -41,15 +49,18 @@ public class commentController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/", method = RequestMethod.DELETE)
-	public ModelAndView deleteComment(int pk, HttpSession session) throws Exception {
-		commentVO vo = new commentVO();
-		vo.setPk(pk);
-		vo.setUser_pk((int)session.getAttribute("user_pk"));
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("getPost");
-		mv.addObject("commentDelete", commentService.deleteComment(vo));
-		return mv;
+	@ResponseBody
+	@RequestMapping(value="/{comment_pk}", method = RequestMethod.DELETE)
+	public boolean deleteComment(@PathVariable("comment_pk") int comment_pk) throws Exception {
+		try {
+			commentVO vo = new commentVO();
+			vo.setPk(comment_pk);
+			
+			commentService.deleteComment(vo);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

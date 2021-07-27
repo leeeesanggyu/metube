@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
 <link rel="stylesheet" href="/resources/css/layout.css" />
+<link rel="stylesheet" href="/resources/css/font-.css" />
+<link rel="stylesheet" href="/resources/css/body-line.css" />
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -20,7 +22,9 @@
 	
 		<h4>${post.title} ${post.pk }</h4>
 		<p>${post.description }</p>
-		<p>조회수 ${post.view_count }회 • ${post.create_at } • 👍 ${post.like_count }</p>
+		<div class="small">
+			<p>조회수 ${post.view_count }회 • ${post.create_at } • 👍 ${post.like_count }</p>
+		</div>
 		<c:if test="${post.update_at ne null}" >
 			<p>수정:
 				${post.update_at }
@@ -35,7 +39,7 @@
 			</button>
 		</div>
 		<hr>
-		<p>${post.name } 구독자 0명 <button type="submit">구독</button></p>
+		<p>${post.name } <span class="small">구독자 0명</span> <button type="submit">구독</button></p>
 		<hr>
 		<form id="comment" v-on:submit="comment_upload">
 			댓글 <input v-model="content">
@@ -45,11 +49,12 @@
 		<div class="comment">
 			<c:forEach var="comment" items="${comment}">
 				<div>
-					<p><strong>${comment.user_pk }</strong> • ${comment.create_at }</p>
+					<p><strong>${comment.name }</strong> • ${comment.create_at }</p>
 					<p>${comment.content }</p>
 					<div id="comment_delete">
 						<button @click="deleteComment(${comment.pk }, ${comment.user_pk })">삭제</button>
 					</div>
+					<hr>
 				</div>
 			</c:forEach>
 		</div>

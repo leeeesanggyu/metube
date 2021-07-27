@@ -10,6 +10,8 @@
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
+<link rel="stylesheet" href="/resources/css/font-.css" />
+<link rel="stylesheet" href="/resources/css/body-line.css" />
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -20,8 +22,10 @@
 					<a href="/post/detail/${postList.pk}">
 						<p>cover_img: ${postList.cover_img }</p>
 						<p>${postList.title}</p>
-						<p>${postList.name }</p>
-						<p>조회수 ${postList.view_count }회 • ${postList.create_at }</p>
+						<div class="small">
+							<p>${postList.name }</p>
+							<p>조회수 ${postList.view_count }회 • ${postList.create_at }</p>
+						</div>
 					</a>
 				</c:if>
 				

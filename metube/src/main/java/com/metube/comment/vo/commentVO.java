@@ -6,7 +6,14 @@ public class commentVO {
 	private int user_pk;
 	private String content;
 	private String create_at;
+	private String name;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getPk() {
 		return pk;
 	}

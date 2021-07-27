@@ -34,7 +34,7 @@
 </head>
 <body>
 	<a href="/post/list"><img src="/resources/images/logo.png" width="150"></a>
-	<hr>
+	<hr><br>
 	<div class="menu">
 		<a href="/post/goCreate">동영상 업로드</a>&nbsp;&nbsp;
 		<a href="/post/notice/list">공지 사항</a>&nbsp;&nbsp;
@@ -61,7 +61,7 @@
 			</span>
 		</div>
 	</div>
-	<hr>
+	<br><hr>
 </body>
 <script>
 new Vue({

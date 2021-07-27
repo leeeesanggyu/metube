@@ -25,13 +25,14 @@
 
 	<resources mapping="/resources/**" location="/resources/" />
 	
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <!--  파일업로드 용량 (10MB)-->
+	    <beans:property name="maxUploadSize" value="10485760"/>
+	    <beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
 	
 	<beans:bean id = "uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\Users\Administrator\Desktop\salgu\metube-eGovFrame\metube\src\main\resources\image_data">
+		<beans:constructor-arg value="C:\Users\Administrator\Desktop\salgu\metube-eGovFrame\metube\src\main\resources\data">
 		</beans:constructor-arg>
 	</beans:bean>
 </beans:beans>

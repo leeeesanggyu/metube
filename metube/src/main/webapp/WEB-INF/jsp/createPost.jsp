@@ -9,6 +9,8 @@
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
+<link rel="stylesheet" href="/resources/css/body-line.css" />
+<link rel="stylesheet" href="/resources/css/font-.css" />
 <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -16,7 +18,14 @@
 <body>
 <%@ include file="header.jsp"%>
 	<div class="layout">
-		<form name="upload_form" id="upload_form" v-on:submit="upload">
+	
+	
+		<form  action="/springBoard/file/upload.do" method="post"  enctype="multipart/form-data">
+             <input type="file" name="file"/>
+        </form>
+        
+        
+		<form name="upload_form" id="upload_form" v-on:submit="upload" enctype="multipart/form-data">
 			<div class="submit">
 				<button type="submit" id="btn-upload">Upload</button>
 			</div>
@@ -32,8 +41,12 @@
 				<input v-model="title">
 				<h4>url</h4>
 				<input v-model="url">
+				
 				<h4>cover_img</h4>
 				<input v-model="cover_img">
+				
+				<input type="file" v-model="cover_img">
+				
 			</div>
 		</form>
 		

@@ -12,7 +12,7 @@
     <!-- 게시판 종류별 쿼리 start-->
     <select id="freeList" resultType="postVO">
         SELECT 
-			p.title, p.cover_img, p.view_count, p.create_at, p.is_delete, p.pk, u.name
+			p.*, u.name, u.pk
 		FROM 
 			post AS p
 			JOIN
@@ -62,7 +62,7 @@
     
     <select id="selectPost" resultType="postVO">
         SELECT 
-			p.url, p.title, p.description, p.view_count, p.create_at, p.update_at, p.like_count, p.pk, u.name
+			p.*, u.name
 		FROM 
 			post AS p
 			JOIN

@@ -5,13 +5,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -227,7 +222,6 @@ public class postController {
 	        vo.setUpdate_at(timeStamp);
 	    
 			postService.modifyPost(vo);
-			System.out.println(postService.modifyPost(vo));
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();

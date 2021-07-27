@@ -19,11 +19,11 @@
 			<button type="submit" id="btn-upload">Upload</button>
 		</div>
 		<div class="login_id">
-			<h4>title ${post.title }</h4>
+			<h4>title</h4>
 			<input v-model="title">
-			<h4>url ${post.url }</h4>
+			<h4>url</h4>
 			<input v-model="url">
-			<h4>cover_img ${post.cover_img}</h4>
+			<h4>cover_img</h4>
 			<input v-model="cover_img">
 		</div>
 		<h4>게시판 선택</h4>
@@ -51,9 +51,7 @@
 	// 세션 받기
 	var user_pk = <%=user_pk%>;
 	var role = <%=role%>;
- 	
-	var post_title =  ${post.title };
-	
+	 		
 	//CKEditor5
 	let editor;
 	
@@ -72,10 +70,10 @@
 	const upload_form = new Vue({
 	    el: '#upload_form',
 	    data: {
-	    	title: 123,
-	    	url: 123,
-	    	cover_img: 123,
-	    	kind: 123,
+	    	title: "${post.title }",
+	    	url: "${post.url }",
+	    	cover_img: "${post.cover_img }",	
+	    	kind: "${post.kind }",
 	    	description: ''
 	    },
 	    methods: {
@@ -117,7 +115,7 @@
 	                	   "Content-Type": "application/json" 
 	                   },
 	                   body: JSON.stringify({
-	                	   pk: pk,
+	                	   pk: "${post.pk }",
 	                	   title: this.title, 
 	                	   description: this.description,
 	                	   url: this.url,

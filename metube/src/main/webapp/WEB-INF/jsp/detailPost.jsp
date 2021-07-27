@@ -9,23 +9,23 @@
 <title>MeTube</title>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<link rel="stylesheet" href="/resources/css/createPostForm.css" />
+<link rel="stylesheet" href="/resources/css/content.css" />
+<link rel="stylesheet" href="/resources/css/layout.css" />
 </head>
 <body>
 <%@ include file="header.jsp"%>
-	<div>
-		<p>===========================================</p>
-		<p>pk: ${post.pk }</p>
-		<p>user_pk: ${post.user_pk }</p>
-		<p>comment_pk: ${post.comment_pk}</p>
-		<p>title: ${post.title}</p>
-		<p>description: ${post.description }</p>
-		<p>url: ${post.url }</p>
-		<p>cover_img: ${post.cover_img }</p>
-		<p>like_count: ${post.like_count }</p>
-		<p>view_count: ${post.view_count }</p>
-		<p>create_at: ${post.create_at }</p>
-		<p>update_at: ${post.update_at }</p>
-		<p>===========================================</p>
+	<div class="layout">
+		<p>동영상: ${post.url }</p>
+	
+		<h4>${post.title} ${post.pk }</h4>
+		<p>${post.description }</p>
+		<p>조회수 ${post.view_count }회 • ${post.create_at } • 👍 ${post.like_count }</p>
+		<c:if test="${post.update_at ne null}" >
+			<p>수정:
+				${post.update_at }
+			</p>
+		</c:if>
 		<div id="post">
 			<button @click="deletePost">
 				게시물 삭제 
@@ -33,27 +33,27 @@
 			<button @click="goModifyPost">
 				게시물 수정
 			</button>
-		</div><br>
-		
+		</div>
+		<hr>
+		<p>${post.name } 구독자 0명 <button type="submit">구독</button></p>
+		<hr>
 		<form id="comment" v-on:submit="comment_upload">
 			댓글 <input v-model="content">
 			<button type="submit" id="btn-comment">댓글달기</button>
-		</form>
+		</form><br>
 		
-		<c:forEach var="comment" items="${comment}">
-			<div>
-				<p>========================</p>
-				<p>user_pk: ${comment.user_pk }</p>
-				<p>content: ${comment.content }</p>
-				<p>time: ${comment.create_at }</p>
-				<div id="comment_delete">
-					<button @click="deleteComment(${comment.pk }, ${comment.user_pk })">삭제</button>
+		<div class="comment">
+			<c:forEach var="comment" items="${comment}">
+				<div>
+					<p><strong>${comment.user_pk }</strong> • ${comment.create_at }</p>
+					<p>${comment.content }</p>
+					<div id="comment_delete">
+						<button @click="deleteComment(${comment.pk }, ${comment.user_pk })">삭제</button>
+					</div>
 				</div>
-				<p>========================</p>
-			</div>
-		</c:forEach>
+			</c:forEach>
+		</div>
 		
-		<br><br>
 	</div>
 </body>
 

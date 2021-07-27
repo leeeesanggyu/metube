@@ -47,7 +47,7 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 
 	@Override
 	public int modifyPost(postVO vo) throws Exception {
-		return update("PostDAO.modifYPost", vo);
+		return update("PostDAO.modifyPost", vo);
 	}
 }
 

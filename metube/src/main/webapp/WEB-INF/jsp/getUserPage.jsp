@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/resources/css/getUserPage.css" />
+<link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <title>MeTube</title>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>

@@ -6,19 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
+<link rel="stylesheet" href="/resources/css/content.css" />
 </head>
 <body>
 <%@ include file="header.jsp"%>
-	<h2>search-user</h2><hr>
-	
-	<form name="upload_form" id="search_form" v-on:submit="search">
-		<div class="login_id">
-			<h4>name</h4>
-			<input v-model="name" placeholder="name">
-		</div>
-		
-		<button class="submit" type="submit">search</button>
-	</form>
+	<div class="layout">
+		<h2>search-user</h2><hr>
+		<form name="upload_form" id="search_form" v-on:submit="search">
+			<div class="login_id">
+				<h4>name</h4>
+				<input v-model="name" placeholder="name">
+			</div>
+			<div class="submit">
+				<button class="submit" type="submit">search</button>
+			</div>
+		</form>
+	</div>
 </body>
 <script>
 	//페이지 권한 설정

@@ -8,7 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="/resources/css/main.css" />
+<link rel="stylesheet" href="/resources/css/createPostForm.css" />
+<link rel="stylesheet" href="/resources/css/content.css" />
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -19,15 +20,15 @@
 					<a href="/post/detail/${postList.pk}">
 						<p>cover_img: ${postList.cover_img }</p>
 						<p>${postList.title}</p>
-						<p>user_pk: ${postList.user_pk }</p>
+						<p>${postList.name }</p>
 						<p>조회수 ${postList.view_count }회 • ${postList.create_at }</p>
 					</a>
 				</c:if>
 				
 				<c:if test="${postList.is_delete eq '1'}" >
-					<p>=========================</p>
-					<p>[ 관리자에 의해 삭제된 게시글 입니다 ]</p>
-					<p>=========================</p>
+					<p>======================</p>
+					<p> [ 관리자에 의해 삭제된 게시글 ]</p>
+					<p>======================</p>
 				</c:if>
 			</div>
 		</c:forEach>

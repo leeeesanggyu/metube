@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.metube.comment.dao.commentDAO;
-import com.metube.comment.vo.commentVO;
 import com.metube.post.dao.postDAO;
 import com.metube.post.vo.postVO;
 

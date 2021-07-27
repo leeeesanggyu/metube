@@ -11,10 +11,14 @@
     
     <!-- 게시판 종류별 쿼리 start-->
     <select id="freeList" resultType="postVO">
-        SELECT *
-		FROM post
-		WHERE kind = 2
-		ORDER BY pk DESC
+        SELECT 
+			p.title, p.cover_img, p.view_count, p.create_at, p.is_delete, p.pk, u.name
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
+		ORDER BY p.pk DESC
     </select>
     
     <select id="noticeList" resultType="postVO">
@@ -33,7 +37,6 @@
 			title,
 			description,
 			url,
-			comment_pk,
 			like_count,
 			view_count,
 			cover_img,
@@ -45,7 +48,6 @@
 			#{title},
 			#{description},
 			#{url},
-			#{comment_pk},			
 			#{like_count},			
 			#{view_count},
 			#{cover_img},
@@ -59,9 +61,14 @@
     </select>
     
     <select id="selectPost" resultType="postVO">
-        SELECT *
-        FROM post
-        WHERE PK = #{pk};
+        SELECT 
+			p.url, p.title, p.description, p.view_count, p.create_at, p.update_at, p.like_count, p.pk, u.name
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
+		WHERE p.pk = #{pk}
     </select>
     
     <select id="update_view" resultType="postVO">
@@ -76,7 +83,7 @@
 		WHERE pk = #{pk};
     </select>
      
-    <select id="modifYPost" resultType="postVO">
+    <select id="modifyPost" resultType="postVO">
         UPDATE post 
 		SET 
 			title = #{title}, 

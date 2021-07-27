@@ -3,7 +3,6 @@ package com.metube.post.vo;
 public class postVO {
 	private int pk;
 	private int user_pk;
-	private int comment_pk;
 	private String title;
 	private String description;
 	private String url;
@@ -14,7 +13,14 @@ public class postVO {
 	private String update_at;
 	private int kind;
 	private int is_delete;
+	private String name;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getPk() {
 		return pk;
 	}
@@ -26,12 +32,6 @@ public class postVO {
 	}
 	public void setUser_pk(int user_pk) {
 		this.user_pk = user_pk;
-	}
-	public int getComment_pk() {
-		return comment_pk;
-	}
-	public void setComment_pk(int comment_pk) {
-		this.comment_pk = comment_pk;
 	}
 	public String getTitle() {
 		return title;

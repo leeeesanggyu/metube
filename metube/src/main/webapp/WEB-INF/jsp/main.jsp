@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,7 +21,7 @@
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}" >
 					<a href="/post/detail/${postList.pk}">
-						<p>cover_img: ${postList.cover_img }</p>
+						<p>[thumbnail]</p>
 						<p>${postList.title}</p>
 						<div class="small">
 							<p>${postList.name }</p>
@@ -31,7 +32,7 @@
 				
 				<c:if test="${postList.is_delete eq '1'}" >
 					<p>======================</p>
-					<p> [ 관리자에 의해 삭제된 게시글 ]</p>
+					<p>[ 관리자에 의해 삭제된 게시글 ]</p>
 					<p>======================</p>
 				</c:if>
 			</div>

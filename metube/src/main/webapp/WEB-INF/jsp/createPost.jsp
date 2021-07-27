@@ -9,8 +9,8 @@
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
-<link rel="stylesheet" href="/resources/css/body-line.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
+<link rel="stylesheet" href="/resources/css/body-line.css" />
 <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -18,14 +18,7 @@
 <body>
 <%@ include file="header.jsp"%>
 	<div class="layout">
-	
-	
-		<form  action="/springBoard/file/upload.do" method="post"  enctype="multipart/form-data">
-             <input type="file" name="file"/>
-        </form>
-        
-        
-		<form name="upload_form" id="upload_form" v-on:submit="upload" enctype="multipart/form-data">
+		<form name="upload_form" id="upload_form" v-on:submit="upload" >
 			<div class="submit">
 				<button type="submit" id="btn-upload">Upload</button>
 			</div>
@@ -39,20 +32,24 @@
 			<div class="login_id">
 				<h4>title</h4>
 				<input v-model="title">
-				<h4>url</h4>
-				<input v-model="url">
-				
-				<h4>cover_img</h4>
-				<input v-model="cover_img">
-				
-				<input type="file" v-model="cover_img">
-				
 			</div>
 		</form>
 		
 		<!-- 2. TEXT 편집 툴을 사용할 textarea -->
 		<h4>description</h4>
 	    <input name="content" id="editor">
+	    
+	    
+	    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<form action="/post/upload" method="post" enctype="multipart/form-data">
+			테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
+			<br><br>video<br><br>
+		    <input type="file" name="file"/><br><br>
+		    image<br><br>
+		    <input type="file" name="image"/><br><br>
+		    <input class="btn btn-primary btn-sm"  type="submit" value="업로드"/>
+			<br><br>테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
+		</form>
 	</div>
 </body>
 
@@ -83,8 +80,6 @@
 	    data: {
 	    	title: '',
 	    	description: '',
-	    	url: '',
-	    	cover_img: '',
 	    	kind: '',
 	    	user_pk: <%=user_pk%>,
 	    	comment_pk: 0,
@@ -108,16 +103,6 @@
 					$(this.description).focus();
 					return;
 				}
-				if(this.url == ""){
-					alert("url insert");
-					$(this.url).focus();
-					return;
-				}
-				if(this.cover_img == ""){
-					alert("cover_img insert");
-					$(this.cover_img).focus();
-					return;
-				}
 				if(this.kind == ""){
 					alert("kind insert", this.kind);
 					$(this.kind).focus();
@@ -132,8 +117,6 @@
 	                   body: JSON.stringify({
 	                	   title: this.title, 
 	                	   description: this.description,
-	                	   url: this.url,
-	                	   cover_img: this.cover_img,
 	                	   user_pk: this.user_pk,
 	                	   kind: this.kind,
 	                	   comment_pk: this.comment_pk,

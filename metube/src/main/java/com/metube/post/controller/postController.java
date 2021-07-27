@@ -1,5 +1,6 @@
 package com.metube.post.controller;
 
+import java.io.File;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,11 +8,13 @@ import java.time.format.DateTimeFormatter;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.service.postService;
@@ -28,6 +31,9 @@ public class postController {
 	
 	@Resource(name = "CommentService")
 	private commentService commentService;
+	
+	@Resource(name="uploadPath")
+    String uploadPath;
 	
 	/**
 	 * 게시물 생성 페이지로 간다.
@@ -103,6 +109,32 @@ public class postController {
 			return false;
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/upload", method=RequestMethod.POST)
+    public void uploadForm(
+    		MultipartFile file, MultipartFile image
+    ) {
+        String fileName = file.getOriginalFilename();
+        File target = new File(uploadPath, fileName);
+        System.out.println("target :" + target);
+        
+        String fileName2 = image.getOriginalFilename();
+        File target2 = new File(uploadPath, fileName2);
+        System.out.println("target2 :" + target2);
+        
+        //경로 생성
+        if (!new File(uploadPath).exists()) {
+            new File(uploadPath).mkdirs();
+        }
+        //파일 복사
+        try {
+            FileCopyUtils.copy(file.getBytes(), target);
+            FileCopyUtils.copy(image.getBytes(), target2);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 	
 	/**
 	 * 운영자 게시물 삭제 처리

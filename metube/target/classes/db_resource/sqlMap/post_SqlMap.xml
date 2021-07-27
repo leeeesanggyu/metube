@@ -36,10 +36,8 @@
 			user_pk,
 			title,
 			description,
-			url,
 			like_count,
 			view_count,
-			cover_img,
 			kind
 		)
 			VALUES
@@ -47,10 +45,8 @@
 			#{user_pk},
 			#{title},
 			#{description},
-			#{url},
 			#{like_count},			
 			#{view_count},
-			#{cover_img},
 			#{kind}
 		);
     </select>
@@ -88,8 +84,6 @@
 		SET 
 			title = #{title}, 
 			description = #{description}, 
-			url = #{url},
-			cover_img = #{cover_img},
 			kind = #{kind},
 			update_at = #{update_at}
 		WHERE pk = #{pk};

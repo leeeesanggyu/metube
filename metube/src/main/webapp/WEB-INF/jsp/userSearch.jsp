@@ -15,7 +15,7 @@
 	<div class="layout">
 		<form name="upload_form" id="search_form" v-on:submit="search">
 			<div class="login_id">
-				<h4>name</h4>
+				<h4>name-search</h4>
 				<input v-model="name" placeholder="name">
 			</div>
 			<div class="submit">

@@ -18,14 +18,6 @@
 		<div class="submit">
 			<button type="submit" id="btn-upload">Upload</button>
 		</div>
-		<div class="login_id">
-			<h4>title</h4>
-			<input v-model="title">
-			<h4>url</h4>
-			<input v-model="url">
-			<h4>cover_img</h4>
-			<input v-model="cover_img">
-		</div>
 		<h4>게시판 선택</h4>
 		<select name="kind" v-model="kind">
 		    <option value="">== 게시판 선택 ==</option>
@@ -33,6 +25,10 @@
 		    <option value="2">자유 게시판</option>
 		    <option value="3">공지 사항</option>
 	  	</select>
+		<div class="login_id">
+			<h4>title</h4>
+			<input v-model="title">
+		</div>
 	</form>
 	
 	<!-- 2. TEXT 편집 툴을 사용할 textarea -->
@@ -70,9 +66,7 @@
 	const upload_form = new Vue({
 	    el: '#upload_form',
 	    data: {
-	    	title: "${post.title }",
-	    	url: "${post.url }",
-	    	cover_img: "${post.cover_img }",	
+	    	title: "${post.title }",	
 	    	kind: "${post.kind }",
 	    	description: ''
 	    },
@@ -93,16 +87,6 @@
 					$(this.description).focus();
 					return;
 				}
-				if(this.url == ""){
-					alert("url insert");
-					$(this.url).focus();
-					return;
-				}
-				if(this.cover_img == ""){
-					alert("cover_img insert");
-					$(this.cover_img).focus();
-					return;
-				}
 				if(this.kind == ""){
 					alert("kind insert", this.kind);
 					$(this.kind).focus();
@@ -118,8 +102,6 @@
 	                	   pk: "${post.pk }",
 	                	   title: this.title, 
 	                	   description: this.description,
-	                	   url: this.url,
-	                	   cover_img: this.cover_img,
 	                	   kind: this.kind
 	                   })
 	            };

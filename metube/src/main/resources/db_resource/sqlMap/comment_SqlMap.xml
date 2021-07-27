@@ -27,6 +27,7 @@
 			JOIN
 				user_info AS u
 				ON c.user_pk = u.pk
+		WHERE c.post_pk = #{post_pk}
 		ORDER BY c.pk DESC
     </select>
     

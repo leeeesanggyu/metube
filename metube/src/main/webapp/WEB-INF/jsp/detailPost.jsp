@@ -20,16 +20,16 @@
 	<div class="layout">
 		<p>동영상: ${post.url }</p>
 	
-		<h4>${post.title} ${post.pk }</h4>
+		<h4>${post.title}</h4>
 		<p>${post.description }</p>
 		<div class="small">
 			<p>조회수 ${post.view_count }회 • ${post.create_at } • 👍 ${post.like_count }</p>
+			<c:if test="${post.update_at ne null}" >
+				<p>수정:
+					${post.update_at }
+				</p>
+			</c:if>
 		</div>
-		<c:if test="${post.update_at ne null}" >
-			<p>수정:
-				${post.update_at }
-			</p>
-		</c:if>
 		<div id="post">
 			<button @click="deletePost">
 				게시물 삭제 

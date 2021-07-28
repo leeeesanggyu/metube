@@ -19,5 +19,9 @@ public interface postService {
 	List<postVO> getNoticeList(postVO vo) throws Exception;
 
 	int modifyPost(postVO vo) throws Exception;
+
+	List<postVO> searchPostList(postVO vo) throws Exception;
+	
+	List<postVO> searchNoticeList(postVO vo) throws Exception;
 }
 

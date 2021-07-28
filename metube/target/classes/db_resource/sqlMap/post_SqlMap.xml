@@ -89,5 +89,32 @@
 		WHERE pk = #{pk};
     </select>
     
+    <select id="searchPostList" resultType="postVO">
+        SELECT 
+			p.*, u.name, u.pk
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
+		WHERE 
+			title LIKE CONCAT('%', #{title}, '%')
+		ORDER BY p.pk DESC
+    </select>
+    
+    <select id="searchNoticeList" resultType="postVO">
+        SELECT 
+			p.*, u.name, u.pk
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
+		WHERE 
+			title LIKE CONCAT('%', #{title}, '%')
+			AND
+			kind = 3
+		ORDER BY p.pk DESC
+    </select>
 </mapper>
 

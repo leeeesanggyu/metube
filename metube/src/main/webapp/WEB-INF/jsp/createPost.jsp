@@ -94,7 +94,7 @@
 	        	this.description = editorData;
 	        	
 				if(this.title == ""){
-					alert("title insert", this.desciption);
+					alert("title insert");
 					$(this.title).focus();
 					return;
 				}
@@ -104,7 +104,12 @@
 					return;
 				}
 				if(this.kind == ""){
-					alert("kind insert", this.kind);
+					alert("kind insert");
+					$(this.kind).focus();
+					return;
+				}
+				if(this.kind == 3 && <%=role %> != 3){
+					alert("공지사항은 admin만 쓸수 있습니다 !");
 					$(this.kind).focus();
 					return;
 				}

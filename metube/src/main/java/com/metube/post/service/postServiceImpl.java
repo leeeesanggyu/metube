@@ -58,4 +58,14 @@ public class postServiceImpl implements postService{
 		return postDAO.modifyPost(vo);
 	}
 
+	@Override
+	public List<postVO> searchPostList(postVO vo) throws Exception {
+		return postDAO.searchPostList(vo);
+	}
+
+	@Override
+	public List<postVO> searchNoticeList(postVO vo) throws Exception {
+		return postDAO.searchNoticeList(vo);
+	}
+
 }

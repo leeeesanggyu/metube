@@ -38,6 +38,10 @@
     </textarea>
 </body>
 <script>
+	var ori_title = "${post.title }"
+	var ori_description = "${post.description }"
+	var ori_kind = "${post.kind }"
+
 	//페이지 권한 설정
 	if(<%=role %> == "1"){
 		alert("Guest는 권한이 없습니다.");
@@ -92,6 +96,11 @@
 					$(this.kind).focus();
 					return;
 				}
+						
+	        	if(ori_title == this.title && ori_kind == this.kind && ori_description == this.description){
+	        		alert("변경 사항이 없습니다.");
+	        		return;
+	        	}
 	            
 	            const requestOptions = {
 	                   method: "PUT",

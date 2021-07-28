@@ -64,6 +64,32 @@ public class postController {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("main");
 			mv.addObject("postList", postService.getPostList(vo));
+			mv.addObject("noticeList", postService.getNoticeList(vo));
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 게시물을 조회한다.
+	 * @param title
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/search/{title}")
+	public ModelAndView searchPostList(
+			@PathVariable("title") String title
+	) throws Exception {
+		try {
+			postVO vo = new postVO();
+			vo.setTitle(title);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("main");
+			mv.addObject("postList", postService.searchPostList(vo));
+			mv.addObject("noticeList", postService.searchNoticeList(vo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -82,7 +108,7 @@ public class postController {
 			postVO vo = new postVO();
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("main");
-			mv.addObject("postList", postService.getNoticeList(vo));
+			mv.addObject("noticeList", postService.getNoticeList(vo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();

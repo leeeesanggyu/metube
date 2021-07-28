@@ -34,6 +34,13 @@
 </head>
 <body>
 	<a href="/post/list"><img src="/resources/images/logo.png" width="150"></a>
+	
+	<form id="search_form" v-on:submit="search" >
+		<span>
+			<input type="text" v-model="search_data" placeholder="제목 입력"><button type="submit">검색</button>
+		</span>
+	</form>
+	
 	<hr><br>
 	<div class="menu">
 		<a href="/post/goCreate">동영상 업로드</a>&nbsp;&nbsp;
@@ -64,7 +71,7 @@
 	<br><hr>
 </body>
 <script>
-new Vue({
+const logout = new Vue({
     el: '#logout',
     methods: {
     	logout: function() {    		 
@@ -78,10 +85,28 @@ new Vue({
     	            };
     	         fetch("/user/logout", requestOptions)
     				.then(res=>{ location.href="/"; })
-    			.catch(err => console.log(err))
+    				.catch(err => console.log(err))
    	    	}else{
    	    		return;
    	    	}
+    	}
+    }
+});
+const search_form = new Vue({
+    el: '#search_form',
+    data: {
+    	search_data: ''
+    },
+    methods: {
+    	search: function(e) {   
+        	e.preventDefault();
+
+        	if(this.search_data == ""){
+				alert("검색어를 입력하세여");
+				$(this.search_data).focus();
+				return;
+			}
+			location.href= "/post/search/" + this.search_data;
     	}
     }
 });

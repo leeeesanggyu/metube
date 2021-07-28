@@ -67,6 +67,7 @@
 	var user_role = <%=role%> //세션
 	var p_user_pk = ${post.user_pk }
 	var post_pk = ${post.pk}
+	var post_kind = ${post.kind}
 	
 	var URL = "/post/" + post_pk;
 	var admin_URL = "/post/admin/" + post_pk;
@@ -80,7 +81,28 @@
 	    },
 	    methods: {
 	    	deletePost: function() {
-	    		if(user_role == 3){
+	    		if(user_role == 3 && post_kind == 3){
+	    			answer = confirm("정말 삭제하시겠습니까?");
+		            if (answer){
+		                const requestOptions = {
+		                        method: "DELETE",
+		                        headers: {
+		                     	   "Content-Type": "application/json" 
+		                        }
+		                    };
+		                 fetch(URL, requestOptions)
+		       				.then(res=>res.json())
+		     				.then(json=>{ 
+		     					console.log("fetch result: " + json);
+	     						location.href="/post/list";
+		     				})
+		     			.catch(err => console.log(err))
+		            }
+		            else{
+		          	  	return;
+		            }
+	    		}
+	    		else if(user_role == 3){
 	    			answer = confirm("(Admin)정말 삭제하시겠습니까?");
 		            if (answer){
 		                const requestOptions = {

@@ -59,5 +59,15 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 	public List<postVO> searchNoticeList(postVO vo) throws Exception {
 		return selectList("PostDAO.searchNoticeList", vo);
 	}
+
+	@Override
+	public List<postVO> userPostList(postVO pvo) throws Exception {
+		return selectList("PostDAO.userPostList", pvo);
+	}
+
+	@Override
+	public List<postVO> userCommunityList(postVO pvo) throws Exception {
+		return selectList("PostDAO.userCommunityList", pvo);
+	}
 }
 

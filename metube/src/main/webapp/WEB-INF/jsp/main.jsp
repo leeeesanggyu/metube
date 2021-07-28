@@ -16,6 +16,7 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
+<h4 class="layout">공지사항</h4>
 	<div class="content">
 		<c:forEach var="noticeList" items="${noticeList}">
 			<div class="oneContent">
@@ -37,6 +38,7 @@
 		</c:forEach>
 	</div>
 	<hr align="center" style="border: outset 1px; width: 88%;">
+	<h4 class="layout">동영상</h4>
 	<div class="content">
 		<c:forEach var="postList" items="${postList}">
 			<div class="oneContent">

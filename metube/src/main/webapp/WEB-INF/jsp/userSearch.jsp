@@ -45,7 +45,7 @@
 					$(this.name).focus();
 					return;
 				}
-				location.href= this.name;
+				location.href= "/user/" + this.name;
 	        }
 	    
 	    }

@@ -25,5 +25,9 @@ public interface postDAO {
 	List<postVO> searchPostList(postVO vo) throws Exception;
 
 	List<postVO> searchNoticeList(postVO vo) throws Exception;
+
+	List<postVO> userPostList(postVO pvo) throws Exception;
+
+	List<postVO> userCommunityList(postVO pvo) throws Exception;
 }
 

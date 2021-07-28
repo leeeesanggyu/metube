@@ -7,6 +7,7 @@
         <typeAlias type="com.metube.user.vo.userVO" alias="userVO" />
         <typeAlias type="com.metube.post.vo.postVO" alias="postVO" />
         <typeAlias type="com.metube.comment.vo.commentVO" alias="commentVO" />
+        <typeAlias type="com.metube.sub.vo.subVO" alias="subVO" />
         
     </typeAliases>
     

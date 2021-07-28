@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.common.hash.BCrypt;
+import com.metube.post.service.postService;
+import com.metube.post.vo.postVO;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
 
@@ -23,6 +25,9 @@ public class userController {
 		
 	@Resource(name = "UserService")
 	private userService userService;
+	
+	@Resource(name = "PostService")
+	private postService postService;
 	
 	/**
 	 * main 페이지로 이동한다.
@@ -129,7 +134,7 @@ public class userController {
 	
 	
 	/**
-	 * 자신의 정보를 가져온다.
+	 * 내 채널 정보를 가져온다.
 	 * @param vo
 	 * @param session
 	 * @return
@@ -139,10 +144,15 @@ public class userController {
 	public ModelAndView getUser(HttpSession session) throws Exception {
 		try {
 			userVO vo = new userVO();
+			postVO pvo = new postVO();
+			
+			pvo.setUser_pk((int)session.getAttribute("user_pk"));
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("getUserPage");
 			mv.addObject("userInfo", userService.getUser(vo, session));
+			mv.addObject("postList", postService.getUserPostList(pvo));
+			mv.addObject("noticeList", postService.getUserCommunityList(pvo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();

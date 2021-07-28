@@ -39,7 +39,18 @@
 			</button>
 		</div>
 		<hr>
-		<p>${post.name } <span class="small">구독자 0명</span> <button type="submit">구독</button></p>
+		<div id="sub">
+			${post.name } 
+			<span class="small">구독자 0명</span> 
+			<button @click="sub_add(${post.user_pk})">
+				<c:if test="${sub eq null}" >
+					구독
+				</c:if>
+				<c:if test="${sub ne null}" >
+					구독중✔
+				</c:if>
+			</button>
+		</div>
 		<hr>
 		<form id="comment" v-on:submit="comment_upload">
 			댓글 <input v-model="content">
@@ -72,6 +83,34 @@
 	var URL = "/post/" + post_pk;
 	var admin_URL = "/post/admin/" + post_pk;
 
+	const sub = new Vue({
+	    el: '#sub',
+	    data: {
+	    	 
+	    },
+	    methods: {
+	    	sub_add: function(p_user_pk) {
+	    		const requestOptions = {
+                        method: "POST",
+                        headers: {
+                     	   "Content-Type": "application/json" 
+                        },
+                        body: JSON.stringify({
+                        	p_user_pk: p_user_pk,
+                        	c_user_pk: s_user_pk
+  		                })
+                    };
+                 fetch("/sub/add", requestOptions)
+       				.then(res=>res.json())
+     				.then(json=>{ 
+ 						if(json == true){
+ 							location.reload();
+ 						}
+     				})
+     			.catch(err => console.log(err))
+	        }
+	   }
+	});
 	const post = new Vue({
 	    el: '#post',
 	    data: {
@@ -81,47 +120,50 @@
 	    },
 	    methods: {
 	    	deletePost: function() {
-	    		if(user_role == 3 && post_kind == 3){
-	    			answer = confirm("정말 삭제하시겠습니까?");
-		            if (answer){
-		                const requestOptions = {
-		                        method: "DELETE",
-		                        headers: {
-		                     	   "Content-Type": "application/json" 
-		                        }
-		                    };
-		                 fetch(URL, requestOptions)
-		       				.then(res=>res.json())
-		     				.then(json=>{ 
-		     					console.log("fetch result: " + json);
-	     						location.href="/post/list";
-		     				})
-		     			.catch(err => console.log(err))
-		            }
-		            else{
-		          	  	return;
-		            }
-	    		}
-	    		else if(user_role == 3){
-	    			answer = confirm("(Admin)정말 삭제하시겠습니까?");
-		            if (answer){
-		                const requestOptions = {
-		                        method: "DELETE",
-		                        headers: {
-		                     	   "Content-Type": "application/json" 
-		                        }
-		                    };
-		                 fetch(admin_URL, requestOptions)
-		       				.then(res=>res.json())
-		     				.then(json=>{ 
-		     					console.log("fetch result: " + json);
-	     						location.href="/post/list";
-		     				})
-		     			.catch(err => console.log(err))
-		            }
-		            else{
-		          	  	return;
-		            }
+	    		if(user_role == 3){
+	    			if(${post.kind } == 3){
+	    				answer = confirm("정말 삭제하시겠습니까?");
+			            if (answer){
+			                const requestOptions = {
+			                        method: "DELETE",
+			                        headers: {
+			                     	   "Content-Type": "application/json" 
+			                        }
+			                    };
+			                 fetch(URL, requestOptions)
+			       				.then(res=>res.json())
+			     				.then(json=>{ 
+			     					console.log("fetch result: " + json);
+		     						location.href="/post/list";
+			     				})
+			     			.catch(err => console.log(err))
+			            }
+			            else{
+			          	  	return;
+			            }
+	    			}
+	    			else{
+	    				answer = confirm("(Admin)정말 삭제하시겠습니까?");
+			            if (answer){
+			                const requestOptions = {
+			                        method: "DELETE",
+			                        headers: {
+			                     	   "Content-Type": "application/json" 
+			                        }
+			                    };
+			                 fetch("/post/admin/" + this.pk, requestOptions)
+			       				.then(res=>res.json())
+			     				.then(json=>{ 
+			     					console.log("fetch result: " + json);
+		     						location.href="/post/list";
+			     				})
+			     			.catch(err => console.log(err))
+			            }
+			            else{
+			          	  	return;
+			            }
+	    			}
+	    			
 	    		}else{
 	    			if(this.user_pk != s_user_pk) {
 		    			alert("자신이 작성한 글만 삭제할 수 있습니다 !! ");
@@ -167,7 +209,9 @@
 	    	content: ''
 	    },
 	    methods: {
-	        comment_upload: function() {
+	        comment_upload: function(e) {
+	        	e.preventDefault();
+
 	        	if(this.content == ""){
 					alert("댓글 insert");
 					$(this.content).focus();

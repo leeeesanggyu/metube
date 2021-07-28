@@ -23,5 +23,9 @@ public interface postService {
 	List<postVO> searchPostList(postVO vo) throws Exception;
 	
 	List<postVO> searchNoticeList(postVO vo) throws Exception;
+
+	List<postVO> getUserPostList(postVO pvo) throws Exception;
+
+	List<postVO> getUserCommunityList(postVO pvo) throws Exception;
 }
 

@@ -25,8 +25,8 @@
 			<h4>게시판 선택</h4>
 			<select name="kind" v-model="kind">
 			    <option value="">== 게시판 선택 ==</option>
-			    <option value="1" disabled>광고 게시판</option>
-			    <option value="2">자유 게시판</option>
+			    <option value="1">본인 채널 커뮤니티</option>
+			    <option value="2">동영상 게시판</option>
 			    <option value="3">공지 사항</option>
 		  	</select>
 			<div class="login_id">
@@ -39,7 +39,6 @@
 		<h4>description</h4>
 	    <input name="content" id="editor">
 	    
-	    
 	    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<form action="/post/upload" method="post" enctype="multipart/form-data">
 			테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
@@ -50,6 +49,7 @@
 		    <input class="btn btn-primary btn-sm"  type="submit" value="업로드"/>
 			<br><br>테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
 		</form>
+		
 	</div>
 </body>
 

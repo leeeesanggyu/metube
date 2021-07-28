@@ -3,6 +3,7 @@
  
 <mapper namespace="PostDAO">
  
+ 	<!-- 게시물 전체 불러오기 -->
     <select id="postList" resultType="postVO">
         SELECT *
 		FROM post
@@ -18,17 +19,52 @@
 			JOIN
 				user_info AS u
 				ON p.user_pk = u.pk
+		WHERE kind = 2
 		ORDER BY p.pk DESC
     </select>
     
     <select id="noticeList" resultType="postVO">
-        SELECT *
-		FROM post
+		SELECT 
+			p.*, u.name, u.pk
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
 		WHERE kind = 3
-		ORDER BY pk DESC
+		ORDER BY p.pk DESC
     </select>
     <!-- 게시판 종류별 쿼리 end -->
     
+    <select id="userPostList" resultType="postVO">
+		SELECT 
+			p.*, u.name, u.pk
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
+		WHERE kind = 2
+			AND
+		u.pk = #{user_pk}
+		ORDER BY p.pk DESC
+    </select>
+    
+    <select id="userCommunityList" resultType="postVO">
+		SELECT 
+			p.*, u.name, u.pk
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
+		WHERE kind = 1
+			AND
+		u.pk = #{user_pk}
+		ORDER BY p.pk DESC
+    </select>
+    
+    <!-- 게시물 작성 -->
     <select id="createPost" resultType="postVO">
     	INSERT INTO 
 			post
@@ -51,11 +87,13 @@
 		);
     </select>
     
+    <!-- 게시물 삭제 -->
     <select id="deletePost" resultType="postVO">
         DELETE FROM post
         WHERE pk = #{pk}
     </select>
     
+    <!-- 게시물 하나 불러오기 -->
     <select id="selectPost" resultType="postVO">
         SELECT 
 			p.*, u.name
@@ -67,18 +105,21 @@
 		WHERE p.pk = #{pk}
     </select>
     
+    <!-- 조회수 증가 -->
     <select id="update_view" resultType="postVO">
         UPDATE post 
 		SET view_count = view_count + 1
 		WHERE pk = #{pk};
     </select>
     
+    <!-- 운영자권한 게시물 삭제 -->
     <select id="is_delete" resultType="postVO">
         UPDATE post 
 		SET is_delete = 1
 		WHERE pk = #{pk};
     </select>
      
+    <!-- 게시물 수정 -->
     <select id="modifyPost" resultType="postVO">
         UPDATE post 
 		SET 
@@ -89,6 +130,7 @@
 		WHERE pk = #{pk};
     </select>
     
+    <!-- 게시물 제목 검색 -->
     <select id="searchPostList" resultType="postVO">
         SELECT 
 			p.*, u.name, u.pk
@@ -99,9 +141,12 @@
 				ON p.user_pk = u.pk
 		WHERE 
 			title LIKE CONCAT('%', #{title}, '%')
+				AND
+				(kind =1 OR kind=2)
 		ORDER BY p.pk DESC
     </select>
     
+    <!-- 공지 게시물 제목 검색 -->
     <select id="searchNoticeList" resultType="postVO">
         SELECT 
 			p.*, u.name, u.pk
@@ -116,5 +161,7 @@
 			kind = 3
 		ORDER BY p.pk DESC
     </select>
+    
+    
 </mapper>
 

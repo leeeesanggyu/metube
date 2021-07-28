@@ -6,6 +6,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
+import com.metube.sub.service.subService;
 import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
 
@@ -31,6 +33,9 @@ public class postController {
 	
 	@Resource(name = "CommentService")
 	private commentService commentService;
+	
+	@Resource(name = "SubService")
+	private subService subService;
 	
 	@Resource(name="uploadPath")
     String uploadPath;
@@ -45,6 +50,23 @@ public class postController {
 		try {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("createPost");
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 커뮤니티, 공지사항 생성 페이지로 간다.
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/goCreateCommu")
+	public ModelAndView goCreateCommu() throws Exception {
+		try {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("community");
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -220,7 +242,7 @@ public class postController {
 	 */
 	@RequestMapping(value="/detail/{post_pk}", method = RequestMethod.GET)
 	public ModelAndView detailPost(
-			@PathVariable("post_pk") int post_pk
+			@PathVariable("post_pk") int post_pk, HttpSession session
 	) throws Exception {
 		try {
 			postVO vo = new postVO();
@@ -229,9 +251,12 @@ public class postController {
 			commentVO comment_vo = new commentVO();
 			comment_vo.setPost_pk(post_pk);
 			
+			postVO post_result = postService.detailPost(vo);
 			ModelAndView mv = new ModelAndView();
-			mv.addObject("post", postService.detailPost(vo));
+			mv.addObject("post", post_result);
 			mv.addObject("comment", commentService.getComment(comment_vo));
+			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
+
 			mv.setViewName("detailPost");
 			return mv;
 		}catch(Exception e) {

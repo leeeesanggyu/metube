@@ -68,4 +68,14 @@ public class postServiceImpl implements postService{
 		return postDAO.searchNoticeList(vo);
 	}
 
+	@Override
+	public List<postVO> getUserPostList(postVO pvo) throws Exception {
+		return postDAO.userPostList(pvo);
+	}
+
+	@Override
+	public List<postVO> getUserCommunityList(postVO pvo) throws Exception {
+		return postDAO.userCommunityList(pvo);
+	}
+
 }

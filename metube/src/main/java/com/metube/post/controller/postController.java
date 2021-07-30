@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
 import com.metube.sub.service.subService;
+import com.metube.sub.vo.subVO;
 import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
 
@@ -50,23 +51,6 @@ public class postController {
 		try {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("createPost");
-			return mv;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	/**
-	 * 커뮤니티, 공지사항 생성 페이지로 간다.
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/goCreateCommu")
-	public ModelAndView goCreateCommu() throws Exception {
-		try {
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("community");
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -129,7 +113,7 @@ public class postController {
 		try {
 			postVO vo = new postVO();
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("main");
+			mv.setViewName("noticePost");
 			mv.addObject("noticeList", postService.getNoticeList(vo));
 			return mv;
 		}catch(Exception e) {
@@ -252,10 +236,15 @@ public class postController {
 			comment_vo.setPost_pk(post_pk);
 			
 			postVO post_result = postService.detailPost(vo);
+			
+			subVO subvo = new subVO();
+			subvo.setP_user_pk(post_result.getUser_pk());
+			
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("post", post_result);
 			mv.addObject("comment", commentService.getComment(comment_vo));
 			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
+			mv.addObject("sub_count", subService.sub_count(subvo));
 
 			mv.setViewName("detailPost");
 			return mv;

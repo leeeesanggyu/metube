@@ -24,6 +24,33 @@
 			AND 
 			c_user_pk = #{c_user_pk}
 	</select>
+	
+	<select id="delete_Sub" resultType="subVO">
+		DELETE
+		FROM subscribe
+		WHERE p_user_pk = #{p_user_pk} 
+			AND 
+			c_user_pk = #{c_user_pk}
+	</select>
+	
+	<select id="sub_count" resultType="_int">
+		SELECT COUNT(*)
+		FROM subscribe
+		WHERE p_user_pk = #{p_user_pk}
+	</select>
+	
+	<select id="getSubPost" resultType="postVO">
+		SELECT p.*, u.name
+		FROM subscribe 
+			as s 
+		LEFT JOIN post 
+			as p 
+		ON s.p_user_pk = p.user_pk
+		LEFT JOIN user_info
+			AS u
+		ON p.user_pk = u.pk
+		WHERE c_user_pk = #{c_user_pk}
+	</select>
     
 </mapper>
 

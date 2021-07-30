@@ -1,10 +1,13 @@
 package com.metube.sub.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.metube.post.vo.postVO;
 import com.metube.sub.dao.subDAO;
 import com.metube.sub.vo.subVO;
 
@@ -25,6 +28,21 @@ public class subServiceImpl implements subService{
 		vo.setP_user_pk(user_pk);
 		vo.setC_user_pk((int)session.getAttribute("user_pk"));
 		return subDAO.getSub(vo);
+	}
+
+	@Override
+	public int sub_count(subVO vo) throws Exception {
+		return subDAO.sub_count(vo);
+	}
+
+	@Override
+	public int sub_delete(subVO vo) throws Exception {
+		return subDAO.sub_delete(vo);
+	}
+
+	@Override
+	public List<postVO> getSubPostList(subVO vo) throws Exception {
+		return subDAO.getSubPost(vo);
 	}
 	
 	

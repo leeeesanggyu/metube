@@ -1,12 +1,14 @@
 package com.metube.sub.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.vo.postVO;
 import com.metube.sub.service.subService;
@@ -23,14 +25,39 @@ public class subController {
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public boolean sub_add(@RequestBody subVO vo) throws Exception {
 		try {
-			System.out.println(vo.getC_user_pk());
-			System.out.println(vo.getP_user_pk());
-
 			subService.sub_add(vo);
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/del", method=RequestMethod.DELETE)
+	public boolean sub_delete(@RequestBody subVO vo) throws Exception {
+		try {
+			subService.sub_delete(vo);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@RequestMapping(value="/goSubPost")
+	public ModelAndView goSubPost(HttpSession session) throws Exception {
+		try {
+			subVO vo = new subVO();
+			vo.setC_user_pk((int)session.getAttribute("user_pk"));
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("subPost");
+			mv.addObject("subPostList", subService.getSubPostList(vo));
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 

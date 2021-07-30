@@ -16,20 +16,20 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
-<h4 class="layout">구독 동영상</h4>
+<h4 class="layout">공지사항</h4>
 	<div class="content">
-		<c:forEach var="subPostList" items="${subPostList}">
+		<c:forEach var="noticeList" items="${noticeList}">
 			<div class="oneContent">
-				<a href="/post/detail/${subPostList.pk}">
+				<a href="/post/detail/${noticeList.pk}">
 					<p>[ thumbnail ]</p>
-					<p>${subPostList.title}</p>
+					<p>${noticeList.title}</p>
 					<div class="small">
-						<p>${subPostList.name }</p>
-						<c:if test="${subPostList.update_at eq null}" >
-							<p>조회수 ${subPostList.view_count }회 • ${subPostList.create_at }</p>
+						<p>${noticeList.name }</p>
+						<c:if test="${noticeList.update_at eq null}" >
+							<p>조회수 ${noticeList.view_count }회 • ${noticeList.create_at }</p>
 						</c:if>
-						<c:if test="${subPostList.update_at ne null}" >
-							<p>조회수 ${subPostList.view_count }회 • 수정 ${subPostList.update_at }</p>
+						<c:if test="${noticeList.update_at ne null}" >
+							<p>조회수 ${noticeList.view_count }회 • 수정 ${noticeList.update_at }</p>
 						</c:if>
 					</div>
 				</a>

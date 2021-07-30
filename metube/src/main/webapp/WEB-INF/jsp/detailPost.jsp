@@ -41,15 +41,17 @@
 		<hr>
 		<div id="sub">
 			${post.name } 
-			<span class="small">구독자 0명</span> 
-			<button @click="sub_add(${post.user_pk})">
+			<span class="small">구독자 ${sub_count }명</span>
 				<c:if test="${sub eq null}" >
-					구독
+					<button @click="sub_add(${post.user_pk})">
+						구독
+					</button>
 				</c:if>
 				<c:if test="${sub ne null}" >
-					구독중✔
+					<button @click="sub_del(${post.user_pk})">
+						구독중✔
+					</button>
 				</c:if>
-			</button>
 		</div>
 		<hr>
 		<form id="comment" v-on:submit="comment_upload">
@@ -101,6 +103,26 @@
   		                })
                     };
                  fetch("/sub/add", requestOptions)
+       				.then(res=>res.json())
+     				.then(json=>{ 
+ 						if(json == true){
+ 							location.reload();
+ 						}
+     				})
+     			.catch(err => console.log(err))
+	        },
+	        sub_del: function(p_user_pk) {
+	    		const requestOptions = {
+                        method: "DELETE",
+                        headers: {
+                     	   "Content-Type": "application/json" 
+                        },
+                        body: JSON.stringify({
+                        	p_user_pk: p_user_pk,
+                        	c_user_pk: s_user_pk
+  		                })
+                    };
+                 fetch("/sub/del", requestOptions)
        				.then(res=>res.json())
      				.then(json=>{ 
  						if(json == true){

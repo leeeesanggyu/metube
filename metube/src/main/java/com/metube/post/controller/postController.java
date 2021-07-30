@@ -23,6 +23,8 @@ import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
 import com.metube.sub.service.subService;
 import com.metube.sub.vo.subVO;
+import com.metube.upload.service.uploadService;
+import com.metube.upload.vo.uploadVO;
 import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
 
@@ -38,6 +40,9 @@ public class postController {
 	
 	@Resource(name = "SubService")
 	private subService subService;
+	
+	@Resource(name = "UploadService")
+	private uploadService uploadService;
 	
 	@Resource(name="uploadPath")
     String uploadPath;
@@ -135,12 +140,39 @@ public class postController {
 			MultipartHttpServletRequest request
 	) throws Exception {
 		try {		
-			System.out.println("request:" +request.getParameter("title"));
-			System.out.println("request:" +request.getParameter("description"));
-			System.out.println("file:" +request.getFile("video"));
-			System.out.println("file:" +request.getFile("image"));
+			postVO pvo = new postVO();
+			pvo.setTitle(request.getParameter("title"));
+			pvo.setDescription(request.getParameter("description"));
+			pvo.setKind(Integer.parseInt(request.getParameter("kind")));
+			pvo.setUser_pk(Integer.parseInt(request.getParameter("user_pk")));
+			int create_result = postService.createPost(pvo);
+			//파일
+			String fileName = (request.getFile("video").getOriginalFilename());
+	        File target = new File(uploadPath, fileName);
+	        System.out.println("video :" + target);
+	        
+	        String fileName2 = (request.getFile("image").getOriginalFilename());
+	        File target2 = new File(uploadPath, fileName2);
+	        System.out.println("image :" + target2);
+	        
+	        //경로 생성
+	        if (!new File(uploadPath).exists()) {
+	            new File(uploadPath).mkdirs();
+	        }
+	        //파일 복사
+	        try {
+	            FileCopyUtils.copy(request.getFile("video").getBytes(), target);
+	            FileCopyUtils.copy(request.getFile("image").getBytes(), target2);
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+			
+	        uploadVO uvo = new uploadVO();
+			uvo.setPost_pk(create_result);
+			uvo.setVideo_url(uploadPath + fileName);
+			uvo.setImg_url(uploadPath + fileName2);
 
-//			postService.createPost(vo)
+			uploadService.saveDataURL(uvo);
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -65,15 +65,13 @@
     </select>
     
     <!-- 게시물 작성 -->
-    <select id="createPost" resultType="postVO">
+    <insert id="createPost" keyProperty="pk" >
     	INSERT INTO 
 			post
 		(
 			user_pk,
 			title,
 			description,
-			like_count,
-			view_count,
 			kind
 		)
 			VALUES
@@ -81,11 +79,9 @@
 			#{user_pk},
 			#{title},
 			#{description},
-			#{like_count},			
-			#{view_count},
 			#{kind}
 		);
-    </select>
+    </insert>
     
     <!-- 게시물 삭제 -->
     <select id="deletePost" resultType="postVO">

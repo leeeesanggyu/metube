@@ -17,7 +17,8 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 
 	@Override
 	public int createPost(postVO vo) throws Exception {
-		return insert("PostDAO.createPost", vo);
+		insert("PostDAO.createPost", vo);
+		return vo.getPk();
 	}
 
 	@Override

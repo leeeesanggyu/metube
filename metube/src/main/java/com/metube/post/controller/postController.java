@@ -1,13 +1,19 @@
 package com.metube.post.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,6 +70,74 @@ public class postController {
 		}
 	}
 
+	/**
+	 * 게시물을 작성한다
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/create", method = RequestMethod.POST)
+	public boolean createPost(
+			MultipartHttpServletRequest request
+	) throws Exception {
+		try {		
+			postVO pvo = new postVO();
+			pvo.setTitle(request.getParameter("title"));
+			pvo.setDescription(request.getParameter("description"));
+			pvo.setKind(Integer.parseInt(request.getParameter("kind")));
+			pvo.setUser_pk(Integer.parseInt(request.getParameter("user_pk")));
+			int create_result = postService.createPost(pvo);
+			
+	        UUID uuid = UUID.randomUUID();
+
+			//파일
+	        //image
+	        String image_fileName = (request.getFile("image").getOriginalFilename());
+	    	System.out.println("image_fileName :" + image_fileName);
+	    	
+	    	String image_ext = image_fileName.substring(image_fileName.lastIndexOf(".") + 1);
+	    	System.out.println("image_ext :" + image_ext);
+	    	
+	        String image_savedName =  uuid.toString() + "_" + image_fileName;
+	        File image_target = new File(uploadPath, image_savedName);
+	        System.out.println("image :" + image_target);
+	        
+	        //video
+			String video_fileName = (request.getFile("video").getOriginalFilename());
+			
+			String video_ext = video_fileName.substring(video_fileName.lastIndexOf(".") + 1);
+			
+	        String video_savedName = uuid.toString() + "_" + video_fileName;
+	        File video_target = new File(uploadPath, video_savedName);
+	        
+	        //경로 생성
+	        if (!new File(uploadPath).exists()) {
+	            new File(uploadPath).mkdirs();
+	        }
+	        //파일 복사
+	        try {
+	            FileCopyUtils.copy(request.getFile("image").getBytes(), image_target);
+	            FileCopyUtils.copy(request.getFile("video").getBytes(), video_target);
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+			
+	        uploadVO uvo = new uploadVO();
+			uvo.setPost_pk(create_result);
+			uvo.setImg_name(image_savedName);
+			uvo.setImg_ext(image_ext);
+			uvo.setVideo_name(video_savedName);
+			uvo.setVideo_ext(video_ext);
+
+			uploadService.saveDataURL(uvo);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+   
 	/**
 	 * 게시물 목록을 가져온다.
 	 * @return
@@ -129,84 +203,6 @@ public class postController {
 	}
 	
 	/**
-	 * 게시물을 작성한다
-	 * @param vo
-	 * @return
-	 * @throws Exception
-	 */
-	@ResponseBody
-	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public boolean createPost(
-			MultipartHttpServletRequest request
-	) throws Exception {
-		try {		
-			postVO pvo = new postVO();
-			pvo.setTitle(request.getParameter("title"));
-			pvo.setDescription(request.getParameter("description"));
-			pvo.setKind(Integer.parseInt(request.getParameter("kind")));
-			pvo.setUser_pk(Integer.parseInt(request.getParameter("user_pk")));
-			int create_result = postService.createPost(pvo);
-			//파일
-			String fileName = (request.getFile("video").getOriginalFilename());
-	        File target = new File(uploadPath, fileName);
-	        System.out.println("video :" + target);
-	        
-	        String fileName2 = (request.getFile("image").getOriginalFilename());
-	        File target2 = new File(uploadPath, fileName2);
-	        System.out.println("image :" + target2);
-	        
-	        //경로 생성
-	        if (!new File(uploadPath).exists()) {
-	            new File(uploadPath).mkdirs();
-	        }
-	        //파일 복사
-	        try {
-	            FileCopyUtils.copy(request.getFile("video").getBytes(), target);
-	            FileCopyUtils.copy(request.getFile("image").getBytes(), target2);
-	        } catch(Exception e) {
-	            e.printStackTrace();
-	        }
-			
-	        uploadVO uvo = new uploadVO();
-			uvo.setPost_pk(create_result);
-			uvo.setVideo_url(uploadPath + fileName);
-			uvo.setImg_url(uploadPath + fileName2);
-
-			uploadService.saveDataURL(uvo);
-			return true;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/upload", method=RequestMethod.POST)
-    public void uploadForm(
-    		MultipartFile file, MultipartFile image
-    ) {
-        String fileName = file.getOriginalFilename();
-        File target = new File(uploadPath, fileName);
-        System.out.println("target :" + target);
-        
-        String fileName2 = image.getOriginalFilename();
-        File target2 = new File(uploadPath, fileName2);
-        System.out.println("target2 :" + target2);
-        
-        //경로 생성
-        if (!new File(uploadPath).exists()) {
-            new File(uploadPath).mkdirs();
-        }
-        //파일 복사
-        try {
-            FileCopyUtils.copy(file.getBytes(), target);
-            FileCopyUtils.copy(image.getBytes(), target2);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-	
-	/**
 	 * 운영자 게시물 삭제 처리
 	 * @param post_pk
 	 * @return
@@ -220,10 +216,8 @@ public class postController {
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
 		try {		
-			if(postService.is_deletePost(vo) != 0) {
-				return true;
-			}
-			return false;
+			postService.is_deletePost(vo);
+			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -246,10 +240,8 @@ public class postController {
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
 		try {		
-			if(postService.deletePost(vo) != 0) {
-				return true;
-			}
-			return false;
+			postService.deletePost(vo);
+			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;

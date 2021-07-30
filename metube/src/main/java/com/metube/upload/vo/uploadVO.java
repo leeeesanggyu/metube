@@ -4,8 +4,10 @@ public class uploadVO {
 
 	private int pk;
 	private int post_pk;
-	private String img_url;
-	private String video_url;
+	private String img_name;
+	private String img_ext;
+	private String video_name;
+	private String video_ext;
 	
 	public int getPk() {
 		return pk;
@@ -19,17 +21,29 @@ public class uploadVO {
 	public void setPost_pk(int post_pk) {
 		this.post_pk = post_pk;
 	}
-	public String getImg_url() {
-		return img_url;
+	public String getImg_name() {
+		return img_name;
 	}
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
+	public void setImg_name(String img_name) {
+		this.img_name = img_name;
 	}
-	public String getVideo_url() {
-		return video_url;
+	public String getImg_ext() {
+		return img_ext;
 	}
-	public void setVideo_url(String video_url) {
-		this.video_url = video_url;
+	public void setImg_ext(String img_ext) {
+		this.img_ext = img_ext;
+	}
+	public String getVideo_name() {
+		return video_name;
+	}
+	public void setVideo_name(String video_name) {
+		this.video_name = video_name;
+	}
+	public String getVideo_ext() {
+		return video_ext;
+	}
+	public void setVideo_ext(String video_ext) {
+		this.video_ext = video_ext;
 	}
 	
 	

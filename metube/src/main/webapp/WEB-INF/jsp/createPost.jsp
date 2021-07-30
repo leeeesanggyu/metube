@@ -24,9 +24,9 @@
 				<button @click="upload" id="btn-upload">Upload</button>
 			</div>
 			
-			video<br><br>
+			image<br><br>
 		    <input type="file" id="image_input"/><br><br>
-		    image<br><br>
+		    video<br><br>
 		    <input type="file" id="video_input"/><br><br>
 			
 			<h4>게시판 선택</h4>

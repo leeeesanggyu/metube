@@ -14,7 +14,22 @@ public class postVO {
 	private int kind;
 	private int is_delete;
 	private String name;
+	private String img_name;
+	private String img_ext;
 	
+	
+	public String getImg_ext() {
+		return img_ext;
+	}
+	public void setImg_ext(String img_ext) {
+		this.img_ext = img_ext;
+	}
+	public String getImg_name() {
+		return img_name;
+	}
+	public void setImg_name(String img_name) {
+		this.img_name = img_name;
+	}
 	public String getName() {
 		return name;
 	}

@@ -1,0 +1,265 @@
+1. 초등학교 교사
+
+SELECT K.*
+                FROM(
+                   SELECT
+                        (ROW_NUMBER() OVER()) AS ROWNUM, S.*
+                    FROM(
+                        SELECT  (ROW_NUMBER() OVER()) AS SORD, T.*
+                        FROM (
+                            SELECT XT.HMWR_DIARY_SEQ,
+                                   XT.HMWR_DIARY_SEQ AS HMWR_DIARY_SEQ_A,
+                                   XT.CTG_DIV_NM,
+                                   XT.HMWR_DIARY_TITLE,
+                                   XT.HMWR_DIARY_SBST,
+                                       XT.TGT_STDN_NMS,
+                                       XT.TGT_STDN_IDS,
+                                   XT.TGT_SE,
+                                   XT.CRETR_ID,
+                                   TO_CHAR(XT.CRET_DT, 'YYYY-MM-DD HH24:MI:SS') AS CRET_DT,
+                                   TO_CHAR(XT.AMD_DT, 'YYYY-MM-DD HH24:MI:SS') AS AMD_DT,
+                                   XT.IMPRTNC_YN,
+                                   XT.SUBJ_NM,
+                                   XT.TGT_SCHYR_SEQS,
+                                   XT.SCHYRS,
+                                   XT.VIEWS_CNT
+                            FROM (
+                                SELECT F.HMWR_DIARY_SEQ,
+                                       D.COMN_CD_NM AS CTG_DIV_NM,
+                                       F.HMWR_DIARY_TITLE,
+                                       F.HMWR_DIARY_SBST,
+                                           (CASE F.TGT_STDN_IDS WHEN 'ALL' THEN '전체'
+                                                                ELSE ARRAY_TO_STRING(ARRAY_AGG(E.STDN_NM),'|') END ) AS TGT_STDN_NMS,
+                                           F.TGT_STDN_IDS,
+                                       F.TGT_SE,
+                                       F.CRETR_ID,
+                                       F.CRET_DT,
+                                       F.AMD_DT,
+                                       F.IMPRTNC_YN,
+                                       F.VIEWS_CNT,
+                                       F.SUBJ_NM,
+                                       (CASE F.TGT_SCHYR_SEQS WHEN 'ALL' THEN '전체'
+                                                                ELSE F.TGT_SCHYR_SEQS END ) AS TGT_SCHYR_SEQS,
+                                       F.SCHYRS,
+                                       F.TGT_READ_IDS
+                                FROM EP_HOMEWORK_DIARY_INFO F
+                                            INNER JOIN EP_CLASS_STUDENT E ON F.SCHYR_SEQ = E.SCHYR_SEQ
+                                            INNER JOIN EP_SCHOOL_YEAR B ON F.SCHYR_SEQ = B.SCHYR_SEQ
+                                    INNER JOIN EP_SCHOOL_INFO C ON F.SCHOL_SEQ = C.SCHOL_SEQ
+                                    INNER JOIN EP_COMMON_CODE D ON F.CTG_DIV = D.COMN_CD_VALUE
+                                WHERE
+                                    (E.CLS_STDN_ID = ANY(STRING_TO_ARRAY(F.TGT_STDN_IDS, '|')) OR F.TGT_STDN_IDS = 'ALL') AND
+                                    C.SCHOL_SEQ = 5 AND
+                                    D.COMN_CD_CTG = 'HMWR_DIARY_CTG'
+                                    AND F.IMPRTNC_YN = 'N'
+                                        AND F.CRETR_ID = 'k01teacher01'
+                                    AND F.IMPRTNC_YN = 'N'
+                                    GROUP BY F.HMWR_DIARY_SEQ, CTG_DIV_NM
+                            ) XT
+                            ORDER BY XT.HMWR_DIARY_SEQ ASC
+                        )T
+                        ORDER BY SORD DESC
+                    ) S
+                ) K
+
+
+2. 중 - 고등 교사
+
+SELECT K.*
+                FROM(
+                   SELECT
+                        (ROW_NUMBER() OVER()) AS ROWNUM, S.*
+                    FROM(
+                        SELECT  (ROW_NUMBER() OVER()) AS SORD, T.*
+                        FROM (
+                            SELECT XT.HMWR_DIARY_SEQ,
+                                   XT.HMWR_DIARY_SEQ AS HMWR_DIARY_SEQ_A,
+                                   XT.CTG_DIV_NM,
+                                   XT.HMWR_DIARY_TITLE,
+                                   XT.HMWR_DIARY_SBST,
+                                       XT.TGT_STDN_NMS,
+                                       XT.TGT_STDN_IDS,
+                                   XT.TGT_SE,
+                                   XT.CRETR_ID,
+                                   TO_CHAR(XT.CRET_DT, 'YYYY-MM-DD HH24:MI:SS') AS CRET_DT,
+                                   TO_CHAR(XT.AMD_DT, 'YYYY-MM-DD HH24:MI:SS') AS AMD_DT,
+                                   XT.IMPRTNC_YN,
+                                   XT.SUBJ_NM,
+                                   XT.TGT_SCHYR_SEQS,
+                                   XT.SCHYRS,
+                                   XT.VIEWS_CNT
+                            FROM (
+                                SELECT F.HMWR_DIARY_SEQ,
+                                       D.COMN_CD_NM AS CTG_DIV_NM,
+                                       F.HMWR_DIARY_TITLE,
+                                       F.HMWR_DIARY_SBST,
+                                           (CASE F.TGT_STDN_IDS WHEN 'ALL' THEN '전체'
+                                                                ELSE ARRAY_TO_STRING(ARRAY_AGG(E.STDN_NM),'|') END ) AS TGT_STDN_NMS,
+                                           F.TGT_STDN_IDS,
+                                       F.TGT_SE,
+                                       F.CRETR_ID,
+                                       F.CRET_DT,
+                                       F.AMD_DT,
+                                       F.IMPRTNC_YN,
+                                       F.VIEWS_CNT,
+                                       F.SUBJ_NM,
+                                       (CASE F.TGT_SCHYR_SEQS WHEN 'ALL' THEN '전체'
+                                                                ELSE F.TGT_SCHYR_SEQS END ) AS TGT_SCHYR_SEQS,
+                                       F.SCHYRS,
+                                       F.TGT_READ_IDS
+                                FROM EP_HOMEWORK_DIARY_INFO F
+                                            INNER JOIN EP_CLASS_STUDENT E ON TEXT(E.SCHYR_SEQ) = ANY(STRING_TO_ARRAY(F.TGT_SCHYR_SEQS, '|'))
+                                            INNER JOIN EP_SCHOOL_YEAR B ON TEXT(B.SCHYR_SEQ) = ANY(STRING_TO_ARRAY(F.TGT_SCHYR_SEQS, '|'))
+                                    INNER JOIN EP_SCHOOL_INFO C ON F.SCHOL_SEQ = C.SCHOL_SEQ
+                                    INNER JOIN EP_COMMON_CODE D ON F.CTG_DIV = D.COMN_CD_VALUE
+                                WHERE
+                                    (E.CLS_STDN_ID = ANY(STRING_TO_ARRAY(F.TGT_STDN_IDS, '|')) OR F.TGT_STDN_IDS = 'ALL') AND
+                                    C.SCHOL_SEQ = 5 AND
+                                    D.COMN_CD_CTG = 'HMWR_DIARY_CTG'
+                                    AND F.IMPRTNC_YN = 'N'
+                                        AND F.CRETR_ID = 'k01teacher01'
+                                    AND F.IMPRTNC_YN = 'N'
+                                    GROUP BY F.HMWR_DIARY_SEQ, CTG_DIV_NM
+                            ) XT
+                            ORDER BY XT.HMWR_DIARY_SEQ ASC
+                        )T
+                        ORDER BY SORD DESC
+                    ) S
+                ) K
+
+
+3, 초등학생
+
+SELECT K.*
+                FROM(
+                   SELECT
+                        (ROW_NUMBER() OVER()) AS ROWNUM, S.*
+                    FROM(
+                        SELECT  (ROW_NUMBER() OVER()) AS SORD, T.*
+                        FROM (
+                            SELECT XT.HMWR_DIARY_SEQ,
+                                   XT.HMWR_DIARY_SEQ AS HMWR_DIARY_SEQ_A,
+                                   XT.CTG_DIV_NM,
+                                   XT.HMWR_DIARY_TITLE,
+                                   XT.HMWR_DIARY_SBST,
+                                   XT.TGT_SE,
+                                   XT.CRETR_ID,
+                                   TO_CHAR(XT.CRET_DT, 'YYYY-MM-DD HH24:MI:SS') AS CRET_DT,
+                                   TO_CHAR(XT.AMD_DT, 'YYYY-MM-DD HH24:MI:SS') AS AMD_DT,
+                                   XT.IMPRTNC_YN,
+                                   XT.SUBJ_NM,
+                                   XT.TGT_SCHYR_SEQS,
+                                   XT.SCHYRS,
+                                   XT.VIEWS_CNT
+                                       , CASE WHEN (#{mbrId} = ANY(STRING_TO_ARRAY(XT.TGT_READ_IDS, '|')))
+                                                   OR
+                                                   (NOW()::DATE > (XT.CRET_DT::DATE + '5day'::INTERVAL)) THEN 'Y'
+                                           ELSE 'N'
+                                           END AS READ_YN
+                            FROM (
+                                SELECT F.HMWR_DIARY_SEQ,
+                                       D.COMN_CD_NM AS CTG_DIV_NM,
+                                       F.HMWR_DIARY_TITLE,
+                                       F.HMWR_DIARY_SBST,
+                                       F.TGT_SE,
+                                       F.CRETR_ID,
+                                       F.CRET_DT,
+                                       F.AMD_DT,
+                                       F.IMPRTNC_YN,
+                                       F.VIEWS_CNT,
+                                       F.SUBJ_NM,
+                                       (CASE F.TGT_SCHYR_SEQS WHEN 'ALL' THEN '전체'
+                                                                ELSE F.TGT_SCHYR_SEQS END ) AS TGT_SCHYR_SEQS,
+                                       F.SCHYRS,
+                                       F.TGT_READ_IDS
+                                FROM EP_HOMEWORK_DIARY_INFO F
+                                            INNER JOIN EP_CLASS_STUDENT E ON F.SCHYR_SEQ = E.SCHYR_SEQ
+                                            INNER JOIN EP_SCHOOL_YEAR B ON F.SCHYR_SEQ = B.SCHYR_SEQ
+                                    INNER JOIN EP_SCHOOL_INFO C ON F.SCHOL_SEQ = C.SCHOL_SEQ
+                                    INNER JOIN EP_COMMON_CODE D ON F.CTG_DIV = D.COMN_CD_VALUE
+                                WHERE
+                                    (E.CLS_STDN_ID = ANY(STRING_TO_ARRAY(F.TGT_STDN_IDS, '|')) OR F.TGT_STDN_IDS = 'ALL') AND
+                                    C.SCHOL_SEQ = 5 AND
+                                    D.COMN_CD_CTG = 'HMWR_DIARY_CTG'
+                                    AND F.IMPRTNC_YN = 'N'
+                                                AND F.SCHYR_SEQ = 1
+                                        AND (F.TGT_STDN_IDS = 'ALL'
+                                        OR
+                                        '00000521000001' = ANY(STRING_TO_ARRAY(F.TGT_STDN_IDS, '|')))
+                                    AND F.IMPRTNC_YN = 'N'
+                                    GROUP BY F.HMWR_DIARY_SEQ, CTG_DIV_NM
+                            ) XT
+                            ORDER BY XT.HMWR_DIARY_SEQ ASC
+                        )T
+                        ORDER BY SORD DESC
+                    ) S
+                ) K
+
+
+4. 중고등학생
+
+
+SELECT K.*
+                FROM(
+                   SELECT
+                        (ROW_NUMBER() OVER()) AS ROWNUM, S.*
+                    FROM(
+                        SELECT  (ROW_NUMBER() OVER()) AS SORD, T.*
+                        FROM (
+                            SELECT XT.HMWR_DIARY_SEQ,
+                                   XT.HMWR_DIARY_SEQ AS HMWR_DIARY_SEQ_A,
+                                   XT.CTG_DIV_NM,
+                                   XT.HMWR_DIARY_TITLE,
+                                   XT.HMWR_DIARY_SBST,
+                                   XT.TGT_SE,
+                                   XT.CRETR_ID,
+                                   TO_CHAR(XT.CRET_DT, 'YYYY-MM-DD HH24:MI:SS') AS CRET_DT,
+                                   TO_CHAR(XT.AMD_DT, 'YYYY-MM-DD HH24:MI:SS') AS AMD_DT,
+                                   XT.IMPRTNC_YN,
+                                   XT.SUBJ_NM,
+                                   XT.TGT_SCHYR_SEQS,
+                                   XT.SCHYRS,
+                                   XT.VIEWS_CNT
+                                       , CASE WHEN ('00000521000001' = ANY(STRING_TO_ARRAY(XT.TGT_READ_IDS, '|')))
+                                                   OR
+                                                   (NOW()::DATE > (XT.CRET_DT::DATE + '5day'::INTERVAL)) THEN 'Y'
+                                           ELSE 'N'
+                                           END AS READ_YN
+                            FROM (
+                                SELECT F.HMWR_DIARY_SEQ,
+                                       D.COMN_CD_NM AS CTG_DIV_NM,
+                                       F.HMWR_DIARY_TITLE,
+                                       F.HMWR_DIARY_SBST,
+                                       F.TGT_SE,
+                                       F.CRETR_ID,
+                                       F.CRET_DT,
+                                       F.AMD_DT,
+                                       F.IMPRTNC_YN,
+                                       F.VIEWS_CNT,
+                                       F.SUBJ_NM,
+                                       (CASE F.TGT_SCHYR_SEQS WHEN 'ALL' THEN '전체'
+                                                                ELSE F.TGT_SCHYR_SEQS END ) AS TGT_SCHYR_SEQS,
+                                       F.SCHYRS,
+                                       F.TGT_READ_IDS
+                                FROM EP_HOMEWORK_DIARY_INFO F
+                                            INNER JOIN EP_CLASS_STUDENT E ON TEXT(E.SCHYR_SEQ) = ANY(STRING_TO_ARRAY(F.TGT_SCHYR_SEQS, '|'))
+                                            INNER JOIN EP_SCHOOL_YEAR B ON TEXT(B.SCHYR_SEQ) = ANY(STRING_TO_ARRAY(F.TGT_SCHYR_SEQS, '|'))
+                                    INNER JOIN EP_SCHOOL_INFO C ON F.SCHOL_SEQ = C.SCHOL_SEQ
+                                    INNER JOIN EP_COMMON_CODE D ON F.CTG_DIV = D.COMN_CD_VALUE
+                                WHERE
+                                    (E.CLS_STDN_ID = ANY(STRING_TO_ARRAY(F.TGT_STDN_IDS, '|')) OR F.TGT_STDN_IDS = 'ALL') AND
+                                    C.SCHOL_SEQ = 5 AND
+                                    D.COMN_CD_CTG = 'HMWR_DIARY_CTG'
+                                    AND F.IMPRTNC_YN = 'N'
+                                                AND (TEXT(5) = ANY(STRING_TO_ARRAY(F.TGT_SCHYR_SEQS, '|')) OR F.TGT_SCHYR_SEQS LIKE '%ALL%' )
+                                        AND (F.TGT_STDN_IDS = 'ALL'
+                                        OR
+                                        '00000521000001' = ANY(STRING_TO_ARRAY(F.TGT_STDN_IDS, '|')))
+                                    AND F.IMPRTNC_YN = 'N'
+                                    GROUP BY F.HMWR_DIARY_SEQ, CTG_DIV_NM
+                            ) XT
+                            ORDER BY XT.HMWR_DIARY_SEQ ASC
+                        )T
+                        ORDER BY SORD DESC
+                    ) S
+                ) K

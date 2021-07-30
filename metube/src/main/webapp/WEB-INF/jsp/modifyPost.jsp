@@ -8,7 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<link rel="stylesheet" href="/resources/css/body-line.css" />
+<link rel="stylesheet" href="/resources/css/font-.css" />
 <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 </head>
 <body>

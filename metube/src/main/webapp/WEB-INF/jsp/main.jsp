@@ -44,7 +44,11 @@
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}" >
 					<a href="/post/detail/${postList.pk}">
-						<p>[thumbnail]</p>
+					
+					
+						<p><img src="/upload/image/${postList.img_name}/${postList.img_ext}"/></p>
+						
+						
 						<p>${postList.title}</p>
 						<div class="small">
 							<p>${postList.name }</p>
@@ -81,7 +85,7 @@
             };
          fetch("/user/logout", requestOptions)
 			.then(res=>{ location.href="/"; })
-		.catch(err => console.log(err))
+			.catch(err => console.log(err))
 <%
 	}
 %>

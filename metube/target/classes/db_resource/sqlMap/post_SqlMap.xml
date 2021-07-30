@@ -13,12 +13,15 @@
     <!-- 게시판 종류별 쿼리 start-->
     <select id="freeList" resultType="postVO">
         SELECT 
-			p.*, u.name, u.pk
+			p.*, u.name, u.pk, up.img_name, up.img_ext
 		FROM 
 			post AS p
 			JOIN
 				user_info AS u
 				ON p.user_pk = u.pk
+			JOIN
+				upload AS up
+				ON up.post_pk = p.pk
 		WHERE kind = 2
 		ORDER BY p.pk DESC
     </select>
@@ -65,7 +68,7 @@
     </select>
     
     <!-- 게시물 작성 -->
-    <insert id="createPost" keyProperty="pk" >
+    <insert id="createPost" useGeneratedKeys="true" keyProperty="pk" >
     	INSERT INTO 
 			post
 		(

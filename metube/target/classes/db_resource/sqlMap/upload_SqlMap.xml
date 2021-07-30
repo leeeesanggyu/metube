@@ -8,14 +8,18 @@
 			upload
 		(
 			post_pk,
-			img_url,
-			video_url
+			img_name,
+			img_ext,
+			video_name,
+			video_ext
 		)
 			VALUES
 		(
 			#{post_pk},
-			#{img_url},
-			#{video_url}
+			#{img_name},
+			#{img_ext},
+			#{video_name},
+			#{video_ext}
 		);
     </select>
     

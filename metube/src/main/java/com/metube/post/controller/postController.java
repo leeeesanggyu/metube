@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.service.postService;
@@ -130,12 +131,17 @@ public class postController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public boolean createPost(@RequestBody postVO vo) throws Exception {
+	public boolean createPost(
+			MultipartHttpServletRequest request
+	) throws Exception {
 		try {		
-			if(postService.createPost(vo) != 0) {
-				return true;
-			}
-			return false;
+			System.out.println("request:" +request.getParameter("title"));
+			System.out.println("request:" +request.getParameter("description"));
+			System.out.println("file:" +request.getFile("video"));
+			System.out.println("file:" +request.getFile("image"));
+
+//			postService.createPost(vo)
+			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;

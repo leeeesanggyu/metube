@@ -18,10 +18,17 @@
 <body>
 <%@ include file="header.jsp"%>
 	<div class="layout">
-		<form name="upload_form" id="upload_form" v-on:submit="upload" >
+	
+		<div id="upload_form">
 			<div class="submit">
-				<button type="submit" id="btn-upload">Upload</button>
+				<button @click="upload" id="btn-upload">Upload</button>
 			</div>
+			
+			video<br><br>
+		    <input type="file" id="image_input"/><br><br>
+		    image<br><br>
+		    <input type="file" id="video_input"/><br><br>
+			
 			<h4>게시판 선택</h4>
 			<select name="kind" v-model="kind">
 			    <option value="">== 게시판 선택 ==</option>
@@ -33,23 +40,12 @@
 				<h4>title</h4>
 				<input v-model="title">
 			</div>
-		</form>
+		</div>
 		
 		<!-- 2. TEXT 편집 툴을 사용할 textarea -->
 		<h4>description</h4>
 	    <input name="content" id="editor">
 	    
-	    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<form action="/post/upload" method="post" enctype="multipart/form-data">
-			테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
-			<br><br>video<br><br>
-		    <input type="file" name="file"/><br><br>
-		    image<br><br>
-		    <input type="file" name="image"/><br><br>
-		    <input class="btn btn-primary btn-sm"  type="submit" value="업로드"/>
-			<br><br>테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
-		</form>
-		
 	</div>
 </body>
 
@@ -114,26 +110,26 @@
 					return;
 				}
 	            
+				const image_data = document.getElementById("image_input");
+	        	const video_data = document.getElementById("video_input");
+
+	        	const formData = new FormData();
+	        	formData.append("image", image_data.files[0]);
+	        	formData.append("video", video_data.files[0]);
+	        	formData.append("title", this.title);
+	        	formData.append("description", this.description);
+	        	formData.append("kind", this.kind);
+	        	formData.append("user_pk", this.user_pk);
+
+				
 	            const requestOptions = {
 	                   method: "POST",
-	                   headers: {
-	                	   "Content-Type": "application/json" 
-	                   },
-	                   body: JSON.stringify({
-	                	   title: this.title, 
-	                	   description: this.description,
-	                	   user_pk: this.user_pk,
-	                	   kind: this.kind,
-	                	   comment_pk: this.comment_pk,
-	                	   like_count: this.like_count,
-	                	   view_count: this.view_count 
-	                   })
+	                   body: formData
 	               };
 	            fetch("/post/create", requestOptions)
 	  				.then(res=>res.json())
 					.then(json=>{ 
 						if(json == true){
-							console.log("fetch result: " + json);
 							location.href="/post/list";
 						}
 					})

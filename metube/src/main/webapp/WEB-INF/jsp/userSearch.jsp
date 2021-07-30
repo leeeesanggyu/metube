@@ -13,7 +13,7 @@
 <body>
 <%@ include file="header.jsp"%>
 	<div class="layout">
-		<form name="upload_form" id="search_form" v-on:submit="search">
+		<form name="upload_form" id="user_search_form" v-on:submit="search">
 			<div class="login_id">
 				<h4>name-search</h4>
 				<input v-model="name" placeholder="name">
@@ -31,8 +31,8 @@
 		history.go(-1);
 	}
 	
-	const search_form = new Vue({
-	    el: '#search_form',
+	const user_search_form = new Vue({
+	    el: '#user_search_form',
 	    data: {
 	    	name: ''
 	    },

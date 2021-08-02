@@ -23,7 +23,12 @@
 		<h4>${post.title}</h4>
 		<p>${post.description }</p>
 		<div class="small">
-			<p>조회수 ${post.view_count }회 • ${post.create_at } • 👍 ${post.like_count }</p>
+			<p>
+				조회수 ${post.view_count }회 • ${post.create_at } • <span id="like">
+					<button @click="post_like()">👍 ${post_like}</button>
+				</span>
+			</p>
+			
 			<c:if test="${post.update_at ne null}" >
 				<p>수정:
 					${post.update_at }
@@ -85,6 +90,31 @@
 	var URL = "/post/" + post_pk;
 	var admin_URL = "/post/admin/" + post_pk;
 
+	const like = new Vue({
+	    el: '#like',
+	    methods: {
+	    	post_like: function() {
+	    		const requestOptions = {
+                        method: "POST",
+                        headers: {
+                     	   "Content-Type": "application/json" 
+                        },
+                        body: JSON.stringify({
+                        	post_pk: post_pk,
+                        	user_pk: s_user_pk
+  		                })
+                    };
+                 fetch("/like/toggle", requestOptions)
+       				.then(res=>res.json())
+     				.then(json=>{ 
+ 						if(json == true){
+ 							location.reload();
+ 						}
+     				})
+     			.catch(err => console.log(err))
+	        }
+	   }
+	});
 	const sub = new Vue({
 	    el: '#sub',
 	    data: {

@@ -42,6 +42,8 @@ import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
 import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
+import com.metube.like.service.likeService;
+import com.metube.like.vo.likeVO;
 
 @Controller
 @RequestMapping(value="/post")
@@ -61,6 +63,9 @@ public class postController {
 	
 	@Resource(name = "UserService")
 	private userService userService;
+	
+	@Resource(name = "LikeService")
+	private likeService likeService;
 	
 	@Resource(name="uploadPath")
     String uploadPath;
@@ -364,12 +369,15 @@ public class postController {
 			subVO subvo = new subVO();
 			subvo.setP_user_pk(post_result.getUser_pk());
 			
+			likeVO lvo = new likeVO();
+			lvo.setPost_pk(post_pk);
+			
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("post", post_result);
 			mv.addObject("comment", commentService.getComment(comment_vo));
 			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
 			mv.addObject("sub_count", subService.sub_count(subvo));
-
+			mv.addObject("post_like", likeService.post_like_count(lvo));
 			mv.setViewName("detailPost");
 			return mv;
 		}catch(Exception e) {

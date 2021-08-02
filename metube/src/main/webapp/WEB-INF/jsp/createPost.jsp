@@ -24,17 +24,16 @@
 				<button @click="upload" id="btn-upload">Upload</button>
 			</div>
 			
-			image<br><br>
+			<h4>image <small>(250 x 150)</small></h4>
 		    <input type="file" id="image_input"/><br><br>
-		    video<br><br>
+			<h4>video</h4>
 		    <input type="file" id="video_input"/><br><br>
 			
 			<h4>게시판 선택</h4>
 			<select name="kind" v-model="kind">
 			    <option value="">== 게시판 선택 ==</option>
-			    <option value="1">본인 채널 커뮤니티</option>
 			    <option value="2">동영상 게시판</option>
-			    <option value="3">공지 사항</option>
+			    <option value="1">본인 채널 커뮤니티</option>
 		  	</select>
 			<div class="login_id">
 				<h4>title</h4>
@@ -94,12 +93,12 @@
 					$(this.title).focus();
 					return;
 				}
-				if(this.description == ""){
+				if(this.description == null){
 					alert("description insert");
 					$(this.description).focus();
 					return;
 				}
-				if(this.kind == ""){
+				if(this.kind == null){
 					alert("kind insert");
 					$(this.kind).focus();
 					return;
@@ -113,6 +112,14 @@
 				const image_data = document.getElementById("image_input");
 	        	const video_data = document.getElementById("video_input");
 
+	        	if(image_data.files[0] == null){
+					alert("사진을 등록하세요.");
+					return;
+				}
+	        	if(video_data.files[0] == null){
+					alert("동영상을 등록하세요.");
+					return;
+				}
 	        	const formData = new FormData();
 	        	formData.append("image", image_data.files[0]);
 	        	formData.append("video", video_data.files[0]);

@@ -44,9 +44,9 @@
 	<hr><br>
 	<div class="menu">
 		<a href="/post/goCreate">동영상 업로드</a>&nbsp;&nbsp;
-		<a href="/post/notice/list">공지 사항</a>&nbsp;&nbsp;
+		<a href="/post/notice/list">공지사항</a>&nbsp;&nbsp;
 		<a href="/sub/goSubPost">구독</a>&nbsp;&nbsp;
-		<a href="/user/detail">내 채널</a>&nbsp;&nbsp;
+		<a href="/user/detail/<%=user_pk %>" >내 채널</a>&nbsp;&nbsp;
 		
 		<c:if test="${role eq '3'}" >
 			<a href="/user/search">회원 검색(Admin)</a>

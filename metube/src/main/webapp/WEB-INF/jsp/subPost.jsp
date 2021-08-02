@@ -21,7 +21,7 @@
 		<c:forEach var="subPostList" items="${subPostList}">
 			<div class="oneContent">
 				<a href="/post/detail/${subPostList.pk}">
-					<p>[ thumbnail ]</p>
+					<img src="/upload/image/${subPostList.img_name}/${subPostList.img_ext}"/>
 					<p>${subPostList.title}</p>
 					<div class="small">
 						<p>${subPostList.name }</p>

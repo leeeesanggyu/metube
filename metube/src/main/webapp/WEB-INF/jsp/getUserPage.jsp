@@ -30,15 +30,15 @@
 		</thead>
 		<tbody>
 			<tr>
-				<th scope="row">email</th>
+				<th scope="row">이메일 </th>
 				<td>${userInfo.email}</td>
 			</tr>
 			<tr>
-				<th scope="row">name</th>
+				<th scope="row">이름</th>
 				<td>${userInfo.name}</td>
 			</tr>
 			<tr>
-				<th scope="row">role</th>
+				<th scope="row">권한</th>
 				<td>
 					<c:if test="${userInfo.role eq '1'}" >
 						Guest
@@ -51,25 +51,27 @@
 					</c:if>
 				</td>
 			</tr>
+			<tr>
+				<th scope="row">구독자 수</th>
+				<td>${sub_count}명</td>
+			</tr>
 		</tbody>
 	</table>
 </center>
 <h4 class="layout">Community</h4>
 	<div class="content">
-		<c:forEach var="noticeList" items="${noticeList}">
+		<c:forEach var="communityList" items="${communityList}">
 			<div class="oneContent">
-			
-				<a href="/post/detail/${noticeList.pk}">
-					<p>* COMMUNITY *</p>
-					<p>[ thumbnail ]</p>
-					<p>${noticeList.title}</p>
+				<a href="/post/detail/${communityList.pk}">
+					<p><img src="/upload/image/${communityList.img_name}/${communityList.img_ext}"/></p>
+					<p>${communityList.title}</p>
 					<div class="small">
-						<p>${noticeList.name }</p>
-						<c:if test="${noticeList.update_at eq null}" >
-							<p>조회수 ${noticeList.view_count }회 • ${noticeList.create_at }</p>
+						<p>${communityList.name }</p>
+						<c:if test="${communityList.update_at eq null}" >
+							<p>조회수 ${communityList.view_count }회 • ${communityList.create_at }</p>
 						</c:if>
-						<c:if test="${noticeList.update_at ne null}" >
-							<p>조회수 ${noticeList.view_count }회 • 수정 ${noticeList.update_at }</p>
+						<c:if test="${communityList.update_at ne null}" >
+							<p>조회수 ${communityList.view_count }회 • 수정 ${communityList.update_at }</p>
 						</c:if>
 					</div>
 				</a>
@@ -83,7 +85,7 @@
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}" >
 					<a href="/post/detail/${postList.pk}">
-						<p>[thumbnail]</p>
+						<p><img src="/upload/image/${postList.img_name}/${postList.img_ext}"/></p>
 						<p>${postList.title}</p>
 						<div class="small">
 							<p>${postList.name }</p>
@@ -114,6 +116,10 @@
 	    },
 	    methods: {
 	    	withdrawal: function(pk) {
+	    		if(pk != <%= user_pk%>){
+	    			alert("본인만 탈퇴할수 있습니다 !");
+	    			return;
+	    		}
 	    		var URL = "/user/withdrawal/" + pk;
 	    		
 	    		answer = confirm("회원탈퇴 하시겠습니까 ?");

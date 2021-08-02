@@ -18,7 +18,7 @@ public interface userService {
 	
 	int signUp(userVO vo) throws Exception;
 
-	userVO getUser(userVO vo, HttpSession session) throws Exception;
+	userVO getUser(userVO vo) throws Exception;
 
 	List<userVO> nameGetUser(userVO vo) throws Exception;
 

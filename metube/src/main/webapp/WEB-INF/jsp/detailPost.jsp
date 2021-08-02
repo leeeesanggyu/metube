@@ -18,7 +18,7 @@
 <body>
 <%@ include file="header.jsp"%>
 	<div class="layout">
-		<p>동영상: ${post.url }</p>
+		<p>${post.url }</p>
 	
 		<h4>${post.title}</h4>
 		<p>${post.description }</p>
@@ -40,7 +40,7 @@
 		</div>
 		<hr>
 		<div id="sub">
-			${post.name } 
+			<a href="/user/detail/${post.user_pk}">${post.name } </a>
 			<span class="small">구독자 ${sub_count }명</span>
 				<c:if test="${sub eq null}" >
 					<button @click="sub_add(${post.user_pk})">

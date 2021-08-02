@@ -16,12 +16,16 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
-<h4 class="layout">공지사항</h4>
+<h4 class="layout">공지사항&nbsp;&nbsp;
+	<c:if test="${role eq '3'}" >
+		<a href="/post/goNoticeCreate">업로드</a>
+	</c:if>
+</h4>
 	<div class="content">
 		<c:forEach var="noticeList" items="${noticeList}">
 			<div class="oneContent">
 				<a href="/post/detail/${noticeList.pk}">
-					<p>[ thumbnail ]</p>
+					<p>* NOTICE *</p>
 					<p>${noticeList.title}</p>
 					<div class="small">
 						<p>${noticeList.name }</p>

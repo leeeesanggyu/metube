@@ -41,12 +41,15 @@
     
     <select id="userPostList" resultType="postVO">
 		SELECT 
-			p.*, u.name, u.pk
+			p.*, u.name, u.pk, up.img_name, up.img_ext
 		FROM 
 			post AS p
 			JOIN
 				user_info AS u
 				ON p.user_pk = u.pk
+			JOIN
+				upload AS up
+				ON up.post_pk = p.pk
 		WHERE kind = 2
 			AND
 		u.pk = #{user_pk}
@@ -55,12 +58,15 @@
     
     <select id="userCommunityList" resultType="postVO">
 		SELECT 
-			p.*, u.name, u.pk
+			p.*, u.name, u.pk, up.img_name, up.img_ext
 		FROM 
 			post AS p
 			JOIN
 				user_info AS u
 				ON p.user_pk = u.pk
+			JOIN
+				upload AS up
+				ON up.post_pk = p.pk
 		WHERE kind = 1
 			AND
 		u.pk = #{user_pk}
@@ -132,12 +138,15 @@
     <!-- 게시물 제목 검색 -->
     <select id="searchPostList" resultType="postVO">
         SELECT 
-			p.*, u.name, u.pk
+			p.*, u.name, u.pk, up.img_name, up.img_ext
 		FROM 
 			post AS p
 			JOIN
 				user_info AS u
 				ON p.user_pk = u.pk
+			JOIN
+				upload AS up
+				ON up.post_pk = p.pk
 		WHERE 
 			title LIKE CONCAT('%', #{title}, '%')
 				AND

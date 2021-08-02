@@ -22,4 +22,6 @@ public interface userDAO {
 
 	int withdrawal(userVO vo) throws Exception;
 
+	userVO getUser(userVO vo) throws Exception;
+
 }

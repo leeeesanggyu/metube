@@ -33,6 +33,7 @@ public class subDAOImpl extends mysqlAbstractMapper implements subDAO {
 
 	@Override
 	public List<postVO> getSubPost(subVO vo) throws Exception {
+		System.out.println("tt");
 		return selectList("SubDAO.getSubPost", vo);
 	}
 

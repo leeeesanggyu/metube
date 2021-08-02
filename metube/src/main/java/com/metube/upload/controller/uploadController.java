@@ -27,7 +27,7 @@ public class uploadController {
 		@PathVariable("img_name") String img_name,
 		@PathVariable("img_ext") String img_ext
 	) throws Exception {
-		InputStream inputStream = new FileInputStream(uploadPath +"/"+ img_name);
+		InputStream inputStream = new FileInputStream(uploadPath +"/"+ img_name + "." + img_ext);
 		return new ResponseEntity<byte[]>(IOUtils.toByteArray(inputStream), HttpStatus.OK);
 	}
 	

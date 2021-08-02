@@ -47,5 +47,10 @@ public class userDAOImpl extends mysqlAbstractMapper implements userDAO{
 	public int withdrawal(userVO vo) throws Exception {
 		return delete("userDAO.withdrawal", vo);
 	}
+
+	@Override
+	public userVO getUser(userVO vo) throws Exception {
+		return selectOne("userDAO.getUserProfile", vo);
+	}
 	
 }

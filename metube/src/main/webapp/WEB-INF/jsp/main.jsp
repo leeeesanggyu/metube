@@ -22,7 +22,6 @@
 			<div class="oneContent">
 				<a href="/post/detail/${noticeList.pk}">
 					<p>* NOTICE *</p>
-					<p>[ thumbnail ]</p>
 					<p>${noticeList.title}</p>
 					<div class="small">
 						<p>${noticeList.name }</p>
@@ -44,11 +43,7 @@
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}" >
 					<a href="/post/detail/${postList.pk}">
-					
-					
 						<p><img src="/upload/image/${postList.img_name}/${postList.img_ext}"/></p>
-						
-						
 						<p>${postList.title}</p>
 						<div class="small">
 							<p>${postList.name }</p>

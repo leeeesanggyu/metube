@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.metube.common.hash.BCrypt;
 import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
+import com.metube.sub.service.subService;
+import com.metube.sub.vo.subVO;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
 
@@ -28,6 +30,9 @@ public class userController {
 	
 	@Resource(name = "PostService")
 	private postService postService;
+	
+	@Resource(name = "SubService")
+	private subService subService;
 	
 	/**
 	 * main 페이지로 이동한다.
@@ -131,28 +136,27 @@ public class userController {
 		}
 	}
 	
-	
-	
-	/**
-	 * 내 채널 정보를 가져온다.
-	 * @param vo
-	 * @param session
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/detail", method = RequestMethod.GET)
-	public ModelAndView getUser(HttpSession session) throws Exception {
+	@RequestMapping(value="/detail/{user_pk}", method = RequestMethod.GET)
+	public ModelAndView getUserpage(
+			@PathVariable("user_pk") int user_pk
+	) throws Exception {
 		try {
 			userVO vo = new userVO();
-			postVO pvo = new postVO();
+			vo.setPk(user_pk);
 			
-			pvo.setUser_pk((int)session.getAttribute("user_pk"));
+			postVO pvo = new postVO();
+			pvo.setUser_pk(user_pk);
+			
+			subVO svo = new subVO();
+			svo.setP_user_pk(user_pk);
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("getUserPage");
-			mv.addObject("userInfo", userService.getUser(vo, session));
+			mv.addObject("userInfo", userService.getUser(vo));
 			mv.addObject("postList", postService.getUserPostList(pvo));
-			mv.addObject("noticeList", postService.getUserCommunityList(pvo));
+			mv.addObject("communityList", postService.getUserCommunityList(pvo));
+			mv.addObject("sub_count", subService.sub_count(svo));
+
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();

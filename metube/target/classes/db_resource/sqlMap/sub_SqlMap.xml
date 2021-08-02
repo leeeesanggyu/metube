@@ -40,15 +40,14 @@
 	</select>
 	
 	<select id="getSubPost" resultType="postVO">
-		SELECT p.*, u.name
-		FROM subscribe 
-			as s 
-		LEFT JOIN post 
-			as p 
-		ON s.p_user_pk = p.user_pk
-		LEFT JOIN user_info
-			AS u
-		ON p.user_pk = u.pk
+		SELECT p.*, u.name, up.img_name, up.img_ext
+		FROM subscribe as s 
+		LEFT JOIN post as p 
+			ON s.p_user_pk = p.user_pk
+		LEFT JOIN user_info AS u
+			ON p.user_pk = u.pk
+		LEFT JOIN upload AS up
+			ON up.post_pk = p.pk
 		WHERE c_user_pk = #{c_user_pk}
 	</select>
     

@@ -12,16 +12,19 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div class="layout">
-		<form name="upload_form" id="user_search_form" v-on:submit="search">
-			<div class="login_id">
-				<h4>name-search</h4>
-				<input v-model="name" placeholder="name">
-			</div>
-			<div class="submit">
-				<button class="submit" type="submit">search</button>
-			</div>
-		</form>
+	<div class="create_form">
+		<div class="layout">
+			<form name="upload_form" id="user_search_form" v-on:submit="search">
+				<div class="submit">
+					<button class="submit" type="submit">search</button>
+				</div>
+				<div class="login_id">
+					<h4>name-search</h4>
+					<input v-model="name" placeholder="name">
+				</div>
+				
+			</form>
+		</div>
 	</div>
 </body>
 <script>

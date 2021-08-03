@@ -9,12 +9,22 @@
     background: #EEEEEE;
     margin: 7px;
     padding: 15px;
+    border-radius: 15px;
+    
 }
 .comment {
 	background: #EEEEEE;
     padding: 15px;
+    border-radius: 15px;
 }
 .layout {
     margin-left: 110px;
     margin-right: 110px;
+}
+.create_form {
+    background: #EEEEEE;
+    margin: 60px;
+    padding: 5px;
+    padding-bottom: 40px;
+    border-radius: 30px;
 }

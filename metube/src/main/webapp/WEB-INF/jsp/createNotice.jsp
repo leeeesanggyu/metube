@@ -17,19 +17,21 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
-	<div class="layout">
-		<div id="upload_form">
-			<div class="submit">
-				<button @click="upload" id="btn-upload">Upload</button>
+	<div class="create_form">
+		<div class="layout">
+			<div id="upload_form">
+				<div class="submit">
+					<button @click="upload" id="btn-upload">Upload</button>
+				</div>
+				<div class="login_id">
+					<h4>title</h4>
+					<input v-model="title">
+				</div>
 			</div>
-			<div class="login_id">
-				<h4>title</h4>
-				<input v-model="title">
-			</div>
+			<!-- 2. TEXT 편집 툴을 사용할 textarea -->
+			<h4>description</h4>
+		    <input name="content" id="editor">
 		</div>
-		<!-- 2. TEXT 편집 툴을 사용할 textarea -->
-		<h4>description</h4>
-	    <input name="content" id="editor">
 	</div>
 </body>
 <script>

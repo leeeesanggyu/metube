@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/resources/css/body-line.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
-
+<link rel="stylesheet" href="/resources/css/button.css" />
 <title>MeTube</title>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>
@@ -23,7 +23,7 @@
 					<th scope="cols">내용</th>
 					<th scope="cols">
 						<div id="app">
-							<button @click="withdrawal(${userInfo.pk})">회원 탈퇴</button>
+							<button class="button" @click="withdrawal(${userInfo.pk})">회원 탈퇴</button>
 						</div>
 					</th>
 				</tr>

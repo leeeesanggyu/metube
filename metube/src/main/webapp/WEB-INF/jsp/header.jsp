@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/font.css" />
+<link rel="stylesheet" href="/resources/css/button.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 <script>
@@ -37,7 +38,7 @@
 	
 	<form id="search_form" v-on:submit="search" >
 		<span>
-			<input type="text" v-model="search_data" placeholder="제목 입력"><button type="submit">검색</button>
+			<input type="text" v-model="search_data" placeholder="검색어 입력"><button class="button" type="submit">검색</button>
 		</span>
 	</form>
 	
@@ -64,7 +65,7 @@
 			</c:if>
 			) <%=name %> 님
 			<span id="logout">
-				<button @click="logout()">logout</button>
+				<button class="button" @click="logout()">logout</button>
 			</span>
 		</div>
 	</div>

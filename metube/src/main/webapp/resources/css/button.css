@@ -1,4 +1,18 @@
 @charset "UTF-8";
-.button_size {
-	width: 50%;
+.button {
+	width: 75px;
+	height: 30px;
+	border: 0;
+	outline: none;
+	border-radius: 40px;
+	background: RED;
+	color: white;
+	letter-spacing: 2px;
+	font-weight: bold;
+	box-shadow: inset -1px -1px 10px #aaa;	
+}
+.button:hover { 
+	color:black; 
+	background-color: skyblue; 
+	box-shadow: 0.1px 0.1px 0.1px 0.1px gray;
 }

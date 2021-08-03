@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/resources/css/layout.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
 <link rel="stylesheet" href="/resources/css/body-line.css" />
+<link rel="stylesheet" href="/resources/css/button.css" />
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -29,13 +30,13 @@
 				조회수 ${post.view_count }회 • ${post.create_at } •
 				<c:if test="${is_like eq null}">
 					<span id="like">
-						<button @click="add_like()">👍 ${post_like}</button>
+						<button class="button" @click="add_like()">👍 ${post_like}</button>
 					</span>
 				</c:if>
 
 				<c:if test="${is_like ne null}">
 					<span id="like">
-						<button @click="delete_like()">👍 ${post_like}✔</button>
+						<button class="button" @click="delete_like()">👍 ${post_like}✔</button>
 					</span>
 				</c:if>
 			</p>
@@ -44,24 +45,24 @@
 			</c:if>
 		</div>
 		<div id="post">
-			<button @click="deletePost">게시물 삭제</button>
-			<button @click="goModifyPost">게시물 수정</button>
+			<button class="button" @click="deletePost">삭제</button>
+			<button class="button" @click="goModifyPost">수정</button>
 		</div>
 		<hr>
 		<div id="sub">
 			<a href="/user/detail/${post.user_pk}">${post.name } </a> <span
 				class="small">구독자 ${sub_count }명</span>
 			<c:if test="${sub eq null}">
-				<button @click="sub_add(${post.user_pk})">구독</button>
+				<button class="button" @click="sub_add(${post.user_pk})">구독</button>
 			</c:if>
 			<c:if test="${sub ne null}">
-				<button @click="sub_del(${post.user_pk})">구독중✔</button>
+				<button class="button" @click="sub_del(${post.user_pk})">구독중✔</button>
 			</c:if>
 		</div>
 		<hr>
 		<form id="comment" v-on:submit="comment_upload">
 			댓글 <input v-model="content">
-			<button type="submit" id="btn-comment">댓글달기</button>
+			<button class="button" type="submit" id="btn-comment">댓글달기</button>
 		</form>
 		<br>
 		<div class="comment">
@@ -72,7 +73,7 @@
 					</p>
 					<p>${comment.content }</p>
 					<div id="comment_delete">
-						<button
+						<button class="button"
 							@click="deleteComment(${comment.pk }, ${comment.user_pk })">삭제</button>
 					</div>
 					<hr>

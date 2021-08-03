@@ -16,8 +16,22 @@ public class postVO {
 	private String name;
 	private String img_name;
 	private String img_ext;
+	private String video_name;
+	private String video_ext;
 	
 	
+	public String getVideo_name() {
+		return video_name;
+	}
+	public void setVideo_name(String video_name) {
+		this.video_name = video_name;
+	}
+	public String getVideo_ext() {
+		return video_ext;
+	}
+	public void setVideo_ext(String video_ext) {
+		this.video_ext = video_ext;
+	}
 	public String getImg_ext() {
 		return img_ext;
 	}

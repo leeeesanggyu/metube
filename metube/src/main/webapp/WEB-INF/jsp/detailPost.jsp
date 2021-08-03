@@ -18,7 +18,10 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="layout">
-		<p>${post.url }</p>
+		<video width="640" height="480" controls>		
+			<source src="/upload/videos/${post.video_name }/${post.video_ext }" type="video/mp4">
+		</video>
+		
 		<h4>${post.title}</h4>
 		<p>${post.description }</p>
 		<div class="small">

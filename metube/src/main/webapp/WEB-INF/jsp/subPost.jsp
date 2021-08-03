@@ -21,7 +21,12 @@
 		<c:forEach var="subPostList" items="${subPostList}">
 			<div class="oneContent">
 				<a href="/post/detail/${subPostList.pk}">
-					<img src="/upload/image/${subPostList.img_name}/${subPostList.img_ext}"/>
+					<c:if test="${subPostList.kind eq 3}" >
+						* Notice *
+					</c:if>
+					<c:if test="${subPostList.kind ne 3}" >
+						<img src="/upload/image/${subPostList.img_name}/${subPostList.img_ext}"/>
+					</c:if>
 					<p>${subPostList.title}</p>
 					<div class="small">
 						<p>${subPostList.name }</p>

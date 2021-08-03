@@ -21,6 +21,12 @@ public class subController {
 	@Resource(name = "SubService")
 	private subService subService;
 	
+	/**
+	 * 구독 한다.
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
 	@ResponseBody
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public boolean sub_add(@RequestBody subVO vo) throws Exception {
@@ -33,9 +39,15 @@ public class subController {
 		}
 	}
 	
+	/**
+	 * 구독을 삭제한다.
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
 	@ResponseBody
 	@RequestMapping(value="/del", method=RequestMethod.DELETE)
-	public boolean sub_delete(@RequestBody subVO vo) throws Exception {
+	public boolean Sub_Delete(@RequestBody subVO vo) throws Exception {
 		try {
 			subService.sub_delete(vo);
 			return true;
@@ -46,7 +58,7 @@ public class subController {
 	}
 	
 	@RequestMapping(value="/goSubPost")
-	public ModelAndView goSubPost(HttpSession session) throws Exception {
+	public ModelAndView GoSubPost(HttpSession session) throws Exception {
 		try {
 			subVO vo = new subVO();
 			vo.setC_user_pk((int)session.getAttribute("user_pk"));

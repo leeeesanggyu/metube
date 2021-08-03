@@ -24,9 +24,20 @@
 		<p>${post.description }</p>
 		<div class="small">
 			<p>
-				조회수 ${post.view_count }회 • ${post.create_at } • <span id="like">
-					<button @click="post_like()">👍 ${post_like}</button>
-				</span>
+				조회수 ${post.view_count }회 • ${post.create_at } • 
+				<c:if test="${is_like eq null}" >
+					<span id="like">
+						<button @click="add_like()">👍 ${post_like}</button>
+					</span>
+				</c:if>
+				
+				<c:if test="${is_like ne null}" >
+					<span id="like">
+						<button @click="delete_like()">👍 ${post_like}✔</button>
+					</span>
+				</c:if>
+				
+				
 			</p>
 			
 			<c:if test="${post.update_at ne null}" >
@@ -93,7 +104,7 @@
 	const like = new Vue({
 	    el: '#like',
 	    methods: {
-	    	post_like: function() {
+	    	add_like: function() {
 	    		const requestOptions = {
                         method: "POST",
                         headers: {
@@ -104,7 +115,27 @@
                         	user_pk: s_user_pk
   		                })
                     };
-                 fetch("/like/toggle", requestOptions)
+                 fetch("/like/add", requestOptions)
+       				.then(res=>res.json())
+     				.then(json=>{ 
+ 						if(json == true){
+ 							location.reload();
+ 						}
+     				})
+     			.catch(err => console.log(err))
+	        },
+	        delete_like: function() {
+	    		const requestOptions = {
+                        method: "DELETE",
+                        headers: {
+                     	   "Content-Type": "application/json" 
+                        },
+                        body: JSON.stringify({
+                        	post_pk: post_pk,
+                        	user_pk: s_user_pk
+  		                })
+                    };
+                 fetch("/like/del", requestOptions)
        				.then(res=>res.json())
      				.then(json=>{ 
  						if(json == true){

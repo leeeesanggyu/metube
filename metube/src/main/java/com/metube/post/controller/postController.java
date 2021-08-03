@@ -378,6 +378,10 @@ public class postController {
 			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
 			mv.addObject("sub_count", subService.sub_count(subvo));
 			mv.addObject("post_like", likeService.post_like_count(lvo));
+			
+			mv.addObject("is_like", likeService.is_like(post_pk, session));
+
+			
 			mv.setViewName("detailPost");
 			return mv;
 		}catch(Exception e) {

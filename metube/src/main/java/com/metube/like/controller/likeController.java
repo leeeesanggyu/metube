@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.metube.like.service.likeService;
 import com.metube.like.vo.likeVO;
+import com.metube.sub.vo.subVO;
 
 @Controller
 @RequestMapping(value="/like")
@@ -25,12 +26,24 @@ public class likeController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/toggle", method = RequestMethod.POST)
-	public boolean signUp(@RequestBody likeVO vo) throws Exception {
+	@RequestMapping(value="/add", method = RequestMethod.POST)
+	public boolean PostLike(@RequestBody likeVO vo) throws Exception {
 		try {
 			likeService.post_like(vo);
 			return true;
 		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/del", method=RequestMethod.DELETE)
+	public boolean Sub_Delete(@RequestBody likeVO vo) throws Exception {
+		try {
+			likeService.like_delete(vo);
+			return true;
+		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}

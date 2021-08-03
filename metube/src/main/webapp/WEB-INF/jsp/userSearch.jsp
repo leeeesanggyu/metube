@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/resources/css/font-.css" />
 </head>
 <body>
-<%@ include file="header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div class="layout">
 		<form name="upload_form" id="user_search_form" v-on:submit="search">
 			<div class="login_id">
@@ -25,30 +25,8 @@
 	</div>
 </body>
 <script>
-	//페이지 권한 설정
-	if(<%=role %> != "3"){
-		alert("권한이 없습니다.");
-		history.go(-1);
-	}
-	
-	const user_search_form = new Vue({
-	    el: '#user_search_form',
-	    data: {
-	    	name: ''
-	    },
-	    methods: {
-	    	search: function(e) {
-	        	e.preventDefault();
-	        	
-				if(this.name == ""){
-					alert("name insert", this.desciption);
-					$(this.name).focus();
-					return;
-				}
-				location.href= "/user/" + this.name;
-	        }
-	    
-	    }
-	});
+	var s_user_pk = <%=user_pk%> //세션
+	var s_user_role = <%=role%> //세션
 </script>
+<script src="/resources/js/userSearch.js"></script>
 </html>

@@ -70,45 +70,6 @@
 	</div>
 	<br><hr>
 </body>
-<script>
-const logout = new Vue({
-    el: '#logout',
-    methods: {
-    	logout: function() {    		 
-    		answer = confirm("정말 로그아웃 하시겠습니까 ?");
-    	    if (answer){
-    	        const requestOptions = {
-    	                method: "GET",
-    	                headers: {
-    	             	   "Content-Type": "application/json" 
-    	                }
-    	            };
-    	         fetch("/user/logout", requestOptions)
-    				.then(res=>{ location.href="/"; })
-    				.catch(err => console.log(err))
-   	    	}else{
-   	    		return;
-   	    	}
-    	}
-    }
-});
-const search_form = new Vue({
-    el: '#search_form',
-    data: {
-    	search_data: ''
-    },
-    methods: {
-    	search: function(e) {   
-        	e.preventDefault();
-
-        	if(this.search_data == ""){
-				alert("검색어를 입력하세여");
-				$(this.search_data).focus();
-				return;
-			}
-			location.href= "/post/search/" + this.search_data;
-    	}
-    }
-});
-</script>
+<script src="/resources/js/logout.js"></script>
+<script src="/resources/js/search.js"></script>
 </html>

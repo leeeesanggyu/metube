@@ -439,9 +439,10 @@ public class postController {
 			ModelAndView mv = new ModelAndView();
 			postVO vo = new postVO();
 			vo.setPk(post_pk);
+			System.out.println(vo.getPk());
 			
 			mv.setViewName("modifyPost");
-			mv.addObject("post", postService.detailPost(vo));
+			mv.addObject("post", postService.detailNotice(vo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -78,4 +78,9 @@ public class postServiceImpl implements postService{
 		return postDAO.userCommunityList(pvo);
 	}
 
+	@Override
+	public postVO detailNotice(postVO vo) throws Exception {
+		return postDAO.detailNotice(vo);
+	}
+
 }

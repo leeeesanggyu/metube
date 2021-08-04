@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metube.common.hash.BCrypt;
 import com.metube.user.dao.userDAO;
@@ -25,6 +27,7 @@ public class userServiceImpl implements userService{
 		return user_DAO.getUserList(vo);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public boolean loginCheck(userVO vo, HttpSession session) throws Exception {
 		userVO hash_password = user_DAO.loginCheck(vo);	//해쉬된 비밀번호 찾기

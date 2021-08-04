@@ -347,6 +347,44 @@ public class postController {
 		}
 	}
 	
+	@RequestMapping(value="/notice/{post_pk}", method = RequestMethod.GET)
+	public ModelAndView DetailNotice(
+			@PathVariable("post_pk") int post_pk, HttpSession session
+	) throws Exception {
+		try {
+			postVO vo = new postVO();
+			vo.setPk(post_pk);
+			
+			commentVO comment_vo = new commentVO();
+			comment_vo.setPost_pk(post_pk);
+			
+			postVO post_result = postService.detailNotice(vo);
+			
+			subVO subvo = new subVO();
+			subvo.setP_user_pk(post_result.getUser_pk());
+			
+			likeVO lvo = new likeVO();
+			lvo.setPost_pk(post_pk);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("post", post_result);
+			mv.addObject("comment", commentService.getComment(comment_vo));
+			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
+			mv.addObject("sub_count", subService.sub_count(subvo));
+			mv.addObject("post_like", likeService.post_like_count(lvo));
+			
+			mv.addObject("is_like", likeService.is_like(post_pk, session));
+
+			
+			mv.setViewName("detailPost");
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	/**
 	 * 상세 게시물을 불러온다.
 	 * @param post_pk

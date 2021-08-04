@@ -18,7 +18,7 @@
     <select id="nameGetUser" resultType="userVO">
     	SELECT *
 		FROM user_info 
-		WHERE name = #{name}
+		WHERE name LIKE CONCAT('%', #{name}, '%')
     </select>
     
     <select id="noPwUser" resultType="userVO">

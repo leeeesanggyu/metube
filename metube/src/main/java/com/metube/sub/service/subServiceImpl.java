@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metube.post.vo.postVO;
 import com.metube.sub.dao.subDAO;
@@ -22,6 +24,7 @@ public class subServiceImpl implements subService{
 		return subDAO.sub_add(vo);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public subVO getSub(int user_pk, HttpSession session) throws Exception {
 		subVO vo = new subVO();

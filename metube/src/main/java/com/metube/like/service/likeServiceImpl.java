@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metube.like.dao.likeDAO;
 import com.metube.like.vo.likeVO;
@@ -30,6 +32,7 @@ public class likeServiceImpl implements likeService{
 		return likeDAO.like_delete(vo);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public likeVO is_like(int post_pk, HttpSession session) throws Exception {
 		likeVO vo = new likeVO();

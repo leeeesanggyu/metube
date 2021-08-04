@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+
+    <typeAliases>
+        <typeAlias type="com.metube.user.vo.userVO" alias="userVO" />
+        <typeAlias type="com.metube.post.vo.postVO" alias="postVO" />
+        <typeAlias type="com.metube.comment.vo.commentVO" alias="commentVO" />
+        <typeAlias type="com.metube.sub.vo.subVO" alias="subVO" />
+        <typeAlias type="com.metube.upload.vo.uploadVO" alias="uploadVO" />
+        <typeAlias type="com.metube.like.vo.likeVO" alias="likeVO" />
+        
+    </typeAliases>
+    
+</configuration>

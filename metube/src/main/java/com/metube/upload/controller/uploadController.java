@@ -53,8 +53,10 @@ public class uploadController {
 		return new ResponseEntity<byte[]>(IOUtils.toByteArray(inputStream), HttpStatus.OK);
 	}
 
-	/** @reference : http://aodis.egloos.com/5962812 * 
-	 * @modified : whiteduck */ 
+	/** 
+	 * @reference : http://aodis.egloos.com/5962812
+	 * @modified : whiteduck 
+	 */ 
 	@RequestMapping(value="/videos/{video_name}/{video_ext}", method= RequestMethod.GET) 
 	public String getContentMediaVideo(
 			@PathVariable("video_name") String video_name,

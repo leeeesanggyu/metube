@@ -113,6 +113,18 @@
 		WHERE p.pk = #{pk}
     </select>
     
+    <!-- 공지사항 불러오기 -->
+    <select id="selectNotice" resultType="postVO">
+        SELECT 
+			p.*, u.name
+		FROM 
+			post AS p
+			JOIN
+				user_info AS u
+				ON p.user_pk = u.pk
+		WHERE p.pk = #{pk}
+    </select>
+    
     <!-- 조회수 증가 -->
     <select id="update_view" resultType="postVO">
         UPDATE post 
@@ -133,7 +145,6 @@
 		SET 
 			title = #{title}, 
 			description = #{description}, 
-			kind = #{kind},
 			update_at = #{update_at}
 		WHERE pk = #{pk};
     </select>

@@ -28,5 +28,7 @@ public interface postService {
 
 	List<postVO> getUserCommunityList(postVO pvo) throws Exception;
 
+	postVO detailNotice(postVO vo) throws Exception;
+
 }
 

@@ -15,7 +15,7 @@ const sub = new Vue({
 						c_user_pk: s_user_pk
 					})
 			};
-			fetch("/sub/add", requestOptions)
+			fetch("/sub/", requestOptions)
 			.then(res=>res.json())
 			.then(json=>{ 
 				if(json == true){
@@ -35,7 +35,7 @@ const sub = new Vue({
 						c_user_pk: s_user_pk
 					})
 			};
-			fetch("/sub/del", requestOptions)
+			fetch("/sub/", requestOptions)
 			.then(res=>res.json())
 			.then(json=>{ 
 				if(json == true){

@@ -1,4 +1,4 @@
-package com.metube.like.controller;
+package com.metube.like.api;
 
 import javax.annotation.Resource;
 
@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.metube.like.service.likeService;
 import com.metube.like.vo.likeVO;
-import com.metube.sub.vo.subVO;
 
 @Controller
 @RequestMapping(value="/like")
-public class likeController {
+public class likeApi {
 
 	@Resource(name = "LikeService")
 	private likeService likeService;
-	
+
 	/**
 	 * 게시물 좋아요
 	 * @param vo: post_pk, user_pk
@@ -36,7 +35,7 @@ public class likeController {
 			return false;
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/del", method=RequestMethod.DELETE)
 	public boolean Sub_Delete(@RequestBody likeVO vo) throws Exception {
@@ -49,3 +48,4 @@ public class likeController {
 		}
 	}
 }
+

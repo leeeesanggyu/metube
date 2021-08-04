@@ -95,47 +95,11 @@ public class userController {
 	}
 	
 	/**
-	 * 로그인
-	 * @param vo email, password
-	 * @param session
+	 * 유저 디테일을 가져온다.
+	 * @param user_pk
 	 * @return
 	 * @throws Exception
 	 */
-	@ResponseBody
-	@RequestMapping(value="/check", method = RequestMethod.POST)
-	public boolean loginCheck(
-			@RequestBody userVO vo, HttpSession session
-	) throws Exception {
-		try {		
-			if(userService.loginCheck(vo, session) == true) {
-				return true;
-			}
-			return false;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	/**
-	 * 로그아웃을 정의한다.
-	 * @param vo
-	 * @param session
-	 * @return
-	 * @throws Exception
-	 */
-	@ResponseBody
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public boolean logout(HttpSession session) throws Exception {
-		try {
-			userService.logout(session);
-			return true;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
 	@RequestMapping(value="/detail/{user_pk}", method = RequestMethod.GET)
 	public ModelAndView getUserpage(
 			@PathVariable("user_pk") int user_pk
@@ -192,63 +156,8 @@ public class userController {
 		}
 	}
 	
-	/**
-	 * 회원가입을 정의한다.
-	 * @param vo email, password, name, role
-	 * @return
-	 * @throws Exception
-	 */
-	@ResponseBody
-	@RequestMapping(value="/sign", method = RequestMethod.POST)
-	public boolean signUp(@RequestBody userVO vo) throws Exception {
-		try {
-			String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
-			vo.setPassword(hash_Password);
-			
-			userService.signUp(vo);
-			return true;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	/**
-	 * 유저에게 잠금을 건다.
-	 * @param vo: pk, name, lock
-	 * @return
-	 * @throws Exception
-	 */
-	@ResponseBody
-	@RequestMapping(value="/lock", method = RequestMethod.POST)
-	public boolean userLock(@RequestBody userVO vo) throws Exception {
-		try {
-			userService.userLock(vo);
-			return true;
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-
-	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value="/withdrawal/{user_pk}", method = RequestMethod.DELETE)
-	public boolean withdrawal(
-			@PathVariable("user_pk") int user_pk, HttpSession session
-	) throws Exception {
-		try {
-			userVO vo = new userVO();
-			vo.setPk(user_pk);
-			userService.withdrawal(vo);
-			userService.logout(session);
-			return true;
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+	
+	
 }

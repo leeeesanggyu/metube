@@ -9,7 +9,7 @@ new Vue({
 				alert("본인만 탈퇴할수 있습니다 !");
 				return;
 			}
-			var URL = "/user/withdrawal/" + pk;
+			var URL = "/user/" + pk;
 
 			answer = confirm("회원탈퇴 하시겠습니까 ?");
 			if (answer){

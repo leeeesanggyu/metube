@@ -21,42 +21,6 @@ public class subController {
 	@Resource(name = "SubService")
 	private subService subService;
 	
-	/**
-	 * 구독 한다.
-	 * @param vo
-	 * @return
-	 * @throws Exception
-	 */
-	@ResponseBody
-	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public boolean sub_add(@RequestBody subVO vo) throws Exception {
-		try {
-			subService.sub_add(vo);
-			return true;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	/**
-	 * 구독을 삭제한다.
-	 * @param vo
-	 * @return
-	 * @throws Exception
-	 */
-	@ResponseBody
-	@RequestMapping(value="/del", method=RequestMethod.DELETE)
-	public boolean Sub_Delete(@RequestBody subVO vo) throws Exception {
-		try {
-			subService.sub_delete(vo);
-			return true;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
 	@RequestMapping(value="/goSubPost")
 	public ModelAndView GoSubPost(HttpSession session) throws Exception {
 		try {

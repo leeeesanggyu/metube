@@ -1,4 +1,4 @@
-package com.metube.comment.controller;
+package com.metube.comment.api;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -15,7 +15,7 @@ import com.metube.comment.vo.commentVO;
 
 @Controller
 @RequestMapping(value="/comment")
-public class commentController {
+public class commentApi {
 
 	@Resource(name = "CommentService")
 	private commentService commentService;
@@ -29,7 +29,9 @@ public class commentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	public boolean createComment(@RequestBody commentVO vo, HttpSession session) throws Exception {
+	public boolean createComment(
+			@RequestBody commentVO vo, HttpSession session
+	) throws Exception {
 		try {
 			commentService.createComment(vo, session);
 			return true;

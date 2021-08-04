@@ -12,13 +12,12 @@
 
 ## :clipboard: 사용 기술
 ### 백엔드
-#### Spring boot
-* JAVA 8
+#### Spring
+* JAVA
 * Spring MVC
-* Spring Data 
-* Spring Boot Batch
+* Spring Mybatis
 * Spring AOP
-* spring cloud stream
+* spring 
 
 #### Build tool
 * Maven

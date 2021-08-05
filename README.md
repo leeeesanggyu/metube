@@ -44,6 +44,7 @@
 * Bcrypt 비밀번호 암호화
 * Simple captcha
 * CKEditor
+* 검색 기능
 * Git 버전관리
 * AWS EC2 배포
 

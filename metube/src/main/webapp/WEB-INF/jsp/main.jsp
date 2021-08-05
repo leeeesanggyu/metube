@@ -13,10 +13,12 @@
 <link rel="stylesheet" href="/resources/css/content.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
 <link rel="stylesheet" href="/resources/css/body.css" />
-
+<link rel="stylesheet" href="/resources/css/header.css" />
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<div class="header">
+		<%@ include file="header.jsp"%>
+	</div>
 	<h4 class="layout">공지사항</h4>
 	<div class="content">
 		<c:forEach var="noticeList" items="${noticeList}">

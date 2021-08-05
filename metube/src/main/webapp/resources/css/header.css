@@ -1,0 +1,12 @@
+@charset "UTF-8";
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+ }
+
+body {
+  padding-top: 100px;
+  /* 생략 */
+}

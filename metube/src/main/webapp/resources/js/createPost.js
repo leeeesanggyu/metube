@@ -79,7 +79,7 @@ const upload_form = new Vue({
 					method: "POST",
 					body: formData
 			};
-			fetch("/post/create", requestOptions)
+			fetch("/post/", requestOptions)
 			.then(res=>res.json())
 			.then(json=>{ 
 				if(json == true){

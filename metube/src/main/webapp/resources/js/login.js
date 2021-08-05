@@ -48,8 +48,15 @@ const loginForm = new Vue({
 							})
 					};
 					fetch("/user/check", requestOptions)
-					.then(res=> res.json())
-					.then(data=> location.reload())
+					.then(res => res.json())
+					.then(result =>{
+						if(result == true){
+							location.reload();
+						}else {
+							alert("아이디와 비밀번호를 확인해주세요");
+							return;
+						}
+					})
 					.catch(err => console.log(err))
 				} else {
 					alert("보안문자를 다시 입력해주세요 !");

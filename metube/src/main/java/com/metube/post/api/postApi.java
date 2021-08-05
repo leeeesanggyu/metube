@@ -219,4 +219,16 @@ public class postApi {
 			return false;
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/notice", method = RequestMethod.POST)
+	public boolean CreateNoticePost(@RequestBody postVO vo) throws Exception {
+		try {		
+			postService.createNotice(vo);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

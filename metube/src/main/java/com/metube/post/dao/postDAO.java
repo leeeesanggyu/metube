@@ -31,5 +31,7 @@ public interface postDAO {
 	List<postVO> userCommunityList(postVO pvo) throws Exception;
 
 	postVO detailNotice(postVO vo) throws Exception;
+
+	int createNotice(postVO vo) throws Exception;
 }
 

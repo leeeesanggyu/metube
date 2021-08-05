@@ -30,5 +30,8 @@ public interface postService {
 
 	postVO detailNotice(postVO vo) throws Exception;
 
+	int update_view(postVO vo) throws Exception;
+
+	int createNotice(postVO vo) throws Exception;
 }
 

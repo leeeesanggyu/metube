@@ -36,10 +36,8 @@ public class postServiceImpl implements postService{
 		return postDAO.deletePost(vo);
 	}
 
-	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public postVO detailPost(postVO vo) throws Exception {
-		postDAO.update_view(vo);
 		return postDAO.selectOne(vo);
 	}
 
@@ -81,6 +79,16 @@ public class postServiceImpl implements postService{
 	@Override
 	public postVO detailNotice(postVO vo) throws Exception {
 		return postDAO.detailNotice(vo);
+	}
+
+	@Override
+	public int update_view(postVO vo) throws Exception {
+		return postDAO.update_view(vo);
+	}
+
+	@Override
+	public int createNotice(postVO vo) throws Exception {
+		return postDAO.createNotice(vo);
 	}
 
 }

@@ -60,7 +60,7 @@ const upload_form = new Vue({
 						kind: 3
 					})
 			};
-			fetch("/post/notice/create", requestOptions)
+			fetch("/post/notice", requestOptions)
 			.then(res=>res.json())
 			.then(json=>{ 
 				if(json == true){

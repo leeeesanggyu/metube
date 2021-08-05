@@ -92,6 +92,24 @@
 		);
     </insert>
     
+    <insert id="createNotice">
+    	INSERT INTO 
+			post
+		(
+			user_pk,
+			title,
+			description,
+			kind
+		)
+			VALUES
+		(
+			#{user_pk},
+			#{title},
+			#{description},
+			#{kind}
+		);
+    </insert>
+    
     <!-- 게시물 삭제 -->
     <select id="deletePost" resultType="postVO">
         DELETE FROM post

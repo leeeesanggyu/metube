@@ -47,7 +47,7 @@ new Vue({
 						role: this.role
 					})
 			};
-			fetch("/user/sign", requestOptions)
+			fetch("/user/", requestOptions)
 			.then(res => {
 				location.href="/";
 			})

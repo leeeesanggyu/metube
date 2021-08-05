@@ -75,5 +75,10 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 	public postVO detailNotice(postVO vo) throws Exception {
 		return selectOne("PostDAO.selectNotice", vo);
 	}
+
+	@Override
+	public int createNotice(postVO vo) throws Exception {
+		return insert("PostDAO.createNotice", vo);
+	}
 }
 

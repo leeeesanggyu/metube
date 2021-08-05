@@ -43,6 +43,7 @@
 * 썸네일 자동생성
 * Bcrypt 비밀번호 암호화
 * Simple captcha
+* CKEditor
 * Git 버전관리
 * AWS EC2 배포
 

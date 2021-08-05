@@ -50,7 +50,7 @@
 <img width="1000" alt="캡처3" src="https://user-images.githubusercontent.com/40568894/99797317-6246b800-2b72-11eb-81ac-ff7a2cfad5ce.PNG"><img width="1000" alt="캡처4" src="https://user-images.githubusercontent.com/40568894/99797327-64a91200-2b72-11eb-953d-84c85872b15c.PNG">
 
 ## :link: ERD 설계
-* [Metube ERD](metube-erd.PNG)
+![Metube ERD](metube-erd.PNG)
 
 ## :link: Rest API 문서
 * [Metube Rest API 문서](https://github.com/didrlgus/springboot-shoppingmall/issues/58)

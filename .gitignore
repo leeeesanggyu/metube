@@ -3,3 +3,9 @@
 /metube/src/main/resources/jdbc.properties
 
 metube/src/main/resources/data
+
+/metube/src/main/webapp/WEB-INF/config
+
+/Servers
+
+/metube/target

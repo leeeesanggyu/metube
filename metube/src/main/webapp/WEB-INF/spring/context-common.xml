@@ -44,4 +44,5 @@
 	
 	<!-- @Transactional 애노테이션을 sacn하기 위한 설정 -->
 	<tx:annotation-driven/>
+	
 </beans>

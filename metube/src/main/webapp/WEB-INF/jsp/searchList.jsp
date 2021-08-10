@@ -17,7 +17,7 @@
 <%@ include file="header.jsp"%>
 <h4 class="layout">검색된 채널</h4>
 	<div class="content">
-		<c:forEach var="userList" items="${userList}">
+		<c:forEach var="userList" items="${userPostList.userList}">
 			<div class="oneContent">
 				<a href="/user/detail/${userList.pk}">
 					<p>${userList.name }</p>
@@ -28,7 +28,7 @@
 	<hr align="center" style="border: outset 1px; width: 88%;">
 	<h4 class="layout">검색된 동영상</h4>
 	<div class="content">
-		<c:forEach var="postList" items="${postList}">
+		<c:forEach var="postList" items="${userPostList.postList}">
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}" >
 					<a href="/post/detail/${postList.pk}">

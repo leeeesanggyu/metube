@@ -34,17 +34,14 @@ public class subServiceImpl implements subService{
 	}
 
 	@Override
-	public int sub_count(subVO vo) throws Exception {
-		return subDAO.sub_count(vo);
-	}
-
-	@Override
 	public int sub_delete(subVO vo) throws Exception {
 		return subDAO.sub_delete(vo);
 	}
 
 	@Override
-	public List<postVO> getSubPostList(subVO vo) throws Exception {
+	public List<postVO> getSubPostList(HttpSession session) throws Exception {
+		subVO vo = new subVO();
+		vo.setC_user_pk((int)session.getAttribute("user_pk"));
 		return subDAO.getSubPost(vo);
 	}
 	

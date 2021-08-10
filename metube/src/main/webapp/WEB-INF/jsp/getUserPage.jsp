@@ -30,32 +30,32 @@
 			<tbody>
 				<tr>
 					<th scope="row">이메일</th>
-					<td>${userInfo.email}</td>
+					<td>${getUserDetail.userInfo.email}</td>
 				</tr>
 				<tr>
 					<th scope="row">이름</th>
-					<td>${userInfo.name}</td>
+					<td>${getUserDetail.userInfo.name}</td>
 				</tr>
 				<tr>
 					<th scope="row">권한</th>
-					<td><c:if test="${userInfo.role eq '1'}">
+					<td><c:if test="${getUserDetail.userInfo.role eq '1'}">
 						Guest
-					</c:if> <c:if test="${userInfo.role eq '2'}">
+					</c:if> <c:if test="${getUserDetail.userInfo.role eq '2'}">
 						User
-					</c:if> <c:if test="${userInfo.role eq '3'}">
+					</c:if> <c:if test="${getUserDetail.userInfo.role eq '3'}">
 						Admin
 					</c:if></td>
 				</tr>
 				<tr>
 					<th scope="row">구독자 수</th>
-					<td>${sub_count}명</td>
+					<td>${getUserDetail.sub_count}명</td>
 				</tr>
 			</tbody>
 		</table>
 	</center>
 	<h4 class="layout">Community</h4>
 	<div class="content">
-		<c:forEach var="communityList" items="${communityList}">
+		<c:forEach var="communityList" items="${getUserDetail.communityList}">
 			<div class="oneContent">
 				<a href="/post/detail/${communityList.pk}">
 					<p>
@@ -81,7 +81,7 @@
 	<hr align="center" style="border: outset 1px; width: 88%;">
 	<h4 class="layout">내 채널 동영상</h4>
 	<div class="content">
-		<c:forEach var="postList" items="${postList}">
+		<c:forEach var="postList" items="${getUserDetail.postList}">
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}">
 					<a href="/post/detail/${postList.pk}">

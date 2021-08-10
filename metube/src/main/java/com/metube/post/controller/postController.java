@@ -27,6 +27,8 @@ import com.metube.comment.service.commentService;
 import com.metube.comment.vo.commentVO;
 import com.metube.like.service.likeService;
 import com.metube.like.vo.likeVO;
+import com.metube.common.service.commonService;
+
 
 @Controller
 @RequestMapping(value="/post")
@@ -38,14 +40,15 @@ public class postController {
 	@Resource(name = "CommentService")
 	private commentService commentService;
 	
-	@Resource(name = "SubService")
-	private subService subService;
 	
 	@Resource(name = "UserService")
 	private userService userService;
 	
 	@Resource(name = "LikeService")
 	private likeService likeService;
+	
+	@Resource(name = "CommonService")
+	private commonService commonService;
 	
 	/**
 	 * 공지사항 작성 페이지로 간다.
@@ -63,8 +66,6 @@ public class postController {
 			return null;
 		}
 	}
-	
-	
 	
 	/**
 	 * 게시물 생성 페이지로 간다.
@@ -92,12 +93,8 @@ public class postController {
 	public ModelAndView GoModifyPost(@PathVariable("post_pk") int post_pk) throws Exception {
 		try {
 			ModelAndView mv = new ModelAndView();
-			postVO vo = new postVO();
-			vo.setPk(post_pk);
-			System.out.println(vo.getPk());
-			
 			mv.setViewName("modifyPost");
-			mv.addObject("post", postService.detailNotice(vo));
+			mv.addObject("post", postService.detailNotice(post_pk));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -106,18 +103,16 @@ public class postController {
 	}
 	
 	/**
-	 * 게시물 목록을 가져온다.
+	 * 게시물 목록을 가져온다.(post, notice)
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView GetPostList() throws Exception {
 		try {
-			postVO vo = new postVO();
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("main");
-			mv.addObject("postList", postService.getPostList(vo));
-			mv.addObject("noticeList", postService.getNoticeList(vo));
+			mv.addObject("post_noticeList", postService.getPostNotice());
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -131,22 +126,14 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/search/{search_arg}", method = RequestMethod.GET)
-	public ModelAndView SearchPostList(
+	@RequestMapping(value="/search/{search_arg}")
+	public ModelAndView SearchUserPost(
 			@PathVariable("search_arg") String search_arg
 	) throws Exception {
 		try {
-			postVO vo = new postVO();
-			vo.setTitle(search_arg);
-			
-			userVO uvo = new userVO();
-			uvo.setName(search_arg);
-			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("searchList");
-			mv.addObject("userList", userService.nameGetUser(uvo));
-			mv.addObject("postList", postService.searchPostList(vo));
-
+			mv.addObject("userPostList", postService.searchUserPost(search_arg));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -162,10 +149,9 @@ public class postController {
 	@RequestMapping(value="/notice/list")
 	public ModelAndView GetNoticeList() throws Exception {
 		try {
-			postVO vo = new postVO();
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("noticePost");
-			mv.addObject("noticeList", postService.getNoticeList(vo));
+			mv.addObject("noticeList", postService.getNoticeList());
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -180,81 +166,7 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/notice/detail/{post_pk}", method = RequestMethod.GET)
-	public ModelAndView DetailNotice(
-			HttpServletRequest request,
-			HttpServletResponse response,
-			@PathVariable("post_pk") int post_pk, 
-			HttpSession session
-	) throws Exception {
-		try {
-			// 저장된 쿠키 불러오기
-		    Cookie cookies[] = request.getCookies();
-		    Map map = new HashMap();
-		    
-		    if(request.getCookies() != null){
-			    for (int i = 0; i < cookies.length; i++) {
-				    Cookie obj = cookies[i];
-				    System.out.println(obj);
-				    map.put(obj.getName(),obj.getValue());
-			    }
-		    }
-
-		    // 저장된 쿠키중에 read_count 만 불러오기
-		    String readCount = (String) map.get("read_count");
-		     // 저장될 새로운 쿠키값 생성
-		    String newReadCount = "|" + post_pk;
-
-		    // 저장된 쿠키에 새로운 쿠키값이 존재하는 지 검사
-		    if ( StringUtils.indexOfIgnoreCase(readCount, newReadCount) == -1 ) {
-		          // 없을 경우 쿠키 생성
-		          Cookie cookie = new Cookie("read_count", readCount + newReadCount);
-		         
-		          response.addCookie(cookie);
-		          postVO vo = new postVO();
-				  vo.setPk(post_pk);
-		          postService.update_view(vo); // 업데이트 실행
-		    }
-		    
-			postVO vo = new postVO();
-			vo.setPk(post_pk);
-			
-			commentVO comment_vo = new commentVO();
-			comment_vo.setPost_pk(post_pk);
-			
-			postVO post_result = postService.detailNotice(vo);
-			
-			subVO subvo = new subVO();
-			subvo.setP_user_pk(post_result.getUser_pk());
-			
-			likeVO lvo = new likeVO();
-			lvo.setPost_pk(post_pk);
-			
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("post", post_result);
-			mv.addObject("comment", commentService.getComment(comment_vo));
-			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
-			mv.addObject("sub_count", subService.sub_count(subvo));
-			mv.addObject("post_like", likeService.post_like_count(lvo));
-			
-			mv.addObject("is_like", likeService.is_like(post_pk, session));
-
-			
-			mv.setViewName("detailPost");
-			return mv;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	/**
-	 * 상세 게시물을 불러온다.
-	 * @param post_pk
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/detail/{post_pk}", method = RequestMethod.GET)
+	@RequestMapping(value="/notice/detail/{post_pk}")
 	public ModelAndView DetailPost(
 			HttpServletRequest request,
 			HttpServletResponse response,
@@ -262,61 +174,74 @@ public class postController {
 			HttpSession session
 	) throws Exception {
 		try {
-			// 저장된 쿠키 불러오기
-		    Cookie cookies[] = request.getCookies();
-		    Map map = new HashMap();
+			Cookie cookie = commonService.view_count_check(request.getCookies(), post_pk);
+			if(cookie != null) {
+				response.addCookie(cookie);
+				postVO vo = new postVO();
+				vo.setPk(post_pk);
+		        postService.update_view(vo);
+			}
 		    
-		    if(request.getCookies() != null){
-			    for (int i = 0; i < cookies.length; i++) {
-				    Cookie obj = cookies[i];
-				    map.put(obj.getName(),obj.getValue());
-			    }
-		    }
-
-		    // 저장된 쿠키중에 read_count 만 불러오기
-		    String readCount = (String) map.get("read_count");
-		     // 저장될 새로운 쿠키값 생성
-		    String newReadCount = "|" + post_pk;
-
-		    // 저장된 쿠키에 새로운 쿠키값이 존재하는 지 검사
-		    if ( StringUtils.indexOfIgnoreCase(readCount, newReadCount) == -1 ) {
-		          // 없을 경우 쿠키 생성
-		          Cookie cookie = new Cookie("read_count", readCount + newReadCount);
-		         
-		          response.addCookie(cookie);
-		          postVO vo = new postVO();
-				  vo.setPk(post_pk);
-		          postService.update_view(vo); // 업데이트 실행
-		    }
-			
-			postVO vo = new postVO();
-			vo.setPk(post_pk);
-			
-			commentVO comment_vo = new commentVO();
-			comment_vo.setPost_pk(post_pk);
-			
-			postVO post_result = postService.detailPost(vo);
-			
-			subVO subvo = new subVO();
-			subvo.setP_user_pk(post_result.getUser_pk());
-			
-			likeVO lvo = new likeVO();
-			lvo.setPost_pk(post_pk);
-			
 			ModelAndView mv = new ModelAndView();
-			mv.addObject("post", post_result);
-			mv.addObject("comment", commentService.getComment(comment_vo));
-			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
-			mv.addObject("sub_count", subService.sub_count(subvo));
-			mv.addObject("post_like", likeService.post_like_count(lvo));
-			mv.addObject("is_like", likeService.is_like(post_pk, session));
 			mv.setViewName("detailPost");
+			mv.addObject("detailPost", postService.detailPost(post_pk, session));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
+//	/**
+//	 * 상세 게시물을 불러온다.
+//	 * @param post_pk
+//	 * @return
+//	 * @throws Exception
+//	 */
+//	@RequestMapping(value="/detail/{post_pk}")
+//	public ModelAndView DetailPost2(
+//			HttpServletRequest request,
+//			HttpServletResponse response,
+//			@PathVariable("post_pk") int post_pk, 
+//			HttpSession session
+//	) throws Exception {
+//		try {
+//			Cookie cookie = commonService.view_count_check(request.getCookies(), post_pk);
+//			if(cookie != null) {
+//				response.addCookie(cookie);
+//				postVO vo = new postVO();
+//				vo.setPk(post_pk);
+//		        postService.update_view(vo);
+//			}
+//			
+//			postVO vo = new postVO();
+//			vo.setPk(post_pk);
+//			
+//			commentVO comment_vo = new commentVO();
+//			comment_vo.setPost_pk(post_pk);
+//			
+//			postVO post_result = postService.detailPost(vo);
+//			
+//			subVO subvo = new subVO();
+//			subvo.setP_user_pk(post_result.getUser_pk());
+//			
+//			likeVO lvo = new likeVO();
+//			lvo.setPost_pk(post_pk);
+//			
+//			ModelAndView mv = new ModelAndView();
+//			mv.addObject("post", post_result);
+//			mv.addObject("comment", commentService.getComment(comment_vo));
+//			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
+//			mv.addObject("sub_count", subService.sub_count(subvo));
+//			mv.addObject("post_like", likeService.post_like_count(lvo));
+//			mv.addObject("is_like", likeService.is_like(post_pk, session));
+//			mv.setViewName("detailPost");
+//			return mv;
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 	
 	
 }

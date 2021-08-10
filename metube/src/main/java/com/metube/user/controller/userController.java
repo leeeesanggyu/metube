@@ -28,12 +28,6 @@ public class userController {
 	@Resource(name = "UserService")
 	private userService userService;
 	
-	@Resource(name = "PostService")
-	private postService postService;
-	
-	@Resource(name = "SubService")
-	private subService subService;
-	
 	/**
 	 * main 페이지로 이동한다.
 	 */
@@ -101,7 +95,7 @@ public class userController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/detail/{user_pk}", method = RequestMethod.GET)
-	public ModelAndView getUserpage(
+	public ModelAndView getUserDetail(
 			@PathVariable("user_pk") int user_pk
 	) throws Exception {
 		try {
@@ -116,11 +110,7 @@ public class userController {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("getUserPage");
-			mv.addObject("userInfo", userService.getUser(vo));
-			mv.addObject("postList", postService.getUserPostList(pvo));
-			mv.addObject("communityList", postService.getUserCommunityList(pvo));
-			mv.addObject("sub_count", subService.sub_count(svo));
-
+			mv.addObject("getUserDetail", userService.getUserDetail(vo, pvo, svo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -155,9 +145,5 @@ public class userController {
 			return null;
 		}
 	}
-	
-	
-	
-	
-	
+		
 }

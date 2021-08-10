@@ -21,7 +21,7 @@
 	</div>
 	<h4 class="layout">공지사항</h4>
 	<div class="content">
-		<c:forEach var="noticeList" items="${noticeList}">
+		<c:forEach var="noticeList" items="${post_noticeList.noticeList}">
 			<div class="oneContent">
 				<a href="/post/notice/detail/${noticeList.pk}">
 					<p>* NOTICE *</p>
@@ -42,7 +42,7 @@
 	<hr align="center" style="border: outset 1px; width: 88%;">
 	<h4 class="layout">동영상</h4>
 	<div class="content">
-		<c:forEach var="postList" items="${postList}">
+		<c:forEach var="postList" items="${post_noticeList.postList}">
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}">
 					<a href="/post/detail/${postList.pk}">

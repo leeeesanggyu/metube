@@ -9,8 +9,6 @@ public interface likeService {
 
 	int post_like(likeVO vo) throws Exception;
 
-	int post_like_count(likeVO lvo) throws Exception;
-
 	int like_delete(likeVO vo) throws Exception;
 
 	likeVO is_like(int post_pk, HttpSession session) throws Exception;

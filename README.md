@@ -36,16 +36,16 @@
 
 ## :clipboard: 주요 키워드
 * REST API
-* HTTP 통신
 * Http request range(비디오 스트리밍)
-* Mybatis
 * 트랜잭션
 * 썸네일 자동생성
 * Bcrypt 비밀번호 암호화
 * Simple captcha
 * CKEditor
 * 검색 기능
+
 * Git 버전관리
+* Docker
 * AWS EC2 배포
 
 ## :factory: 시스템 구조

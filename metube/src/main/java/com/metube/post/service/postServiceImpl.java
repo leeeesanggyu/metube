@@ -50,7 +50,7 @@ public class postServiceImpl implements postService{
 
 	@Override
 	public Map<String, Object> detailPost(
-			int post_pk, HttpSession session
+			int post_pk, HttpSession session, String arg
 	) throws Exception {
 		postVO vo = new postVO();
 		vo.setPk(post_pk);
@@ -67,10 +67,17 @@ public class postServiceImpl implements postService{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("comment", commentDAO.getComment(cvo));
-		map.put("sub", subService.getSub(post_result.getUser_pk(), session));
+		map.put("sub", subService.getSub(post_result.getUser_pk(), session));		
 		map.put("sub_count", subDAO.sub_count(svo));
 		map.put("post_like", likeDAO.post_like_count(lvo));
 		map.put("is_like", likeService.is_like(post_pk, session));
+		
+		if(arg.equals("normal")) {
+			map.put("post", postDAO.selectOne(vo));
+		}
+		else if(arg.equals("notice")) {
+			map.put("post", postDAO.detailNotice(vo));
+		}
 		return map;
 	}
 	

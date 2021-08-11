@@ -142,7 +142,7 @@ public class postController {
 	}
 	
 	/**
-	 * 공지사항을 가져온다.
+	 * 공지사항 리스트를 가져온다.
 	 * @return
 	 * @throws Exception
 	 */
@@ -160,17 +160,18 @@ public class postController {
 	}
 	
 	/**
-	 * 공지사항 디테일을 가져온다.
+	 * 상세 게시물을 가져온다.
 	 * @param post_pk
 	 * @param session
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/notice/detail/{post_pk}")
+	@RequestMapping(value="/{post_pk}/{arg}")
 	public ModelAndView DetailPost(
 			HttpServletRequest request,
 			HttpServletResponse response,
 			@PathVariable("post_pk") int post_pk, 
+			@PathVariable("arg") String arg, 
 			HttpSession session
 	) throws Exception {
 		try {
@@ -181,67 +182,16 @@ public class postController {
 				vo.setPk(post_pk);
 		        postService.update_view(vo);
 			}
-		    
+			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("detailPost");
-			mv.addObject("detailPost", postService.detailPost(post_pk, session));
+			mv.addObject("detailPost", postService.detailPost(post_pk, session, arg));
+		   
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-//	/**
-//	 * 상세 게시물을 불러온다.
-//	 * @param post_pk
-//	 * @return
-//	 * @throws Exception
-//	 */
-//	@RequestMapping(value="/detail/{post_pk}")
-//	public ModelAndView DetailPost2(
-//			HttpServletRequest request,
-//			HttpServletResponse response,
-//			@PathVariable("post_pk") int post_pk, 
-//			HttpSession session
-//	) throws Exception {
-//		try {
-//			Cookie cookie = commonService.view_count_check(request.getCookies(), post_pk);
-//			if(cookie != null) {
-//				response.addCookie(cookie);
-//				postVO vo = new postVO();
-//				vo.setPk(post_pk);
-//		        postService.update_view(vo);
-//			}
-//			
-//			postVO vo = new postVO();
-//			vo.setPk(post_pk);
-//			
-//			commentVO comment_vo = new commentVO();
-//			comment_vo.setPost_pk(post_pk);
-//			
-//			postVO post_result = postService.detailPost(vo);
-//			
-//			subVO subvo = new subVO();
-//			subvo.setP_user_pk(post_result.getUser_pk());
-//			
-//			likeVO lvo = new likeVO();
-//			lvo.setPost_pk(post_pk);
-//			
-//			ModelAndView mv = new ModelAndView();
-//			mv.addObject("post", post_result);
-//			mv.addObject("comment", commentService.getComment(comment_vo));
-//			mv.addObject("sub", subService.getSub(post_result.getUser_pk(), session));
-//			mv.addObject("sub_count", subService.sub_count(subvo));
-//			mv.addObject("post_like", likeService.post_like_count(lvo));
-//			mv.addObject("is_like", likeService.is_like(post_pk, session));
-//			mv.setViewName("detailPost");
-//			return mv;
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-	
 	
 }

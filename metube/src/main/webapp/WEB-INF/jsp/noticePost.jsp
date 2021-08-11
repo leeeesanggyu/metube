@@ -23,7 +23,7 @@
 	<div class="content">
 		<c:forEach var="noticeList" items="${noticeList}">
 			<div class="oneContent">
-				<a href="/post/notice/detail/${noticeList.pk}">
+				<a href="/post/${noticeList.pk}/notice">
 					<p>* NOTICE *</p>
 					<p>${noticeList.title}</p>
 					<div class="small">

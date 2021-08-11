@@ -13,7 +13,7 @@ public interface postService {
 
 	int deletePost(postVO vo) throws Exception;
 
-	Map<String, Object> detailPost(int post_pk, HttpSession session) throws Exception;
+	Map<String, Object> detailPost(int post_pk, HttpSession session, String arg) throws Exception;
 
 	int is_deletePost(postVO vo) throws Exception;
 

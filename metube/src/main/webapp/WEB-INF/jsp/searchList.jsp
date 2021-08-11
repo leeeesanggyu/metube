@@ -19,7 +19,7 @@
 	<div class="content">
 		<c:forEach var="userList" items="${userPostList.userList}">
 			<div class="oneContent">
-				<a href="/user/detail/${userList.pk}">
+				<a href="/user/${userList.pk}">
 					<p>${userList.name }</p>
 				</a>
 			</div>
@@ -31,7 +31,7 @@
 		<c:forEach var="postList" items="${userPostList.postList}">
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}" >
-					<a href="/post/detail/${postList.pk}">
+					<a href="/post/${postList.pk}/normal">
 						<p><img src="/upload/image/${postList.img_name}/${postList.img_ext}"/></p>
 						<p>${postList.title}</p>
 						<div class="small">

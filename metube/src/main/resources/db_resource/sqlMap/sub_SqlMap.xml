@@ -49,6 +49,7 @@
 		LEFT JOIN upload AS up
 			ON up.post_pk = p.pk
 		WHERE c_user_pk = #{c_user_pk}
+			AND p.kind = 2
 	</select>
     
 </mapper>

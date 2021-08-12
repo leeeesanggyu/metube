@@ -17,7 +17,6 @@
 * Spring MVC
 * Spring Mybatis
 * Spring AOP
-* spring 
 
 #### Build tool
 * Maven

@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metube.comment.dao.commentDAO;
 import com.metube.comment.vo.commentVO;
@@ -47,7 +49,7 @@ public class postServiceImpl implements postService{
 	@Resource(name = "LikeService")
 	private likeService likeService;
 	
-
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public Map<String, Object> detailPost(
 			int post_pk, HttpSession session, String arg
@@ -81,11 +83,21 @@ public class postServiceImpl implements postService{
 		return map;
 	}
 	
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public  Map<String, Object> getPostNotice() throws Exception {
 		postVO vo = new postVO();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("postList", postDAO.getPostList(vo));
+		map.put("noticeList", postDAO.getNoticeList(vo));
+		return map;
+	}
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED)
+	@Override
+	public Map<String, Object> getNoticeList() throws Exception {
+		postVO vo = new postVO();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("noticeList", postDAO.getNoticeList(vo));
 		return map;
 	}
@@ -97,6 +109,7 @@ public class postServiceImpl implements postService{
 		return postDAO.detailNotice(vo);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public Map<String, Object> searchUserPost(String search_arg) throws Exception {
 		postVO vo = new postVO();
@@ -109,14 +122,6 @@ public class postServiceImpl implements postService{
 		map.put("userList", userDAO.nameGetUser(uvo));
 		map.put("postList", postDAO.searchPostList(vo));
 		return map;
-	}
-	
-	@Override
-	public Map<String, Object> getNoticeList() throws Exception {
-		postVO vo = new postVO();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("noticeList", postDAO.getNoticeList(vo));
-		return null;
 	}
 	
 	@Override

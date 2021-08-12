@@ -45,13 +45,17 @@
 					</tr>
 					<tr>
 						<th scope="row">role</th>
-						<td><c:if test="${userInfo.role eq '1'}">
-						Guest
-					</c:if> <c:if test="${userInfo.role eq '2'}">
-						User
-					</c:if> <c:if test="${userInfo.role eq '3'}">
-						Admin
-					</c:if></td>
+						<td>
+							<c:if test="${userInfo.role eq '1'}">
+								Guest
+							</c:if> 
+							<c:if test="${userInfo.role eq '2'}">
+								User
+							</c:if> 
+							<c:if test="${userInfo.role eq '3'}">
+								Admin
+							</c:if>
+						</td>
 					</tr>
 					<tr>
 						<th scope="row">lock</th>

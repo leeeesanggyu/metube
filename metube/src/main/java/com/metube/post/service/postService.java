@@ -13,6 +13,8 @@ public interface postService {
 
 	int deletePost(postVO vo) throws Exception;
 
+	Map<String, Object> getNoticeList() throws Exception;
+
 	Map<String, Object> detailPost(int post_pk, HttpSession session, String arg) throws Exception;
 
 	int is_deletePost(postVO vo) throws Exception;
@@ -31,6 +33,5 @@ public interface postService {
 
 	Map<String, Object> searchUserPost(String search_arg) throws Exception;
 
-	Map<String, Object> getNoticeList() throws Exception;
 }
 

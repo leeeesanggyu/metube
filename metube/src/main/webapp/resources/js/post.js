@@ -15,7 +15,7 @@ const post = new Vue({
 		},
 		deletePost: function() {
 			if(user_role == 3){
-				if(post.kind == 3){
+				if(post_kind == 3){
 					answer = confirm("정말 삭제하시겠습니까?");
 					if(answer){
 						const requestOptions = {
@@ -24,7 +24,7 @@ const post = new Vue({
 									"Content-Type": "application/json" 
 								}
 						};
-						fetch(URL, requestOptions)
+						fetch("/post/" + this.pk, requestOptions)
 						.then(res=>res.json())
 						.then(json=>{ 
 							console.log("fetch result: " + json);

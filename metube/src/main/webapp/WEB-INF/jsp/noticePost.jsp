@@ -20,24 +20,7 @@
 		<a href="/post/goNoticeCreate">업로드</a>
 	</c:if>
 </h4>
-	<div class="content">
-		<c:forEach var="noticeList" items="${noticeList}">
-			<div class="oneContent">
-				<a href="/post/${noticeList.pk}/notice">
-					<p>* NOTICE *</p>
-					<p>${noticeList.title}</p>
-					<div class="small">
-						<p>${noticeList.name }</p>
-						<c:if test="${noticeList.update_at eq null}" >
-							<p>조회수 ${noticeList.view_count }회 • ${noticeList.create_at }</p>
-						</c:if>
-						<c:if test="${noticeList.update_at ne null}" >
-							<p>조회수 ${noticeList.view_count }회 • 수정 ${noticeList.update_at }</p>
-						</c:if>
-					</div>
-				</a>
-			</div>
-		</c:forEach>
-	</div>
+	<%@ include file="./block/noticeList.jsp"%>
+	
 </body>
 </html>

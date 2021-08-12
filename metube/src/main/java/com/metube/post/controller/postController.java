@@ -112,7 +112,25 @@ public class postController {
 		try {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("main");
-			mv.addObject("post_noticeList", postService.getPostNotice());
+			mv.addObject("data", postService.getPostNotice());
+			return mv;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 공지사항 리스트를 가져온다.
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/notice/list")
+	public ModelAndView GetNoticeList() throws Exception {
+		try {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("noticePost");
+			mv.addObject("data", postService.getNoticeList());
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -133,25 +151,7 @@ public class postController {
 		try {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("searchList");
-			mv.addObject("userPostList", postService.searchUserPost(search_arg));
-			return mv;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	/**
-	 * 공지사항 리스트를 가져온다.
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/notice/list")
-	public ModelAndView GetNoticeList() throws Exception {
-		try {
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("noticePost");
-			mv.addObject("noticeList", postService.getNoticeList());
+			mv.addObject("data", postService.searchUserPost(search_arg));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();

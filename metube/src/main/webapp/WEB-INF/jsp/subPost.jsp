@@ -19,7 +19,7 @@
 	<div class="content">
 		<c:forEach var="subPostList" items="${subPostList}">
 			<div class="oneContent">
-				<a href="/post/detail/${subPostList.pk}">
+				<a href="/post/${subPostList.pk}/normal">
 					<c:if test="${subPostList.kind eq 3}" >
 						* Notice *
 					</c:if>

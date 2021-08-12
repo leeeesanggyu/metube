@@ -110,7 +110,7 @@ public class userController {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("getUserPage");
-			mv.addObject("getUserDetail", userService.getUserDetail(vo, pvo, svo));
+			mv.addObject("data", userService.getUserDetail(vo, pvo, svo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -132,13 +132,7 @@ public class userController {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("nameUser");
-			
-			List<userVO> result = userService.nameGetUser(vo);
-			if(result == null) {
-				mv.addObject("userInfo");
-			}else {
-				mv.addObject("userInfo", result);
-			}
+			mv.addObject("userInfo", userService.nameGetUser(vo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();

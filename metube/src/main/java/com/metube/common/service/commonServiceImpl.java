@@ -10,10 +10,13 @@ import javax.servlet.http.Cookie;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("CommonService")
 public class commonServiceImpl implements commonService{
 
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	//현재 시간 구하기
 	@Override
 	public String getTime() throws Exception {
@@ -23,6 +26,7 @@ public class commonServiceImpl implements commonService{
         return datetime.format(formatter);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public Cookie view_count_check(Cookie[] cookies, int post_pk) throws Exception {
 	    Map<String, String> map = new HashMap<String, String>();

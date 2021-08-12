@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import org.apache.commons.io.FilenameUtils;
 import org.imgscalr.Scalr;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 
 import com.metube.upload.dao.uploadDAO;
@@ -45,6 +47,7 @@ public class uploadServiceImpl implements uploadService{
 	 * @throws IOException 
 	 * return thumbpath
 	 */
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public File makeThumbnail(String image_savedName, String image_ext) throws IOException {
 		// 저장된 원본파일로부터 BufferedImage 객체를 생성합니다. 
@@ -81,6 +84,7 @@ public class uploadServiceImpl implements uploadService{
 	/**
 	 * 파일 uuid + Name, 순수 파일명 , ext 리턴 
 	 */
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public HashMap<String,String> getDataName(String originalFilename) {
         UUID uuid = UUID.randomUUID();

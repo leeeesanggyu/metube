@@ -29,7 +29,7 @@ import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 public class userServiceImpl implements userService{
 
 	@Resource(name = "userDAO")
-	private userDAO user_DAO;
+	private userDAO userDAO;
 	
 	@Resource(name = "PostDAO")
 	private postDAO postDAO;
@@ -40,7 +40,7 @@ public class userServiceImpl implements userService{
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public boolean loginCheck(userVO vo, HttpSession session) throws Exception {
-		userVO hash_password = user_DAO.loginCheck(vo);	//해쉬된 비밀번호 찾기
+		userVO hash_password = userDAO.loginCheck(vo);	//해쉬된 비밀번호 찾기
 
 		if(BCrypt.checkpw(vo.getPassword(),hash_password.getPassword())) {
 			System.out.println("비밀번호 비교 결과: 같음");
@@ -69,12 +69,12 @@ public class userServiceImpl implements userService{
 	public int signUp(userVO vo) throws Exception {
 		String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
 		vo.setPassword(hash_Password);
-		return user_DAO.signUp(vo);
+		return userDAO.signUp(vo);
 	}
 	
 	@Override
 	public List<userVO> nameGetUser(userVO vo) throws Exception {
-		return nameGetUser(vo);
+		return userDAO.nameGetUser(vo);
 	}
 	
 	@Override
@@ -90,28 +90,28 @@ public class userServiceImpl implements userService{
 	@Override
 	public int withdrawal(userVO vo, HttpSession session) throws Exception {
 		logout(session);
-		return user_DAO.withdrawal(vo);
+		return userDAO.withdrawal(vo);
 	}
 
 	@Override
 	public userVO getUser(userVO vo) throws Exception {
-		return user_DAO.getUser(vo);
+		return userDAO.getUser(vo);
 	}
 
 
 	@Override
 	public int userLock(userVO vo) throws Exception {
-		return user_DAO.userLock(vo);
+		return userDAO.userLock(vo);
 	}
 
 	@Override
 	public userVO noPwUser(userVO vo) throws Exception {
-		return user_DAO.noPwUser(vo);
+		return userDAO.noPwUser(vo);
 	}
 	
 	@Override
 	public List<userVO> getUserList(userVO vo) throws Exception {
-		return user_DAO.getUserList(vo);
+		return userDAO.getUserList(vo);
 	}
 
 	

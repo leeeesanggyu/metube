@@ -43,6 +43,7 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 
 	@Override
 	public int is_deletePost(postVO vo) throws Exception {
+		System.out.println(vo.getPk());
 		return update("PostDAO.is_delete", vo);
 	}
 

@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="./header.jsp"%>
 	
 	<%@ include file="./block/userInfo.jsp"%>
 	
@@ -27,7 +27,7 @@
 
 </body>
 <script>
-	var s_user_pk = <%=user_pk%> //세션
+	var s_user_pk = <%=(int)session.getAttribute("user_pk")%> //세션
 </script>
 <script src="/resources/js/withdrawal.js"></script>
 </html>

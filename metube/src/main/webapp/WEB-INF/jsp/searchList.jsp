@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/resources/css/font-.css" />
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="./header.jsp"%>
 <h4 class="layout">검색된 채널</h4>
 	<div class="content">
 		<c:forEach var="userList" items="${data.userList}">

@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="header">
-		<%@ include file="header.jsp"%>
+		<%@ include file="./header.jsp"%>
 	</div>
 	
 	<h4 class="layout">공지사항</h4>
@@ -29,7 +29,7 @@
 	<%@ include file="./block/freeVideoList.jsp"%>
 </body>
 <script>
-	var s_lock = <%=lock%> //세션
+	var s_lock = <%=(int)session.getAttribute("lock")%> //세션
 </script>
 <script src="/resources/js/lock.js"></script>
 </html>

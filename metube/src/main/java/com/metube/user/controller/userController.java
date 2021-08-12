@@ -1,22 +1,14 @@
 package com.metube.user.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.metube.common.hash.BCrypt;
-import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
-import com.metube.sub.service.subService;
 import com.metube.sub.vo.subVO;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;

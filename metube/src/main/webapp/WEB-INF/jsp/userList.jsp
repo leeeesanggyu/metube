@@ -8,7 +8,7 @@
 <title>MeTube</title>
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="./header.jsp"%>
 
 	<h3>user-list</h3>
 	<c:forEach var="userList" items="${userList}">

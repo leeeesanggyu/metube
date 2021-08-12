@@ -42,8 +42,8 @@
 	var ori_description = "${post.description }"
 	var post_pk = "${post.pk}"
 	// 세션 받기
-	var user_pk = <%=user_pk%>;
-	var role = <%=role%>;
+	var user_pk = <%=(int)session.getAttribute("user_pk")%>;
+	var role = <%=(String)session.getAttribute("role")%>;
 </script>
 <script src="/resources/js/modifyPost.js"></script>
 </html>

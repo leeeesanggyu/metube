@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/resources/css/font-.css" />
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="./header.jsp"%>
 <h4 class="layout">공지사항&nbsp;&nbsp;
 	<c:if test="${role eq '3'}" >
 		<a href="/post/goNoticeCreate">업로드</a>

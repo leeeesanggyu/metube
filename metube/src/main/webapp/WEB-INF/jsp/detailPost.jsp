@@ -20,7 +20,7 @@
 	<div class="layout">
 	
 	<c:if test="${detailPost.post.video_name ne null}">			
-		<video width="640" height="480" controls>		
+		<video width="1280" height="720" controls>		
 			<source src="/upload/videos/${detailPost.post.video_name }/${detailPost.post.video_ext }" type="video/mp4">
 		</video>
 	</c:if>

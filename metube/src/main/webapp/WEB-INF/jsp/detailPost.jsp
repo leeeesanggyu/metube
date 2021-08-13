@@ -71,7 +71,9 @@
 			<c:forEach var="comment" items="${detailPost.comment}">
 				<div>
 					<p>
-						<strong>${comment.name }</strong> • ${comment.create_at }
+						<a href="/user/detail/${comment.user_pk }">
+							<strong>${comment.name }</strong>
+						</a> • ${comment.create_at }
 					</p>
 					<p>${comment.content }</p>
 					<div id="comment_delete">

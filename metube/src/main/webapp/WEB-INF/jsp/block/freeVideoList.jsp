@@ -18,7 +18,7 @@
 						</p>
 						<p>${postList.title}</p>
 						<div class="small">
-							<p>${postList.name }</p>
+							<a href="/user/detail/${postList.user_pk }"><p>${postList.name }</p></a>
 							<c:if test="${postList.update_at eq null}">
 								<p>조회수 ${postList.view_count }회 • ${postList.create_at }</p>
 							</c:if>
@@ -29,9 +29,9 @@
 					</a>
 				</c:if>
 
-				<c:if test="${postList.is_delete eq '1'}">
+				<c:if test="${postList.is_delete eq '1'}"><br><br><br><br><br><br>
 					<p>======================</p>
-					<p>[ 관리자에 의해 삭제된 게시글 ]</p>
+					<p>&nbsp;[ 관리자에 의해 삭제된 게시글 ]</p>
 					<p>======================</p>
 				</c:if>
 			</div>

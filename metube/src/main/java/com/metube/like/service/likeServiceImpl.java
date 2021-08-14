@@ -23,11 +23,6 @@ public class likeServiceImpl implements likeService{
 	}
 
 	@Override
-	public int post_like_count(likeVO lvo) throws Exception {
-		return likeDAO.post_like_count(lvo);
-	}
-
-	@Override
 	public int like_delete(likeVO vo) throws Exception {
 		return likeDAO.like_delete(vo);
 	}
@@ -40,5 +35,6 @@ public class likeServiceImpl implements likeService{
 		vo.setUser_pk((int)session.getAttribute("user_pk"));
 		return likeDAO.is_like(vo);
 	}
+
 
 }

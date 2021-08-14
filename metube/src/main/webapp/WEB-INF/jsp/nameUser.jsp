@@ -10,7 +10,7 @@
 <title>MeTube</title>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="./header.jsp"%>
 	<center>
 		<c:if test="${userInfo eq null}">
 			<h2>해당 이름을 가진 사용자가 없습니다.</h2>
@@ -45,13 +45,17 @@
 					</tr>
 					<tr>
 						<th scope="row">role</th>
-						<td><c:if test="${userInfo.role eq '1'}">
-						Guest
-					</c:if> <c:if test="${userInfo.role eq '2'}">
-						User
-					</c:if> <c:if test="${userInfo.role eq '3'}">
-						Admin
-					</c:if></td>
+						<td>
+							<c:if test="${userInfo.role eq '1'}">
+								Guest
+							</c:if> 
+							<c:if test="${userInfo.role eq '2'}">
+								User
+							</c:if> 
+							<c:if test="${userInfo.role eq '3'}">
+								Admin
+							</c:if>
+						</td>
 					</tr>
 					<tr>
 						<th scope="row">lock</th>

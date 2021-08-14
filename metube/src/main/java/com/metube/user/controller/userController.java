@@ -1,22 +1,14 @@
 package com.metube.user.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.metube.common.hash.BCrypt;
-import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
-import com.metube.sub.service.subService;
 import com.metube.sub.vo.subVO;
 import com.metube.user.service.userService;
 import com.metube.user.vo.userVO;
@@ -27,12 +19,6 @@ public class userController {
 		
 	@Resource(name = "UserService")
 	private userService userService;
-	
-	@Resource(name = "PostService")
-	private postService postService;
-	
-	@Resource(name = "SubService")
-	private subService subService;
 	
 	/**
 	 * main 페이지로 이동한다.
@@ -101,7 +87,7 @@ public class userController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/detail/{user_pk}", method = RequestMethod.GET)
-	public ModelAndView getUserpage(
+	public ModelAndView getUserDetail(
 			@PathVariable("user_pk") int user_pk
 	) throws Exception {
 		try {
@@ -116,11 +102,7 @@ public class userController {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("getUserPage");
-			mv.addObject("userInfo", userService.getUser(vo));
-			mv.addObject("postList", postService.getUserPostList(pvo));
-			mv.addObject("communityList", postService.getUserCommunityList(pvo));
-			mv.addObject("sub_count", subService.sub_count(svo));
-
+			mv.addObject("data", userService.getUserDetail(vo, pvo, svo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -142,22 +124,12 @@ public class userController {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("nameUser");
-			
-			List<userVO> result = userService.nameGetUser(vo);
-			if(result == null) {
-				mv.addObject("userInfo");
-			}else {
-				mv.addObject("userInfo", result);
-			}
+			mv.addObject("userInfo", userService.nameGetUser(vo));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	
-	
-	
-	
+		
 }

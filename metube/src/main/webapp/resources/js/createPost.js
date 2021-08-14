@@ -62,10 +62,11 @@ const upload_form = new Vue({
 				alert("사진을 등록하세요.");
 				return;
 			}
-			if(video_data.files[0] == null){
+			if( video_data.files[0] == null ){
 				alert("동영상을 등록하세요.");
 				return;
 			}
+			
 			const formData = new FormData();
 			formData.append("image", image_data.files[0]);
 			formData.append("video", video_data.files[0]);
@@ -73,7 +74,6 @@ const upload_form = new Vue({
 			formData.append("description", this.description);
 			formData.append("kind", this.kind);
 			formData.append("user_pk", this.user_pk);
-
 
 			const requestOptions = {
 					method: "POST",

@@ -35,10 +35,8 @@ public class userApi {
 			@RequestBody userVO vo, HttpSession session
 	) throws Exception {
 		try {		
-			if(userService.loginCheck(vo, session) == true) {
-				return true;
-			}
-			return false;
+			userService.loginCheck(vo, session);
+			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -74,9 +72,6 @@ public class userApi {
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public boolean signUp(@RequestBody userVO vo) throws Exception {
 		try {
-			String hash_Password = BCrypt.hashpw(vo.getPassword(), BCrypt.gensalt());
-			vo.setPassword(hash_Password);
-			
 			userService.signUp(vo);
 			return true;
 		} catch(Exception e) {
@@ -100,8 +95,7 @@ public class userApi {
 		try {
 			userVO vo = new userVO();
 			vo.setPk(user_pk);
-			userService.withdrawal(vo);
-			userService.logout(session);
+			userService.withdrawal(vo, session);
 			return true;
 		}
 		catch(Exception e) {

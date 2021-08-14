@@ -14,10 +14,10 @@
 <link rel="stylesheet" href="/resources/css/font-.css" />
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="./header.jsp"%>
 <h4 class="layout">검색된 채널</h4>
 	<div class="content">
-		<c:forEach var="userList" items="${userList}">
+		<c:forEach var="userList" items="${data.userList}">
 			<div class="oneContent">
 				<a href="/user/detail/${userList.pk}">
 					<p>${userList.name }</p>
@@ -25,34 +25,11 @@
 			</div>
 		</c:forEach>
 	</div>
+	
 	<hr align="center" style="border: outset 1px; width: 88%;">
+	
 	<h4 class="layout">검색된 동영상</h4>
-	<div class="content">
-		<c:forEach var="postList" items="${postList}">
-			<div class="oneContent">
-				<c:if test="${postList.is_delete eq '0'}" >
-					<a href="/post/detail/${postList.pk}">
-						<p><img src="/upload/image/${postList.img_name}/${postList.img_ext}"/></p>
-						<p>${postList.title}</p>
-						<div class="small">
-							<p>${postList.name }</p>
-							<c:if test="${postList.update_at eq null}" >
-								<p>조회수 ${postList.view_count }회 • ${postList.create_at }</p>
-							</c:if>
-							<c:if test="${postList.update_at ne null}" >
-								<p>조회수 ${postList.view_count }회 • 수정 ${postList.update_at }</p>
-							</c:if>
-						</div>
-					</a>
-				</c:if>
-				
-				<c:if test="${postList.is_delete eq '1'}" >
-					<p>======================</p>
-					<p>[ 관리자에 의해 삭제된 게시글 ]</p>
-					<p>======================</p>
-				</c:if>
-			</div>
-		</c:forEach>
-	</div>
+	<%@ include file="./block/freeVideoList.jsp"%>
+
 </body>
 </html>

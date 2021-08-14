@@ -24,12 +24,9 @@ public class subController {
 	@RequestMapping(value="/goSubPost")
 	public ModelAndView GoSubPost(HttpSession session) throws Exception {
 		try {
-			subVO vo = new subVO();
-			vo.setC_user_pk((int)session.getAttribute("user_pk"));
-			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("subPost");
-			mv.addObject("subPostList", subService.getSubPostList(vo));
+			mv.addObject("subPostList", subService.getSubPostList(session));
 			return mv;
 		}catch(Exception e) {
 			e.printStackTrace();

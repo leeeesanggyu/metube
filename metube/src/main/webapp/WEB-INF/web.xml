@@ -30,19 +30,8 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<!--  <param-value>/WEB-INF/spring/context-common.xml</param-value>-->
 		<param-value>classpath*:/WEB-INF/spring/context-*.xml</param-value>
 	</context-param>
-	
-	<!--  <context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/context-mapper.xml</param-value>
-	</context-param>
-	
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/context-datasource.xml</param-value>
-	</context-param>  -->
 	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

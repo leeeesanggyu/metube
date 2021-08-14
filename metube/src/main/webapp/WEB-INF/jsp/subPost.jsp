@@ -14,12 +14,12 @@
 <link rel="stylesheet" href="/resources/css/font-.css" />
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="./header.jsp"%>
 <h4 class="layout">구독 동영상</h4>
 	<div class="content">
 		<c:forEach var="subPostList" items="${subPostList}">
 			<div class="oneContent">
-				<a href="/post/detail/${subPostList.pk}">
+				<a href="/post/${subPostList.pk}/normal">
 					<c:if test="${subPostList.kind eq 3}" >
 						* Notice *
 					</c:if>

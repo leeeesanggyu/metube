@@ -11,6 +11,16 @@ import com.metube.post.vo.postVO;
 public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 
 	@Override
+	public postVO selectOne(postVO vo) throws Exception {
+		return selectOne("PostDAO.selectPost", vo);
+	}
+	
+	@Override
+	public postVO detailNotice(postVO vo) throws Exception {
+		return selectOne("PostDAO.selectNotice", vo);
+	}
+	
+	@Override
 	public List<postVO> getPostList(postVO vo) throws Exception {
 		return selectList("PostDAO.freeList", vo);
 	}
@@ -27,17 +37,13 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 	}
 
 	@Override
-	public postVO selectOne(postVO vo) throws Exception {
-		return selectOne("PostDAO.selectPost", vo);
-	}
-
-	@Override
 	public int update_view(postVO vo) throws Exception {
 		return update("PostDAO.update_view", vo);
 	}
 
 	@Override
 	public int is_deletePost(postVO vo) throws Exception {
+		System.out.println(vo.getPk());
 		return update("PostDAO.is_delete", vo);
 	}
 
@@ -69,11 +75,6 @@ public class postDAOImpl extends mysqlAbstractMapper implements postDAO {
 	@Override
 	public List<postVO> userCommunityList(postVO pvo) throws Exception {
 		return selectList("PostDAO.userCommunityList", pvo);
-	}
-
-	@Override
-	public postVO detailNotice(postVO vo) throws Exception {
-		return selectOne("PostDAO.selectNotice", vo);
 	}
 
 	@Override

@@ -1,9 +1,12 @@
 package com.metube.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.metube.post.vo.postVO;
+import com.metube.sub.vo.subVO;
 import com.metube.user.vo.userVO;
 
 public interface userService {
@@ -20,9 +23,11 @@ public interface userService {
 
 	userVO getUser(userVO vo) throws Exception;
 
-	List<userVO> nameGetUser(userVO vo) throws Exception;
-
 	int userLock(userVO vo) throws Exception;
 
-	int withdrawal(userVO vo) throws Exception;
+	int withdrawal(userVO vo, HttpSession session) throws Exception;
+
+	Map<String, Object> getUserDetail(userVO vo, postVO pvo, subVO svo) throws Exception;
+
+	List<userVO> nameGetUser(userVO vo) throws Exception;
 }

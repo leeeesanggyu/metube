@@ -19,31 +19,31 @@
 	<%@ include file="header.jsp"%>
 	<div class="layout">
 	
-	<c:if test="${post.video_name ne null}">			
+	<c:if test="${detailPost.post.video_name ne null}">			
 		<video width="640" height="480" controls>		
-			<source src="/upload/videos/${post.video_name }/${post.video_ext }" type="video/mp4">
+			<source src="/upload/videos/${detailPost.post.video_name }/${detailPost.post.video_ext }" type="video/mp4">
 		</video>
 	</c:if>
 		
-		<h4>${post.title}</h4>
-		<p>${post.description }</p>
+		<h4>${detailPost.post.title}</h4>
+		<p>${detailPost.post.description }</p>
 		<div class="small">
 			<p>
-				조회수 ${post.view_count }회 • ${post.create_at } •
-				<c:if test="${is_like eq null}">
+				조회수 ${detailPost.post.view_count }회 • ${detailPost.post.create_at } •
+				<c:if test="${detailPost.is_like eq null}">
 					<span id="like">
-						<button class="button" @click="add_like()">👍 ${post_like}</button>
+						<button class="button" @click="add_like()">👍 ${detailPost.post_like}</button>
 					</span>
 				</c:if>
 
-				<c:if test="${is_like ne null}">
+				<c:if test="${detailPost.is_like ne null}">
 					<span id="like">
-						<button class="button" @click="delete_like()">👍 ${post_like}✔</button>
+						<button class="button" @click="delete_like()">👍 ${detailPost.post_like}✔</button>
 					</span>
 				</c:if>
 			</p>
-			<c:if test="${post.update_at ne null}">
-				<p>수정: ${post.update_at }</p>
+			<c:if test="${detailPost.post.update_at ne null}">
+				<p>수정: ${detailPost.post.update_at }</p>
 			</c:if>
 		</div>
 		<div id="post">
@@ -52,13 +52,13 @@
 		</div>
 		<hr>
 		<div id="sub">
-			<a href="/user/detail/${post.user_pk}">${post.name } </a> <span
-				class="small">구독자 ${sub_count }명</span>
-			<c:if test="${sub eq null}">
-				<button class="button" @click="sub_add(${post.user_pk})">구독</button>
+			<a href="/user/detail/${detailPost.post.user_pk}">${detailPost.post.name } </a> <span
+				class="small">구독자 ${detailPost.sub_count }명</span>
+			<c:if test="${detailPost.sub eq null}">
+				<button class="button" @click="sub_add(${detailPost.post.user_pk})">구독</button>
 			</c:if>
-			<c:if test="${sub ne null}">
-				<button class="button" @click="sub_del(${post.user_pk})">구독중✔</button>
+			<c:if test="${detailPost.sub ne null}">
+				<button class="button" @click="sub_del(${detailPost.post.user_pk})">구독중✔</button>
 			</c:if>
 		</div>
 		<hr>
@@ -68,10 +68,12 @@
 		</form>
 		<br>
 		<div class="comment">
-			<c:forEach var="comment" items="${comment}">
+			<c:forEach var="comment" items="${detailPost.comment}">
 				<div>
 					<p>
-						<strong>${comment.name }</strong> • ${comment.create_at }
+						<a href="/user/detail/${comment.user_pk }">
+							<strong>${comment.name }</strong>
+						</a> • ${comment.create_at }
 					</p>
 					<p>${comment.content }</p>
 					<div id="comment_delete">
@@ -86,11 +88,11 @@
 </body>
 
 <script>
-	var s_user_pk = <%=user_pk%> //세션
-	var user_role = <%=role%> //세션
-	var p_user_pk = ${post.user_pk }
-	var post_pk = ${post.pk}
-	var post_kind = ${post.kind}
+	var s_user_pk = <%=(int)session.getAttribute("user_pk")%> //세션
+	var user_role = <%=(String)session.getAttribute("role")%> //세션
+	var p_user_pk = ${detailPost.post.user_pk }
+	var post_pk = ${detailPost.post.pk}
+	var post_kind = ${detailPost.post.kind}
 	
 	var URL = "/post/" + post_pk;
 	var admin_URL = "/post/admin/" + post_pk;

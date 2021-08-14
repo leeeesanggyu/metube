@@ -34,8 +34,8 @@
 	</div>
 </body>
 <script>
-	var s_user_pk = <%=user_pk%> //세션
-	var user_role = <%=role%> //세션
+	var s_user_pk = <%=(int)session.getAttribute("user_pk")%> //세션
+	var user_role = <%=(String)session.getAttribute("role")%> //세션
 </script>
 <script src="/resources/js/noticeCreate.js"></script>
 </html>

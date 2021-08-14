@@ -59,7 +59,7 @@ const upload_form = new Vue({
 						description: this.description,
 					})
 			};
-			fetch("/post/modify", requestOptions)
+			fetch("/post/", requestOptions)
 			.then(res=>res.json())
 			.then(json=>{ 
 				if(json == true){

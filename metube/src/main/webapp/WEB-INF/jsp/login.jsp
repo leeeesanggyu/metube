@@ -19,9 +19,9 @@
 	}
 %>
 </script>
-<script src="/resources/js/accountValidation.js"></script>
 </head>
 <body>
+<script src="/resources/js/accountValidation.js"></script>
 	<div id="loginForm">
 		<div class="wrap">
 		    <div class="login">
@@ -43,7 +43,7 @@
 					<label for="captcha" style="display:block"><strong>자동 로그인 방지</strong></label> 
 					<div style="overflow:hidden"> 
 						<div style="float:left"> 
-							<img title="캡차이미지" src="/captchaImg.do" alt="캡차이미지"/> 
+							<img id="captcha" title="캡차이미지" src="/captchaImg" alt="캡차이미지"/> 
 							<div id="ccaudio" style="display:none"></div> 
 						</div> 
 					</div> 

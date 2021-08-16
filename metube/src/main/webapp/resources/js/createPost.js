@@ -44,8 +44,8 @@ const upload_form = new Vue({
 				$(this.description).focus();
 				return;
 			}
-			if(this.kind == null){
-				alert("kind insert");
+			if(this.kind == ""){
+				alert("게시판 종류를 입력하세요.");
 				$(this.kind).focus();
 				return;
 			}

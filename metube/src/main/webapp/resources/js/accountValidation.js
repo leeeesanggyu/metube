@@ -6,7 +6,7 @@
 function audio(){ 
 	var rand = Math.random(); 
 	var uAgent = navigator.userAgent;
-	var soundUrl = '${ctx}/captchaAudio.do?rand='+rand; 
+	var soundUrl = '${ctx}/captchaAudio?rand='+rand; 
 	if(uAgent.indexOf('Trident')>-1 || uAgent.indexOf('MISE')>-1){ /*IE 경우 */ 
 		audioPlayer(soundUrl); 
 	} else if (!!document.createElement('audio').canPlayType){ /*Chrome 경우 */ 
@@ -19,9 +19,9 @@ function audio(){
 	} 
 } 
 
-function getImage() { 
-	var rand = Math.random(); 
-	var url = '${ctx}/captchaImg.do?rand='+rand; document.querySelector('img').setAttribute('src', url); 
+function getImage() {  
+	var url = `/captchaImg`;
+	document.querySelector('#captcha').setAttribute('src', url); 
 }
 
 function audioPlayer(objUrl){ 

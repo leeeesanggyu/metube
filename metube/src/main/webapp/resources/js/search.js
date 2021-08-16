@@ -7,7 +7,7 @@ const search_form = new Vue({
 		search: function(e) {   
 			e.preventDefault();
 
-			if(this.search_data == ""){
+			if(this.search_data.replaceAll(" ", "") == ""){
 				alert("검색어를 입력하세여");
 				$(this.search_data).focus();
 				return;

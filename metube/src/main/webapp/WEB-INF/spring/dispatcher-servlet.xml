@@ -32,7 +32,7 @@
 	</beans:bean>
 	
 	<beans:bean id = "uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\Users\Administrator\Desktop\salgu\metube-eGovFrame\metube\src\main\resources\data">
+		<beans:constructor-arg value="C:/Users/salgu/Desktop/metube/metube/src/main/resources/data/">
 		</beans:constructor-arg>
 	</beans:bean>
 </beans:beans>

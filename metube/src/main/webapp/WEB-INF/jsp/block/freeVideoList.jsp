@@ -32,7 +32,7 @@
 				<c:if test="${postList.is_delete eq '1'}"><br><br><br><br><br><br>
 					<p>======================</p>
 					<p>&nbsp;[ 관리자에 의해 삭제된 게시글 ]</p>
-					<p>======================</p>
+					<p>======================</p><br><br><br><br><br><br>
 				</c:if>
 			</div>
 		</c:forEach>

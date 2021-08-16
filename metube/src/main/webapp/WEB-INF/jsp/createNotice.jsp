@@ -15,7 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="./header.jsp"%>
 	<div class="create_form">
 		<div class="layout">
 			<div id="upload_form">

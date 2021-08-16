@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Repository;
 
 import com.metube.common.dao.mysqlAbstractMapper;
+import com.metube.user.vo.securityUserVO;
 import com.metube.user.vo.userVO;
 
 
@@ -51,6 +52,11 @@ public class userDAOImpl extends mysqlAbstractMapper implements userDAO{
 	@Override
 	public userVO getUser(userVO vo) throws Exception {
 		return selectOne("userDAO.getUserProfile", vo);
+	}
+
+	@Override
+	public securityUserVO getUserById(String userName) throws Exception {
+		return selectOne("userDAO.getUserById", userName);
 	}
 	
 }

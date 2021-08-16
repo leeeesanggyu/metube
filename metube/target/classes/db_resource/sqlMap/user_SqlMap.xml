@@ -67,5 +67,12 @@
 		FROM user_info 
 		WHERE pk = #{pk}
     </select>
+    
+    <select id="getUserById" parameterType="String" resultType="securityUserVO">
+		SELECT
+			*
+		FROM user_info
+		WHERE email = #{email}
+	</select>
 </mapper>
 

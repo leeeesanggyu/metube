@@ -40,14 +40,14 @@
          <!-- <remember-me services-ref="" /> -->
 	</http>
 
-	<beans:bean id="userDeniedHandler" class="egovframework.example.security.UserDeniedHandler"></beans:bean>
+	<beans:bean id="userDeniedHandler" class="com.metube.security.UserDeniedHandler"></beans:bean>
 
 	<authentication-manager>
 		<authentication-provider ref="userAuthProvider"></authentication-provider>
 		<authentication-provider user-service-ref="userService"></authentication-provider>
 	</authentication-manager>
 
-	<beans:bean id="userService" class="egovframework.example.sample.service.CustomUserDetailsService"/>
-	<beans:bean id="userAuthProvider" class="egovframework.example.security.CustomAuthenticationProvider"/>
+	<beans:bean id="userDetailService" class="com.metube.user.service.CustomUserDetailsService"/>
+	<beans:bean id="userAuthProvider" class="com.metube.security.CustomAuthenticationProvider"/>
 
 </beans:beans>

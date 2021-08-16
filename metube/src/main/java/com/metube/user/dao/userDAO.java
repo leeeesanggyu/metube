@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.metube.user.vo.securityUserVO;
 import com.metube.user.vo.userVO;
 
 public interface userDAO {
@@ -23,5 +24,7 @@ public interface userDAO {
 	int withdrawal(userVO vo) throws Exception;
 
 	userVO getUser(userVO vo) throws Exception;
+
+	securityUserVO getUserById(String userName) throws Exception;
 
 }

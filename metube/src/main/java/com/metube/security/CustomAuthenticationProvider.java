@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import com.metube.user.vo.securityUserVO;
 import com.metube.user.vo.userVO;
 
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -17,8 +18,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		// TODO Auto-generated method stub
-
 		System.out.println("authentication : " + authentication);
 
 		String loginUserName = String.valueOf(authentication.getPrincipal());
@@ -26,7 +25,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		System.out.println("loginUserName : " + loginUserName);
 		System.out.println("loginPassword : " + loginPassword);
 
-		userVO user = (userVO) userDetailsService.loadUserByUsername(loginUserName);
+		securityUserVO user = (securityUserVO) userDetailsService.loadUserByUsername(loginUserName);
 
 		if(!matchPassword(loginPassword, user.getPassword())) {
 

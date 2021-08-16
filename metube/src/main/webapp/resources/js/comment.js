@@ -13,6 +13,9 @@ const comment = new Vue({
 				$(this.content).focus();
 				return;
 			}
+			
+			if(doubleSubmitCheck()) return;
+			
         	const requestOptions = {
                     method: "POST",
                     headers: {

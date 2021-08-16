@@ -75,6 +75,8 @@ const upload_form = new Vue({
 			formData.append("kind", this.kind);
 			formData.append("user_pk", this.user_pk);
 
+			if(doubleSubmitCheck()) return;
+
 			const requestOptions = {
 					method: "POST",
 					body: formData

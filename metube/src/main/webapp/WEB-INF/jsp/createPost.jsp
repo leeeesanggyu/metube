@@ -10,12 +10,15 @@
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
+<link rel="stylesheet" href="/resources/css/header.css" />
 <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>
 <body>
-<%@ include file="header.jsp"%>
+	<div class="header">
+		<%@ include file="./header.jsp"%>
+	</div>
 	<div class="create_form">
 		<div class="layout">
 			<div id="upload_form">
@@ -48,5 +51,6 @@
 	var s_user_pk = <%=(int)session.getAttribute("user_pk")%> //세션
 	var s_user_role = <%=(String)session.getAttribute("role")%> //세션
 </script>
+<script src="/resources/js/doubleSubmit.js"></script>
 <script src="/resources/js/createPost.js"></script>
 </html>

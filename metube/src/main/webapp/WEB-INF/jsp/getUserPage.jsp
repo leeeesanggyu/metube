@@ -9,12 +9,15 @@
 <link rel="stylesheet" href="/resources/css/font-.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
 <link rel="stylesheet" href="/resources/css/button.css" />
+<link rel="stylesheet" href="/resources/css/header.css" />
+
 <title>MeTube</title>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
-	
+	<div class="header">
+		<%@ include file="./header.jsp"%>
+	</div>	
 	<%@ include file="./block/userInfo.jsp"%>
 	
 	<h4 class="layout">Community</h4>

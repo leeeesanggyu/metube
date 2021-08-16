@@ -10,11 +10,14 @@
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
+<link rel="stylesheet" href="/resources/css/header.css" />
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<div class="header">
+		<%@ include file="./header.jsp"%>
+	</div>
 	<div class="create_form">
 		<div class="layout">
 			<h4>Modify Post</h4>

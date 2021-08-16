@@ -8,9 +8,12 @@
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
+<link rel="stylesheet" href="/resources/css/header.css" />
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
+	<div class="header">
+		<%@ include file="./header.jsp"%>
+	</div>
 	<div class="create_form">
 		<div class="layout">
 			<form name="upload_form" id="user_search_form" v-on:submit="search">
@@ -21,7 +24,7 @@
 					<h4>name-search</h4>
 					<input v-model="name" placeholder="name">
 				</div>
-				
+
 			</form>
 		</div>
 	</div>

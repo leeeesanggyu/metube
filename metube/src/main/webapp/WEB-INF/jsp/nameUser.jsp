@@ -6,11 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/resources/css/getUserPage.css" />
+<link rel="stylesheet" href="/resources/css/header.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 <title>MeTube</title>
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
+	<div class="header">
+		<%@ include file="./header.jsp"%>
+	</div>
 	<center>
 		<c:if test="${userInfo eq null}">
 			<h2>해당 이름을 가진 사용자가 없습니다.</h2>

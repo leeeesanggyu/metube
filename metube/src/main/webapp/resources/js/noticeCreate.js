@@ -48,6 +48,9 @@ const upload_form = new Vue({
 				$(this.kind).focus();
 				return;
 			}
+			
+			if(doubleSubmitCheck()) return;
+			
 			const requestOptions = {
 					method: "POST",
 					headers: {

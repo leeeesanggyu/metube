@@ -14,9 +14,12 @@
 <link rel="stylesheet" href="/resources/css/layout.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
 <link rel="stylesheet" href="/resources/css/button.css" />
+<link rel="stylesheet" href="/resources/css/header.css" />
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<div class="header">
+		<%@ include file="./header.jsp"%>
+	</div>
 	<div class="layout">
 
 		<c:if test="${detailPost.post.video_name ne null}">
@@ -82,7 +85,7 @@
 
 						<button class="button"
 							@click="deleteComment(${comment.pk }, ${comment.user_pk })">
-							${comment.pk }삭제${comment.user_pk }</button>
+							삭제</button>
 						<hr>
 					</div>
 				</c:forEach>
@@ -104,6 +107,7 @@
 	var URL = "/post/" + post_pk;
 	var admin_URL = "/post/admin/" + post_pk;
 </script>
+<script src="/resources/js/doubleSubmit.js"></script>
 <script src="/resources/js/like.js"></script>
 <script src="/resources/js/sub.js"></script>
 <script src="/resources/js/post.js"></script>

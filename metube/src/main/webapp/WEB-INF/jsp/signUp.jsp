@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/loginForm.css" />
+<link rel="stylesheet" href="/resources/css/header.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 <script src="/resources/js/signUp_available.js"></script>

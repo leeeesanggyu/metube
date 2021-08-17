@@ -119,7 +119,7 @@
     <!-- 게시물 하나 불러오기 -->
     <select id="selectPost" resultType="postVO">
         SELECT 
-			p.*, u.name, up.video_name, up.video_ext
+			p.*, u.name, u.email, up.video_name, up.video_ext
 		FROM 
 			post AS p
 			JOIN

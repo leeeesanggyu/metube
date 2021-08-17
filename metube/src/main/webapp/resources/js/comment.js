@@ -9,7 +9,7 @@ const comment = new Vue({
         	e.preventDefault();
 
         	if(this.content == ""){
-				alert("댓글 insert");
+				alert("댓글을 입력하세요.");
 				$(this.content).focus();
 				return;
 			}
@@ -29,8 +29,9 @@ const comment = new Vue({
              fetch("/comment/", requestOptions)
    				.then(res=>res.json())
  				.then(json=>{ 
- 					console.log("fetch result: " + json);
-					location.reload();
+ 					socket.send(
+ 							"comment," + s_user_pk + "," +user_name + "," + p_user_pk + "," + user_email + "," + post_title + "," + post_pk);
+ 					location.reload();
  				})
  			.catch(err => console.log(err))
         }

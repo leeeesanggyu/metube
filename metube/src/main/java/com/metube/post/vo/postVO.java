@@ -14,12 +14,19 @@ public class postVO {
 	private int kind;
 	private int is_delete;
 	private String name;
+	private String email;
 	private String img_name;
 	private String img_ext;
 	private String video_name;
 	private String video_ext;
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getVideo_name() {
 		return video_name;
 	}

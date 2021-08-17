@@ -1,118 +1,101 @@
 package com.metube.common.socket;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-
-@Component
 public class socketHandler extends TextWebSocketHandler {
 
-	// (<"bang_id", 방ID>, <"session", 세션>) - (<"bang_id", 방ID>, <"session", 세션>) - (<"bang_id", 방ID>, <"session", 세션>) 형태 
-	private List<Map<String, Object>> sessionList = new ArrayList<Map<String, Object>>();
+	//로그인 한 전체
+	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 	
-	// 클라이언트가 서버로 메세지 전송 처리
+	// 1대1
+	Map<String, WebSocketSession> userSessionsMap = new HashMap<String, WebSocketSession>();
+
+	// 로그 메시지
+	private void log(String logmsg) {
+		System.out.println(new Date() + " : " + logmsg);
+	}
+	
+	//웹소켓 email 가져오기
+	private String getEmail(WebSocketSession session) {
+		Map<String, Object> httpSession = session.getAttributes();
+		String email = (String) httpSession.get("email");
+		
+		if(email == null) {
+			return session.getId();
+		} else {
+			return email;
+		}
+	}
+	
+	//서버에 접속이 성공 했을때
+	@Override
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		sessions.add(session);
+
+		String senderEmail = getEmail(session);
+		log("접속 : " + senderEmail);
+		
+		userSessionsMap.put(senderEmail , session);
+	}
+
+	//소켓에 메세지를 보냈을때
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		System.out.println("응답 :" + message);
 
-		super.handleTextMessage(session, message);
-        
-		// JSON --> Map으로 변환
-		ObjectMapper objectMapper = new ObjectMapper();
-		Map<String, String> mapReceive = objectMapper.readValue(message.getPayload(), Map.class);
-
-		switch (mapReceive.get("cmd")) {
+		//protocol : cmd , 댓글작성자_pk, 작성자 pk, 작성자email, 제목, post_pk
+		String msg = message.getPayload();
 		
-		// CLIENT 입장
-		case "CMD_ENTER":
-			// 세션 리스트에 저장
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("bang_id", mapReceive.get("bang_id"));
-			map.put("session", session);
-			sessionList.add(map);
+		if(StringUtils.isNotEmpty(msg)) {
+			String[] strs = msg.split(",");
 			
-			// 같은 채팅방에 입장 메세지 전송
-			for (int i = 0; i < sessionList.size(); i++) {
-				Map<String, Object> mapSessionList = sessionList.get(i);
-				String bang_id = (String) mapSessionList.get("bang_id");
-				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
-				
-				if(bang_id.equals(mapReceive.get("bang_id"))) {
-					Map<String, String> mapToSend = new HashMap<String, String>();
-					mapToSend.put("bang_id", bang_id);
-					mapToSend.put("cmd", "CMD_ENTER");
-					mapToSend.put("msg", session.getId() +  "님이 입장 했습니다.");
-					
-					String jsonStr = objectMapper.writeValueAsString(mapToSend);
-					sess.sendMessage(new TextMessage(jsonStr));
+			if(strs != null && strs.length == 7) {
+				String cmd = strs[0];
+				String s_user_pk = strs[1]; 
+				String user_name = strs[2];
+				String p_user_pk = strs[3];
+				String user_email = strs[4];
+				String content = strs[5];
+				String post_pk = strs[6];
+
+				//작성자가 로그인 해서 있다면
+				WebSocketSession boardWriterSession = userSessionsMap.get(user_email);
+
+				if("comment".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(user_name + "님이 동영상 \"" + content + "\"에 댓글을 남겼습니다." + "post_pk" + post_pk);
+					boardWriterSession.sendMessage(tmpMsg);
+
+				}else if("like".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(user_name + "님이 " + content +
+							"님을 팔로우를 시작했습니다.");
+					boardWriterSession.sendMessage(tmpMsg);
+
+				}else if("sub".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(user_name + "님이 ");
+					boardWriterSession.sendMessage(tmpMsg);
 				}
 			}
-			break;
 			
-		// CLIENT 메세지
-		case "CMD_MSG_SEND":
-			// 같은 채팅방에 메세지 전송
-			for (int i = 0; i < sessionList.size(); i++) {
-				Map<String, Object> mapSessionList = sessionList.get(i);
-				String bang_id = (String) mapSessionList.get("bang_id");
-				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
-
-				if (bang_id.equals(mapReceive.get("bang_id"))) {
-					Map<String, String> mapToSend = new HashMap<String, String>();
-					mapToSend.put("bang_id", bang_id);
-					mapToSend.put("cmd", "CMD_MSG_SEND");
-					mapToSend.put("msg", session.getId() + " : " + mapReceive.get("msg"));
-
-					String jsonStr = objectMapper.writeValueAsString(mapToSend);
-					sess.sendMessage(new TextMessage(jsonStr));
-				}
-			}
-			break;
 		}
 	}
 
-	// 클라이언트가 연결을 끊음 처리
+	//연결 해제될때
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-
-		super.afterConnectionClosed(session, status);
-        
-		ObjectMapper objectMapper = new ObjectMapper();
-		String now_bang_id = "";
-		
-		// 사용자 세션을 리스트에서 제거
-		for (int i = 0; i < sessionList.size(); i++) {
-			Map<String, Object> map = sessionList.get(i);
-			String bang_id = (String) map.get("bang_id");
-			WebSocketSession sess = (WebSocketSession) map.get("session");
-			
-			if(session.equals(sess)) {
-				now_bang_id = bang_id;
-				sessionList.remove(map);
-				break;
-			}	
-		}
-		
-		// 같은 채팅방에 퇴장 메세지 전송 
-		for (int i = 0; i < sessionList.size(); i++) {
-			Map<String, Object> mapSessionList = sessionList.get(i);
-			String bang_id = (String) mapSessionList.get("bang_id");
-			WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
-
-			if (bang_id.equals(now_bang_id)) {
-				Map<String, String> mapToSend = new HashMap<String, String>();
-				mapToSend.put("bang_id", bang_id);
-				mapToSend.put("cmd", "CMD_EXIT");
-				mapToSend.put("msg", session.getId() + "님이 퇴장 했습니다.");
-
-				String jsonStr = objectMapper.writeValueAsString(mapToSend);
-				sess.sendMessage(new TextMessage(jsonStr));
-			}
-		}
+		//System.out.println("afterConnectionClosed " + session + ", " + status);
+		userSessionsMap.remove(session.getId());
+		sessions.remove(session);
 	}
+
+	
 }

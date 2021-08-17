@@ -8,7 +8,7 @@ const post = new Vue({
 	methods: {
 		goModifyPost: function() {
 			if(this.user_pk != s_user_pk) {
-				alert("자신이 작성한 글만 수정할 수 있습니다 !! ");
+				alert("자신이 작성한 글만 수정할 수 있습니다 !! " + post_pk);
 				return;
 			}
 			location.href="/post/goModify/" + post_pk;

@@ -9,6 +9,9 @@
 <title>MeTube</title>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
 <link rel="stylesheet" href="/resources/css/layout.css" />
@@ -97,13 +100,14 @@
 
 <script>
 	var s_user_pk = <%=(int) session.getAttribute("user_pk")%>
-	//세션
 	var user_role = <%=(String) session.getAttribute("role")%>
-	//세션
-	var p_user_pk = ${detailPost.post.user_pk}
-	var post_pk = ${detailPost.post.pk}
-	var post_kind = ${detailPost.post.kind}
-
+	var user_name = "<%=(String) session.getAttribute("name")%>"
+	
+	var post_title = "${detailPost.post.title}";
+	var p_user_pk = "${detailPost.post.user_pk}";
+	var post_pk = "${detailPost.post.pk}";
+	var post_kind = "${detailPost.post.kind}";
+	var user_email = "${detailPost.post.email}";
 	var URL = "/post/" + post_pk;
 	var admin_URL = "/post/admin/" + post_pk;
 </script>

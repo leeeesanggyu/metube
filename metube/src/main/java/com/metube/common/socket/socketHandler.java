@@ -66,22 +66,17 @@ public class socketHandler extends TextWebSocketHandler {
 				String p_user_pk = strs[3];
 				String user_email = strs[4];
 				String content = strs[5];
-				String post_pk = strs[6];
+				String pk = strs[6];
 
 				//작성자가 로그인 해서 있다면
 				WebSocketSession boardWriterSession = userSessionsMap.get(user_email);
 
 				if("comment".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(user_name + "님이 동영상 \"" + content + "\"에 댓글을 남겼습니다." + "post_pk" + post_pk);
+					TextMessage tmpMsg = new TextMessage(user_name + "님이 동영상 \"" + content + "\"에 댓글을 남겼습니다." + "pk" + pk);
 					boardWriterSession.sendMessage(tmpMsg);
 
 				}else if("like".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(user_name + "님이 " + content +
-							"님을 팔로우를 시작했습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
-
-				}else if("sub".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(user_name + "님이 ");
+					TextMessage tmpMsg = new TextMessage(user_name + "님이 동영상 \"" + content + "\"에 좋아요를 남겼습니다." + "pk" + pk);
 					boardWriterSession.sendMessage(tmpMsg);
 				}
 			}

@@ -30,6 +30,7 @@
 
 		sock.onmessage = function(evt) {
 			var data = evt.data;
+			
 			toastr.options = {
 			  "closeButton": false,
 			  "debug": false,
@@ -47,11 +48,13 @@
 			  "showMethod": "fadeIn",
 			  "hideMethod": "fadeOut"
 			}
+			
 			toastr.options.onclick = function() { 
-				const result = data.substring(data.lastIndexOf("post_pk") + 7);
+				const result = data.substring(data.lastIndexOf("pk") + 2);
 				location.href="/post/" + result + "/normal"
 			}
-			const idx = data.indexOf("post_pk");
+			
+			const idx = data.indexOf("pk");
 			const result = data.substring(0, idx)
 			toastr.success(result, "알림 ! ");
 		};

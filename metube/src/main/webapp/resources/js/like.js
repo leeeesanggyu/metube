@@ -16,6 +16,12 @@ const like = new Vue({
 			.then(res=>res.json())
 			.then(json=>{ 
 				if(json == true){
+					socket.send(
+						"like," 
+						+ s_user_pk + "," +user_name + ","
+						+ p_user_pk + "," + user_email + "," 
+						+ post_title + "," + post_pk
+ 					);
 					location.reload();
 				}
 			})

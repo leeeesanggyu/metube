@@ -30,7 +30,11 @@ const comment = new Vue({
    				.then(res=>res.json())
  				.then(json=>{ 
  					socket.send(
- 							"comment," + s_user_pk + "," +user_name + "," + p_user_pk + "," + user_email + "," + post_title + "," + post_pk);
+						"comment," 
+						+ s_user_pk + "," +user_name 
+						+ "," + p_user_pk + "," + user_email
+						+ "," + post_title + "," + post_pk
+ 					);
  					location.reload();
  				})
  			.catch(err => console.log(err))

@@ -9,6 +9,12 @@ new Vue({
 				alert("본인만 탈퇴할수 있습니다 !");
 				return;
 			}
+			
+			if(s_user_role == 3) {
+				alert("admin 계정은 탈퇴하실 수 없습니다.");
+				return;
+			}
+			
 			var URL = "/user/" + pk;
 
 			answer = confirm("회원탈퇴 하시겠습니까 ?");

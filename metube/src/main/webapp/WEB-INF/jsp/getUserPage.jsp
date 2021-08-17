@@ -31,6 +31,7 @@
 </body>
 <script>
 	var s_user_pk = <%=(int)session.getAttribute("user_pk")%> //세션
+	var s_user_role = <%=(String)session.getAttribute("role")%> //세션
 </script>
 <script src="/resources/js/withdrawal.js"></script>
 </html>

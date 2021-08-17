@@ -55,7 +55,14 @@
 	</repositories>
 
 	<dependencies>
-	
+		
+		<!-- websocket -->
+		<dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-websocket</artifactId>
+	        <version>4.3.22.RELEASE</version>
+        </dependency>
+        
 		<!-- SimpleCaptcha -->
       	<dependency>
 		    <groupId>nl.captcha</groupId>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-	//전역변수 선언-모든 홈페이지에서 사용 할 수 있게 socket.js에 저장
+	//전역변수 선언-모든 홈페이지에서 사용 할 수 있게함.
 	var socket = null;
 
 	$(document).ready(function() {
@@ -57,10 +57,6 @@
 			const idx = data.indexOf("pk");
 			const result = data.substring(0, idx)
 			toastr.success(result, "알림 ! ");
-		};
-
-		sock.onclose = function() {
-			console.log('connect close');
 		};
 
 		sock.onerror = function(err) {

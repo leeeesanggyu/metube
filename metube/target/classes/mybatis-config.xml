@@ -10,6 +10,7 @@
         <typeAlias type="com.metube.sub.vo.subVO" alias="subVO" />
         <typeAlias type="com.metube.upload.vo.uploadVO" alias="uploadVO" />
         <typeAlias type="com.metube.like.vo.likeVO" alias="likeVO" />
+        <typeAlias type="com.metube.alarm.vo.alarmVO" alias="alarmVO" />
         
     </typeAliases>
     

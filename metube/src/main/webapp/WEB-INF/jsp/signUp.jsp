@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <link rel="stylesheet" href="/resources/css/loginForm.css" />
-<link rel="stylesheet" href="/resources/css/header.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 <script src="/resources/js/signUp_available.js"></script>
@@ -17,19 +16,19 @@
 	<div class="wrap">
 		<div class="login">
 			<form name="signUp_form" id="signUp_form" v-on:submit="signUp">
-				<a href="login"><img src="/resources/images/logo.png"width="280"></a>
-				<div class="sign_id">
+				<a href="/"><img src="/resources/images/logo.png"width="280"></a>
+				<div class="login_id">
 					<h4>E-mail</h4>
 					<input v-model="email" name="email" placeholder="example@naver.com"><br>
 					<br>
 				</div>
-				<div class="sign_pw">
+				<div class="login_id">
 					<h4>Password</h4>
 					<input type="password" v-model="password"
-						placeholder="************"> <small>(4자리 ~ 12자리)</small><br>
+						placeholder="************"> <br>
 					<br>
 				</div>
-				<div class="sign_id">
+				<div class="login_id">
 					<h4>Name</h4>
 					<input v-model="name" placeholder="이상규"><br>
 					<br>

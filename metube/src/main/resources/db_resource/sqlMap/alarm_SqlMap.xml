@@ -3,6 +3,7 @@
  
 <mapper namespace="AlarmDAO">
  
+ 	<!-- 알림 저장 -->
 	<select id="save" resultType="_int">
 		INSERT INTO 
 			alarm
@@ -21,6 +22,7 @@
 		);
 	</select>
 	
+	<!-- user_pk 알림 가져오기 -->
 	<select id="getList" resultType="alarmVO">
 		SELECT 
 			a.*, u.name, p.title
@@ -37,5 +39,10 @@
 		ORDER BY a.pk DESC
 	</select>
     
+    <!-- pk 해당알림 삭제 -->
+    <select id="delete" resultType="alarmVO">
+        DELETE FROM alarm
+        WHERE pk = #{pk}
+    </select>
 </mapper>
 

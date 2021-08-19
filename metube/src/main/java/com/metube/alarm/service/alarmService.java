@@ -10,4 +10,6 @@ public interface alarmService {
 
 	List<alarmVO> getList(alarmVO vo) throws Exception;
 
+	int delete(String alarm_pk) throws Exception;
+
 }

@@ -12,7 +12,7 @@
 		<c:forEach var="postList" items="${data.postList}">
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}">
-					<a href="/post/${postList.pk}/normal">
+					<a href="/post/${postList.pk}/normal/0">
 						<p>
 							<img src="/upload/image/${postList.img_name}/${postList.img_ext}" />
 						</p>

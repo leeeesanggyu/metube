@@ -13,7 +13,7 @@ getList = function() {
             htmlCode += '<ul>'
             	
 			for(var i=0; i<res.length; i++) {
-                htmlCode += '<li><a href="/post/' + res[i]['post_pk'] + '/normal">'+res[i]['name'] + ' 님이' 
+                htmlCode += '<li><a href="/post/' + res[i]['post_pk'] + '/normal/' + res[i]['pk'] + '">' + res[i]['name'] + ' 님이 ' 
                 				+ res[i]['title'] + '에'
                 
                 if(res[i]['cmd'] == "comment"){
@@ -30,7 +30,6 @@ getList = function() {
             htmlCode += '</ul>'
             
             console.log(htmlCode);
-            	
 			$('#data').html(htmlCode);
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown){

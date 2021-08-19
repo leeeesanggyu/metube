@@ -90,8 +90,6 @@ public class postApi {
 		}
 	}
 	
-	
-	
 	/**
 	 * 게시물을 삭제한다.
 	 * @param session

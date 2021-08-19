@@ -20,4 +20,9 @@ public class alarmDAOImpl extends mysqlAbstractMapper implements alarmDAO{
 		return selectList("AlarmDAO.getList", vo);
 	}
 
+	@Override
+	public int delete(alarmVO vo) throws Exception {
+		return delete("AlarmDAO.delete", vo);
+	}
+
 }

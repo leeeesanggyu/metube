@@ -24,4 +24,11 @@ public class alarmServiceImpl implements alarmService{
 	public List<alarmVO> getList(alarmVO vo) throws Exception {
 		return alarmDAO.getList(vo);
 	}
+
+	@Override
+	public int delete(String alarm_pk) throws Exception {
+		alarmVO vo = new alarmVO();
+		vo.setPk(Integer.parseInt(alarm_pk));
+		return alarmDAO.delete(vo);
+	}
 }

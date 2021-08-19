@@ -51,7 +51,7 @@
 			
 			toastr.options.onclick = function() { 
 				const result = data.substring(data.lastIndexOf("pk") + 2);
-				location.href="/post/" + result + "/normal"
+				location.href="/post/" + result + "/normal/0"
 			}
 			
 			const idx = data.indexOf("pk");

@@ -12,7 +12,7 @@
 		<c:forEach var="communityList" items="${data.communityList}">
 			<div class="oneContent">
 				<c:if test="${communityList.is_delete eq '0'}">
-					<a href="/post/${communityList.pk}/normal">
+					<a href="/post/${communityList.pk}/normal/0">
 						<p>
 							<img src="/upload/image/${communityList.img_name}/${communityList.img_ext}" />
 						</p>

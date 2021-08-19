@@ -18,6 +18,7 @@
 	<div class="header">
 		<%@ include file="./header.jsp"%>
 	</div>	
+	<br><br><br>
 	<%@ include file="./block/userInfo.jsp"%>
 	
 	<h4 class="layout">Community</h4>

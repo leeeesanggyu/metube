@@ -9,4 +9,6 @@ public interface alarmDAO {
 	int save(alarmVO vo) throws Exception;
 
 	List<alarmVO> getList(alarmVO vo) throws Exception;
+
+	int delete(alarmVO vo) throws Exception;
 }

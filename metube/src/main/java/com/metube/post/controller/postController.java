@@ -1,32 +1,22 @@
 package com.metube.post.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metube.post.service.postService;
 import com.metube.post.vo.postVO;
-import com.metube.sub.service.subService;
-import com.metube.sub.vo.subVO;
 import com.metube.user.service.userService;
-import com.metube.user.vo.userVO;
-
+import com.metube.alarm.service.alarmService;
 import com.metube.comment.service.commentService;
-import com.metube.comment.vo.commentVO;
 import com.metube.like.service.likeService;
-import com.metube.like.vo.likeVO;
 import com.metube.common.service.commonService;
 
 
@@ -49,6 +39,9 @@ public class postController {
 	
 	@Resource(name = "CommonService")
 	private commonService commonService;
+	
+	@Resource(name = "AlarmService")
+	private alarmService alarmService;
 	
 	/**
 	 * 공지사항 작성 페이지로 간다.
@@ -166,12 +159,13 @@ public class postController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/{post_pk}/{arg}")
+	@RequestMapping(value= "/{post_pk}/{arg}/{alarm_pk}")
 	public ModelAndView DetailPost(
 			HttpServletRequest request,
 			HttpServletResponse response,
 			@PathVariable("post_pk") int post_pk, 
-			@PathVariable("arg") String arg, 
+			@PathVariable("arg") String arg,
+			@PathVariable("alarm_pk") String alarm_pk, 
 			HttpSession session
 	) throws Exception {
 		try {
@@ -182,6 +176,10 @@ public class postController {
 				vo.setPk(post_pk);
 		        postService.update_view(vo);
 			}
+			
+			if (Integer.parseInt(alarm_pk) > 0) {
+				alarmService.delete(alarm_pk);
+		    }
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("detailPost");

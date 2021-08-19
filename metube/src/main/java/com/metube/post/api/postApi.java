@@ -92,7 +92,6 @@ public class postApi {
 	
 	/**
 	 * 게시물을 삭제한다.
-	 * @param session
 	 * @param post_pk
 	 * @param user_pk
 	 * @return

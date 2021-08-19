@@ -54,6 +54,11 @@
 				location.href="/post/" + result + "/normal/0"
 			}
 			
+			toastr.options.onShown = function() { 
+				getList();
+			}
+
+			
 			const idx = data.indexOf("pk");
 			const result = data.substring(0, idx)
 			toastr.success(result, "알림 ! ");

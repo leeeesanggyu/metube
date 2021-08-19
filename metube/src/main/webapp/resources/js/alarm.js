@@ -5,7 +5,7 @@
 getList = function() {    		 
 	$.ajax({
 		type : "GET",
-		url : "/alarm/list/" + p_user_pk,
+		url : "/alarm/list",
 		success : function(res){
 			console.log(res);
 		

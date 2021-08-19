@@ -3,6 +3,7 @@ package com.metube.alarm.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import com.metube.alarm.dao.alarmDAO;
 import com.metube.alarm.vo.alarmVO;
@@ -21,7 +22,9 @@ public class alarmServiceImpl implements alarmService{
 	}
 
 	@Override
-	public List<alarmVO> getList(alarmVO vo) throws Exception {
+	public List<alarmVO> getList(HttpSession session) throws Exception {
+		alarmVO vo = new alarmVO();
+		vo.setP_user_pk((int)session.getAttribute("user_pk"));
 		return alarmDAO.getList(vo);
 	}
 

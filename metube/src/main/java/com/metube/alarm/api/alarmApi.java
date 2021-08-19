@@ -1,6 +1,8 @@
 package com.metube.alarm.api;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -27,14 +29,12 @@ public class alarmApi {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/list/{p_user_pk}", method=RequestMethod.GET)
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public List<alarmVO> AlarmList(
-		@PathVariable("p_user_pk") int p_user_pk	
+			HttpSession session	
 	) throws Exception {
 		try {
-			alarmVO vo = new alarmVO();
-			vo.setP_user_pk(p_user_pk);
-			return alarmService.getList(vo);
+			return alarmService.getList(session);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;

@@ -1,5 +1,7 @@
 package com.metube.alarm.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import com.metube.alarm.dao.alarmDAO;
@@ -16,5 +18,10 @@ public class alarmServiceImpl implements alarmService{
 	@Override
 	public int save(alarmVO vo) throws Exception {
 		return alarmDAO.save(vo);
+	}
+
+	@Override
+	public List<alarmVO> getList(alarmVO vo) throws Exception {
+		return alarmDAO.getList(vo);
 	}
 }

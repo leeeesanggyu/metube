@@ -21,39 +21,20 @@
 		);
 	</select>
 	
-	<select id="getSub" resultType="subVO">
-		SELECT *
-		FROM subscribe
-		WHERE p_user_pk = #{p_user_pk} 
-			AND 
-			c_user_pk = #{c_user_pk}
-	</select>
-	
-	<select id="delete_Sub" resultType="subVO">
-		DELETE
-		FROM subscribe
-		WHERE p_user_pk = #{p_user_pk} 
-			AND 
-			c_user_pk = #{c_user_pk}
-	</select>
-	
-	<select id="sub_count" resultType="_int">
-		SELECT COUNT(*)
-		FROM subscribe
-		WHERE p_user_pk = #{p_user_pk}
-	</select>
-	
-	<select id="getSubPost" resultType="postVO">
-		SELECT p.*, u.name, up.img_name, up.img_ext
-		FROM subscribe as s 
-		LEFT JOIN post as p 
-			ON s.p_user_pk = p.user_pk
-		LEFT JOIN user_info AS u
-			ON p.user_pk = u.pk
-		LEFT JOIN upload AS up
-			ON up.post_pk = p.pk
-		WHERE c_user_pk = #{c_user_pk}
-			AND p.kind = 2
+	<select id="getList" resultType="alarmVO">
+		SELECT 
+			a.*, u.name, p.title
+		FROM 
+			alarm AS a
+			JOIN
+				user_info AS u
+					ON a.c_user_pk = u.pk
+			JOIN
+				post AS p
+					ON a.post_pk = p.pk
+		WHERE 
+			a.p_user_pk = #{p_user_pk}
+		ORDER BY a.pk DESC
 	</select>
     
 </mapper>

@@ -10,9 +10,9 @@
 <link rel="stylesheet" href="/resources/css/font.css" />
 <link rel="stylesheet" href="/resources/css/button.css" />
 <link rel="stylesheet" href="/resources/css/body.css" />
+<link rel="stylesheet" href="/resources/css/sideAlarm.css" />
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
-
 </head>
 <body>
 	<%@ include file="./block/socket.jsp"%>
@@ -29,11 +29,21 @@
 		<a href="/post/notice/list">공지사항</a>&nbsp;&nbsp;
 		<a href="/sub/goSubPost">구독</a>&nbsp;&nbsp;
 		<a href="/user/detail/<%=(int)session.getAttribute("user_pk") %>" >내 채널</a>&nbsp;&nbsp;
-		
 		<c:if test="${role eq '3'}" >
 			<a href="/user/search">회원 검색(Admin)</a>
 		</c:if>
 			<span style="float: right;">
+					<span class="btn" onclick="getList()">
+						🔔
+					</span>
+					<span onclick="history.back();" class="page_cover"></span>
+					<span id="menu">
+						<span onclick="history.back();" class="close"></span>
+						<br><br><br>
+						<div id="data">
+						</div>
+					</span>
+					
 				(<c:if test="${role eq '1'}" >
 					Guest
 				</c:if>
@@ -51,6 +61,11 @@
 	</div>
 	<br><hr>
 </body>
+<script>
+	var p_user_pk = <%=(int)session.getAttribute("user_pk") %>;
+</script>
+<script src="/resources/js/alarm.js"></script>
+<script src="/resources/js/sideAlarm.js"></script>
 <script src="/resources/js/logout.js"></script>
 <script src="/resources/js/search.js"></script>
 </html>

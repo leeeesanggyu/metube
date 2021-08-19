@@ -19,7 +19,6 @@
 	<div class="header">
 		<%@ include file="./header.jsp"%>
 	</div>
-	
 	<h4 class="layout">공지사항</h4>
 	<%@ include file="./block/noticeList.jsp"%>
 	

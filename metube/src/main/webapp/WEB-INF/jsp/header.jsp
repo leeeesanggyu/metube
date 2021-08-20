@@ -38,6 +38,9 @@
 					</span>
 					<span onclick="history.back();" class="page_cover"></span>
 					<span id="menu">
+						<br><span class="btn" onclick="allDelete()">
+							전체삭제⛔
+						</span>
 						<span onclick="history.back();" class="close"></span>
 						<br><br><br>
 						<div id="data">

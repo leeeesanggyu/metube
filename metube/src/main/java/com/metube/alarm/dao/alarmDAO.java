@@ -11,4 +11,6 @@ public interface alarmDAO {
 	List<alarmVO> getList(alarmVO vo) throws Exception;
 
 	int delete(alarmVO vo) throws Exception;
+
+	int allDelete(alarmVO vo) throws Exception;
 }

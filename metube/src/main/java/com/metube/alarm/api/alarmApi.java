@@ -40,4 +40,17 @@ public class alarmApi {
 			return null;
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/", method=RequestMethod.DELETE)
+	public int AlarmAllDelete(
+			HttpSession session	
+	) throws Exception {
+		try {
+			return alarmService.allDelete(session);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }

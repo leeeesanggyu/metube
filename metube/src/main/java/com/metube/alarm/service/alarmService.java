@@ -14,4 +14,6 @@ public interface alarmService {
 
 	int delete(String alarm_pk) throws Exception;
 
+	int allDelete(HttpSession session) throws Exception;
+
 }

@@ -44,5 +44,11 @@
         DELETE FROM alarm
         WHERE pk = #{pk}
     </select>
+    
+    <!-- user_pk 알림 전체 삭제 -->
+    <select id="allDelete" resultType="alarmVO">
+        DELETE FROM alarm
+        WHERE p_user_pk = #{p_user_pk}
+    </select>
 </mapper>
 

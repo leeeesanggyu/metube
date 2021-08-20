@@ -23,7 +23,8 @@ getList = function() {
                     htmlCode += ' 좋아요를 남겼습니다. '
                 }
                 htmlCode += '<br>'
-                htmlCode += res[i]['create_at']; +'</a></li>'
+                htmlCode += res[i]['create_at'];
+                htmlCode += '</a></li>'
                 htmlCode += '<br><br>'
 			}
             
@@ -37,3 +38,17 @@ getList = function() {
 		}
 	});
 }
+
+allDelete = function() {    		 
+	$.ajax({
+		type : "DELETE",
+		url : "/alarm/",
+		success : function(res){
+			$('#data').html("");
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown){
+			console.log("통신 실패.")
+		}
+	});
+}
+

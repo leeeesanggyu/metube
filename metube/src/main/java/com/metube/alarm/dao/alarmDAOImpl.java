@@ -25,4 +25,9 @@ public class alarmDAOImpl extends mysqlAbstractMapper implements alarmDAO{
 		return delete("AlarmDAO.delete", vo);
 	}
 
+	@Override
+	public int allDelete(alarmVO vo) throws Exception {
+		return delete("AlarmDAO.allDelete", vo);
+	}
+
 }

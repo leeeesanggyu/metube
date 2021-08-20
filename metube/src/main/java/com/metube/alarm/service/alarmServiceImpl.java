@@ -34,4 +34,11 @@ public class alarmServiceImpl implements alarmService{
 		vo.setPk(Integer.parseInt(alarm_pk));
 		return alarmDAO.delete(vo);
 	}
+
+	@Override
+	public int allDelete(HttpSession session) throws Exception {
+		alarmVO vo = new alarmVO();
+		vo.setP_user_pk((int)session.getAttribute("user_pk"));
+		return alarmDAO.allDelete(vo);
+	}
 }

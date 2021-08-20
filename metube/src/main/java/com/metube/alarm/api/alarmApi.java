@@ -41,6 +41,12 @@ public class alarmApi {
 		}
 	}
 	
+	/**
+	 * 세션 user_pk 로 해당 알림 전체 삭제한다.
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
 	@ResponseBody
 	@RequestMapping(value="/", method=RequestMethod.DELETE)
 	public int AlarmAllDelete(

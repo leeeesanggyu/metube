@@ -59,7 +59,7 @@
 ![스트리밍 헤더](https://user-images.githubusercontent.com/76906458/130413922-e0eaecc6-33f0-482c-a6fe-7896800d66c4.PNG)
 <img src="https://user-images.githubusercontent.com/76906458/130413863-76e637ae-ad21-4d20-b4a9-4c5cec00a27a.gif" width="60%" height="60%"/>
 
-* 소켓
+* 소켓 알림 구현
 
 ![실시간 알림](https://user-images.githubusercontent.com/76906458/130413923-5875410f-3ccc-4f4f-a078-d4889537fbfa.gif)
 ![알림 목록](https://user-images.githubusercontent.com/76906458/130413966-df17f542-c88c-44eb-a984-16704b27516a.gif)

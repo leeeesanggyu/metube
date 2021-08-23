@@ -79,9 +79,7 @@
 
 * 조회수 쿠키로 막기
 
-![조회수 쿠키로 막기](https://user-images.githubusercontent.com/76906458/130413990-e3a7d394-feb6-4898-83be-23e5e28bb28b.gif)
-
-
+<img src="https://user-images.githubusercontent.com/76906458/130413990-e3a7d394-feb6-4898-83be-23e5e28bb28b.gif" width="70%" height="70%"/>
 
 ## :factory: 시스템 구조
 

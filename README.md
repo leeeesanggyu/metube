@@ -66,7 +66,7 @@
 
 * 썸네일 자동생성(크롭)
 
-![썸네일 크럽](https://user-images.githubusercontent.com/76906458/130413957-d0bbd034-23c9-4508-bac6-ebd25700d050.PNG)
+<img src="https://user-images.githubusercontent.com/76906458/130413957-d0bbd034-23c9-4508-bac6-ebd25700d050.PNG" width="70%" height="70%"/>
 
 * Bcrypt 비밀번호 암호화
 

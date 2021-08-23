@@ -1,16 +1,16 @@
 # ✔ Metube - eGovFrame
 
 ## :office:동작 화면
-* Login Page
+* **Login Page**
 <img src="https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG" width="60%" height="60%"/>
 
-* Main Page
+* **Main Page**
 <img src="https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG"/>
 
-* Detail Post
+* **Detail Post**
 <img src="https://user-images.githubusercontent.com/76906458/130413915-9b6c469a-5024-4d05-a95f-30c2aff4d957.PNG"/>
 
-* Create Post
+* **Create Post**
 <img src="https://user-images.githubusercontent.com/76906458/130413988-a1022f56-4cf2-42fc-90b3-782bdac35e71.PNG"/>
 
 ## :link: 배포 URL
@@ -60,29 +60,29 @@
 <img src="https://user-images.githubusercontent.com/76906458/130413863-76e637ae-ad21-4d20-b4a9-4c5cec00a27a.gif" width="60%" height="60%"/>
 
 * **소켓 알림 구현**
-
 ![실시간 알림](https://user-images.githubusercontent.com/76906458/130413923-5875410f-3ccc-4f4f-a078-d4889537fbfa.gif)
 ![알림 목록](https://user-images.githubusercontent.com/76906458/130413966-df17f542-c88c-44eb-a984-16704b27516a.gif)
 
-* **썸네일 자동생성(크롭)**
 
+* **썸네일 자동생성(크롭)**
 <img src="https://user-images.githubusercontent.com/76906458/130413957-d0bbd034-23c9-4508-bac6-ebd25700d050.PNG" width="70%" height="70%"/>
 
-* **Bcrypt 비밀번호 암호화**
 
+* **Bcrypt 비밀번호 암호화**
 ![user table](https://user-images.githubusercontent.com/76906458/130413904-b62114d5-dd23-484e-8f3d-719337cf4bd1.PNG)
 
-* **Simple captcha**
 
+* **Simple captcha**
 ![캡챠](https://user-images.githubusercontent.com/76906458/130418765-99a31e8b-9621-46e6-9c7d-4a297d5c878c.PNG)
 
-* **CKEditor**
 
+* **CKEditor**
 ![ckeditor](https://user-images.githubusercontent.com/76906458/130413853-fb088b0d-dbb6-43eb-a358-d839f38ab457.PNG)
 
-* **조회수 반복증가 쿠키로 막기**
 
+* **조회수 반복증가 쿠키로 막기**
 <img src="https://user-images.githubusercontent.com/76906458/130413990-e3a7d394-feb6-4898-83be-23e5e28bb28b.gif" width="70%" height="70%"/>
+
 
 ## :factory: 시스템 구조
 

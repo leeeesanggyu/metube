@@ -55,7 +55,6 @@
 	</repositories>
 
 	<dependencies>
-		
 		<!-- SimpleCaptcha -->
       	<dependency>
 		    <groupId>nl.captcha</groupId>

@@ -55,14 +55,6 @@
 	</repositories>
 
 	<dependencies>
-		
-		<!-- websocket -->
-		<dependency>
-	        <groupId>org.springframework</groupId>
-	        <artifactId>spring-websocket</artifactId>
-	        <version>4.3.22.RELEASE</version>
-        </dependency>
-        
 		<!-- SimpleCaptcha -->
       	<dependency>
 		    <groupId>nl.captcha</groupId>
@@ -72,6 +64,14 @@
 		    <systemPath>${basedir}\src\main\webapp\WEB-INF\lib\simplecaptcha-1.2.1.jar</systemPath>
 		</dependency>
 		
+		
+		<!-- websocket -->
+		<dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-websocket</artifactId>
+	        <version>4.3.22.RELEASE</version>
+        </dependency>
+        
 		<!-- log4j -->
 		<dependency>
 		    <groupId>log4j</groupId>

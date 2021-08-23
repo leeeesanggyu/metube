@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MeTube</title>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="/resources/css/button.css" />
 <link rel="stylesheet" href="/resources/css/createPostForm.css" />
 <link rel="stylesheet" href="/resources/css/content.css" />
 <link rel="stylesheet" href="/resources/css/font-.css" />
@@ -19,9 +20,9 @@
 		<%@ include file="./header.jsp"%>
 	</div>
 	<h4 class="layout">
-		공지사항&nbsp;&nbsp;
+		&nbsp;&nbsp;공지사항&nbsp;&nbsp;
 		<c:if test="${role eq '3'}">
-			<a href="/post/goNoticeCreate">업로드</a>
+			<a href="/post/goNoticeCreate"><button class="button">업로드</button></a>
 		</c:if>
 	</h4>
 	<%@ include file="./block/noticeList.jsp"%>

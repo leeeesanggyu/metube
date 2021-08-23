@@ -19,12 +19,12 @@
 	<div class="header">
 		<%@ include file="./header.jsp"%>
 	</div>
-	<h4 class="layout">공지사항</h4>
+	<h4 class="layout">&nbsp;&nbsp;공지사항</h4>
 	<%@ include file="./block/noticeList.jsp"%>
 	
 	<hr align="center" style="border: outset 1px; width: 88%;">
 	
-	<h4 class="layout">동영상</h4>
+	<h4 class="layout">&nbsp;&nbsp;동영상</h4>
 	<%@ include file="./block/freeVideoList.jsp"%>
 </body>
 <script>

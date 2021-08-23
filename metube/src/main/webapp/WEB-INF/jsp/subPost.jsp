@@ -18,7 +18,7 @@
 	<div class="header">
 		<%@ include file="./header.jsp"%>
 	</div>
-	<h4 class="layout">구독 동영상</h4>
+	<h4 class="layout">&nbsp;&nbsp;구독 동영상🚻</h4>
 	<div class="content">
 		<c:forEach var="subPostList" items="${subPostList}">
 			<div class="oneContent">

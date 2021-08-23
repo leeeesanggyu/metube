@@ -21,12 +21,12 @@
 	<br><br><br>
 	<%@ include file="./block/userInfo.jsp"%>
 	
-	<h4 class="layout">Community</h4>
+	<h4 class="layout">&nbsp;&nbsp;Community</h4>
 	<%@ include file="./block/communityList.jsp"%>
 
 	<hr align="center" style="border: outset 1px; width: 88%;">
 	
-	<h4 class="layout">내 채널 동영상</h4>
+	<h4 class="layout">&nbsp;&nbsp;내 채널 동영상</h4>
 	<%@ include file="./block/freeVideoList.jsp"%>
 
 </body>

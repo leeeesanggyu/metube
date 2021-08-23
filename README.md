@@ -1,13 +1,8 @@
-.center {
-  display: block;
-  margin: auto;
-}
-
 # ✔ Metube - eGovFrame
 
 ## :office:동작 화면
 * Login Page
-![로그인화면](https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG){: width="300" height="300"){: .center}
+<img src="https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG" width="300" height="300"/>
 
 * Main Page
 ![main](https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG)

@@ -6,6 +6,7 @@
 
 * Main Page
 ![main](https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG)
+<img src="https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG"/>
 
 * Detail Post
 ![상세게시물2](https://user-images.githubusercontent.com/76906458/130413915-9b6c469a-5024-4d05-a95f-30c2aff4d957.PNG)

@@ -13,14 +13,14 @@ https://user-images.githubusercontent.com/76906458/130413949-e49ac2c7-e64d-4a5c-
 ![업로드페이지](https://user-images.githubusercontent.com/76906458/130413988-a1022f56-4cf2-42fc-90b3-782bdac35e71.PNG)
 ![조회수 쿠키로 막기](https://user-images.githubusercontent.com/76906458/130413990-e3a7d394-feb6-4898-83be-23e5e28bb28b.gif)
 
-## 작동화면
-### Main Page
-![main](https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG)
-
-### Login Page
+## 동작 화면
+* Login Page
 ![로그인화면](https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG)
 
-### Detail Post
+* Main Page
+![main](https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG)
+
+* Detail Post
 ![상세게시물2](https://user-images.githubusercontent.com/76906458/130413915-9b6c469a-5024-4d05-a95f-30c2aff4d957.PNG)
 
 ## :link: 배포 URL

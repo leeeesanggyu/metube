@@ -2,7 +2,7 @@
 
 ## :office:동작 화면
 * Login Page
-<img src="https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG" width="300" height="300"/>
+<img src="https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG" width="30%" height="30%"/>
 
 * Main Page
 ![main](https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG)

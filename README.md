@@ -59,6 +59,7 @@ https://user-images.githubusercontent.com/76906458/130413949-e49ac2c7-e64d-4a5c-
 ## :clipboard: 주요 키워드
 * REST API
 * Http request range(비디오 스트리밍)
+
 ![http_range_request](https://user-images.githubusercontent.com/76906458/130413863-76e637ae-ad21-4d20-b4a9-4c5cec00a27a.gif)
 
 * 소켓

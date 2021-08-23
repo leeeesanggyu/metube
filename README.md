@@ -58,6 +58,7 @@
 
 ![스트리밍 헤더](https://user-images.githubusercontent.com/76906458/130413922-e0eaecc6-33f0-482c-a6fe-7896800d66c4.PNG)
 ![http_range_request](https://user-images.githubusercontent.com/76906458/130413863-76e637ae-ad21-4d20-b4a9-4c5cec00a27a.gif)
+<img src="https://user-images.githubusercontent.com/76906458/130413863-76e637ae-ad21-4d20-b4a9-4c5cec00a27a.gif" width="60%" height="60%"/>
 
 * 소켓
 

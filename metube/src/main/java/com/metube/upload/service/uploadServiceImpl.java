@@ -51,8 +51,9 @@ public class uploadServiceImpl implements uploadService{
 	@Override
 	public File makeThumbnail(String image_savedName, String image_ext) throws IOException {
 		// 저장된 원본파일로부터 BufferedImage 객체를 생성합니다. 
-		BufferedImage srcImg = ImageIO.read(new File(uploadPath + "\\" + image_savedName)); 
-	
+		BufferedImage srcImg = ImageIO.read(new File(uploadPath + "/" + image_savedName)); 
+		System.out.println("test : " + uploadPath);
+		System.out.println("image : " + image_savedName);
 		// 썸네일의 너비와 높이 입니다. 
 		int dw = 250, dh = 150; 
 		

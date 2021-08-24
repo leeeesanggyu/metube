@@ -95,7 +95,8 @@ public class uploadApi {
 				} 
 			}else{
 				//range가 null인 경우 동영상 전체 크기로 초기값을 넣어줌. 0부터 시작하므로 -1 
-				rangeStart = 0; rangeEnd = movieSize - 1;
+				rangeStart = 0; 
+				rangeEnd = movieSize - 1;
 			} 
 			//전송 파일 크기 
 			long partSize = rangeEnd - rangeStart + 1; 
@@ -121,11 +122,13 @@ public class uploadApi {
 			//파일 전송... java io는 1회 전송 byte수가 int로 지정됨
 			//동영상 파일의 경우 int형으로는 처리 안되는 크기의 파일이 있으므로
 			//8kb로 잘라서 파일의 크기가 크더라도 문제가 되지 않도록 구현 
-			int bufferSize = 8*1024; byte[] buf = new byte[bufferSize];
+			int bufferSize = 8*1024; 
+			byte[] buf = new byte[bufferSize];
 			do { 
 				int block = partSize > bufferSize ? bufferSize : (int)partSize; 
 				int len = randomFile.read(buf, 0, block); 
-				out.write(buf, 0, len); partSize -= block; 
+				out.write(buf, 0, len); 
+				partSize -= block; 
 			} while( partSize > 0 ); 
 		}catch(IOException e){
 			

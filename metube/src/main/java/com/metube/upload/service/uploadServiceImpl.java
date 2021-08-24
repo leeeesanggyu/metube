@@ -2,7 +2,9 @@ package com.metube.upload.service;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -10,6 +12,7 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -54,6 +57,8 @@ public class uploadServiceImpl implements uploadService{
 		BufferedImage srcImg = ImageIO.read(new File(uploadPath + "/" + image_savedName)); 
 		System.out.println("test : " + uploadPath);
 		System.out.println("image : " + image_savedName);
+		System.out.println("path : " + uploadPath + "/" + image_savedName);
+		
 		// 썸네일의 너비와 높이 입니다. 
 		int dw = 250, dh = 150; 
 		

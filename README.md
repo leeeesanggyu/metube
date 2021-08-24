@@ -44,6 +44,7 @@
 
 ### 프론트엔드
 * Javascript
+* JQuery
 * Vue
 
 ## :clipboard: 주요 키워드

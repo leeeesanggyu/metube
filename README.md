@@ -5,7 +5,7 @@
 <img src="https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG" width="60%" height="60%"/>
 
 * **Main Page**
-<img src="https://user-images.githubusercontent.com/76906458/130413898-7079a14a-bbf5-47de-b0d8-6b22ec02634a.PNG"/>
+<img src="https://user-images.githubusercontent.com/76906458/130545155-aaab45af-0388-448d-a948-67b6ad966bbf.PNG"/>
 
 * **Detail Post**
 <img src="https://user-images.githubusercontent.com/76906458/130413915-9b6c469a-5024-4d05-a95f-30c2aff4d957.PNG"/>
@@ -68,7 +68,7 @@
 
 * **썸네일 자동생성(크롭)**
 
-<img src="https://user-images.githubusercontent.com/76906458/130413957-d0bbd034-23c9-4508-bac6-ebd25700d050.PNG" width="70%" height="70%"/>
+<img src="https://user-images.githubusercontent.com/76906458/130545161-b2db0ea5-260a-4bbb-a755-f816712e46f1.PNG" width="70%" height="70%"/>
 
 
 * **Bcrypt 비밀번호 암호화**

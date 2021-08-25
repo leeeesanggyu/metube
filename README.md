@@ -98,4 +98,4 @@
 ![Metube ERD](erd.PNG)
 
 ## :link: Rest API 문서
-* [Metube Rest API 문서](https://github.com/didrlgus/springboot-shoppingmall/issues/58)
+* [Metube Rest API 문서](https://github.com/)

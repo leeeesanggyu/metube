@@ -91,8 +91,9 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 
 <img src="https://user-images.githubusercontent.com/76906458/130545161-b2db0ea5-260a-4bbb-a755-f816712e46f1.PNG" width="70%" height="70%"/>
 
-알림창은 toastr로 구현하였고 onshown함수를 이용하여 알림이 떴을때 DB에 저장하였고<br>
-비동기로 작성해 새로고침하지 않아도 동작하게 만들었다.<br>
+알림창은 toastr로 구현하였고 onshown함수를 이용하여 알림이 떴을때 <br>
+해당 회원이 접속중이라면 toarstr을 띄우고 DB에 저장하고 알림 목록을 다시 가져왔다.<br>
+알림을 받는 회원이 접속중이지 않다면 디비에만 저장하여 접속시 확인할 수 있게 구현하였다.<br>
 
 </details>
 

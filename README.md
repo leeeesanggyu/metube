@@ -105,7 +105,7 @@
 <details markdown="1">
 <summary>기타 메모(접기/펼치기)</summary>
 
-subscribe<br>
+**subscribe**<br>
 p_user_pk : parents_user_pk<br>
 c_user_pk: child_user_pk<br>
 

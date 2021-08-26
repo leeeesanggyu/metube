@@ -99,10 +99,30 @@
 ## :link: Rest API 문서
 * [Metube Rest API 문서](https://github.com/)
 
-## 기타 메모
-*<details markdown="1">
-<summary>접기/펼치기</summary>
+<details markdown="1">
+<summary>기타 메모(접기/펼치기)</summary>
 
-ㅁㄴㅇ
+subscribe
+p_user_pk : parents_user_pk
+c_user_pk: child_user_pk
+
+**role**
+1 = 게스트
+2 = user
+3 = admin
+
+**kind**
+1 커뮤 게시판
+2 자유 게시판 (user, admin)
+3 공지 게시판 (admin만)
+
+**is_delete**
+0 정상
+1 삭제
+
+**lock**
+0 정상
+1 잠금
+
 
 </details>

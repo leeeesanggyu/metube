@@ -66,7 +66,7 @@
 
 * **Http request range(비디오 스트리밍)**
 <details markdown="1">
-<summary>펼치기</summary>
+<summary>이미지/설명</summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545397-12016392-ab0e-42a9-a4bc-f147091250c5.gif" width="60%" height="60%"/>
 
@@ -81,24 +81,52 @@ request 헤더에서 range를 읽고
 </details>
 
 * **소켓 알림 구현**
+<details markdown="1">
+<summary>이미지/설명</summary>
 
 ![실시간 알림](https://user-images.githubusercontent.com/76906458/130413923-5875410f-3ccc-4f4f-a078-d4889537fbfa.gif)
 ![알림 목록](https://user-images.githubusercontent.com/76906458/130413966-df17f542-c88c-44eb-a984-16704b27516a.gif)
 
+알림창은 toastr로 구현하였고 onshown함수를 이용하여 
+알림이 떴을때 DB에 저장하였고
+비동기로 작성해 새로고침하지 않아도 동작하게 만들었다.
+
+</details>
+
+
 
 * **썸네일 자동생성(크롭)**
+<details markdown="1">
+<summary>이미지/설명</summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545161-b2db0ea5-260a-4bbb-a755-f816712e46f1.PNG" width="70%" height="70%"/>
 
+알림창은 toastr로 구현하였고 onshown함수를 이용하여 
+알림이 떴을때 DB에 저장하였고
+비동기로 작성해 새로고침하지 않아도 동작하게 만들었다.
+
+</details>
+
+
 
 * **Bcrypt 비밀번호 암호화**
+<details markdown="1">
+<summary>이미지/설명</summary>
 
 ![user table](https://user-images.githubusercontent.com/76906458/130413904-b62114d5-dd23-484e-8f3d-719337cf4bd1.PNG)
 
+</details>
+
+
 
 * **Lucy-XSS-Servlet-Filter**
+<details markdown="1">
+<summary>이미지/설명</summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130905525-29a12da6-e854-43a3-a0c4-e23c16781879.PNG" />
+
+</details>
+
 
 
 * **Simple captcha**

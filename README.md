@@ -24,6 +24,12 @@
 * GitHub
 
 ## :clipboard: 사용 기술
+
+### 프론트엔드
+* Javascript
+* JQuery
+* Vue
+
 ### 백엔드
 #### Spring
 * JAVA 8
@@ -41,11 +47,6 @@
 #### AWS
 * EC2
 * RDS
-
-### 프론트엔드
-* Javascript
-* JQuery
-* Vue
 
 ## :clipboard: 주요 키워드
 * **REST API**

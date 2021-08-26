@@ -65,8 +65,20 @@
 * **DB RDS 배포**
 
 * **Http request range(비디오 스트리밍)**
+<details markdown="1">
+<summary>펼치기</summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545397-12016392-ab0e-42a9-a4bc-f147091250c5.gif" width="60%" height="60%"/>
+
+과도한 트래픽 방지
+동영상 파일이 클경우 로딩이 덜되어도 재생가능
+
+request 헤더에서 range를 읽고
+시작 위치를 지정해주고 range 범위만큼 전송 내용을 넣는다
+
+8kb로 잘라서 파일의 크기가 크더라도 문제가 되지않게 만들었다
+
+</details>
 
 * **소켓 알림 구현**
 

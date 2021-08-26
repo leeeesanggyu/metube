@@ -96,8 +96,10 @@
 ## :link: ERD 설계
 ![Metube ERD](erd.PNG)
 
-## :link: Rest API 문서
-* [Metube Rest API 문서](https://github.com/)
+## :link: 더 추가해볼만한 것
+* **무한 스크롤**
+* **영상 썸네일**
+
 
 <br><br><br><br><br>
 <details markdown="1">

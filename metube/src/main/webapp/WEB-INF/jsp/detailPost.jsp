@@ -84,7 +84,7 @@
 							<a href="/user/detail/${comment.user_pk }"> <strong>${comment.name }</strong>
 							</a> • ${comment.create_at }
 						</p>
-						<p>   <c:out value="${comment.content }"/></p>
+						<p>${comment.content }</p>
 
 						<button class="button"
 							@click="deleteComment(${comment.pk }, ${comment.user_pk })">

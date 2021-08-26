@@ -115,9 +115,9 @@
 * **데이터 서버 분리**
 
 
-<br><br><br><br><br>
-<details markdown="1">
-<summary>기타 메모(접기/펼치기)</summary>
+## 📝: 기타 메모
+<details markdown="2">
+<summary>펼치기</summary>
 
 **subscribe**<br>
 p_user_pk : parents_user_pk<br>

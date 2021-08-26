@@ -125,23 +125,47 @@ request 헤더에서 range를 읽고
 
 <img src="https://user-images.githubusercontent.com/76906458/130905525-29a12da6-e854-43a3-a0c4-e23c16781879.PNG" />
 
+lucy 의 필터링은 서블릿 설정으로 적용을 했기 때문에 form-data에 대해서만 적용되고 
+Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때문에
+
+Row Body의 JSON데이터는 jstl로 처리하였다.
+
 </details>
 
 
 
 * **Simple captcha**
+<details markdown="1">
+<summary>이미지/설명</summary>
 
 ![캡챠](https://user-images.githubusercontent.com/76906458/130418765-99a31e8b-9621-46e6-9c7d-4a297d5c878c.PNG)
 
+</details>
+
+
 
 * **CKEditor**
+<details markdown="1">
+<summary>이미지/설명</summary>
 
 ![ckeditor](https://user-images.githubusercontent.com/76906458/130413853-fb088b0d-dbb6-43eb-a358-d839f38ab457.PNG)
 
+</details>
+
+
 
 * **조회수 반복증가 쿠키로 막기**
+<details markdown="1">
+<summary>이미지/설명</summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130413990-e3a7d394-feb6-4898-83be-23e5e28bb28b.gif" width="70%" height="70%"/>
+
+쿠키에 조회한 게시물PK를 넣고
+다시 게시물에 방문할때 현재 게시물PK가 쿠키에 있나 확인후 없다면 
+조회수를 증가시키고 있다면 조회수를 증가시키지 않는다.
+
+</details>
+
 
 
 ## :factory: 시스템 구조

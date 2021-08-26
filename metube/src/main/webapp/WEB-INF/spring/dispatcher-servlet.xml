@@ -17,18 +17,6 @@
     <context:component-scan base-package="com.metube" />
 	<mvc:annotation-driven />
 
-	<!-- Message Converter -->
-	<beans:bean id="htmlEscapingObjectMapper" class="com.metube.common.messageConverter.HtmlEscapingObjectMapperFactory" />
-
-	<mvc:annotation-driven>
-	    <mvc:message-converters>
-	        <beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
-	        	<beans:property name="objectMapper" ref="htmlEscapingObjectMapper"></beans:property>
-	        </beans:bean>
-	    </mvc:message-converters>
-	</mvc:annotation-driven>
-	<!-- end -->
-	
 	<beans:import resource="context-mapper.xml" />
 	<beans:import resource="context-datasource.xml" />
 

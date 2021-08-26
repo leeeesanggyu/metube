@@ -16,7 +16,7 @@
 						<p>
 							<img src="/upload/image/${communityList.img_name}/${communityList.img_ext}" />
 						</p>
-						<p>${communityList.title}</p>
+						<p><c:out value="${communityList.title }" /></p>
 						<div class="small">
 							<p>${communityList.name }</p>
 							<c:if test="${communityList.update_at eq null}">

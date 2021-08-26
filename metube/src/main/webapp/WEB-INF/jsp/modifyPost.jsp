@@ -41,7 +41,7 @@
 	</div>
 </body>
 <script>
-	var ori_title = "${post.title }"
+	var ori_title = '<c:out value="${post.title }" />'
 	var ori_description = "${post.description }"
 	var post_pk = "${post.pk}"
 	// 세션 받기

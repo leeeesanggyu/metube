@@ -16,7 +16,7 @@
 						<p>
 							<img src="/upload/image/${postList.img_name}/${postList.img_ext}" />
 						</p>
-						<p>${postList.title}</p>
+						<p><c:out value="${postList.title }" /></p>
 						<div class="small">
 							<a href="/user/detail/${postList.user_pk }"><p>${postList.name }</p></a>
 							<c:if test="${postList.update_at eq null}">

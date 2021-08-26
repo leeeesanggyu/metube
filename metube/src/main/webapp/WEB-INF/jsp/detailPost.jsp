@@ -31,7 +31,7 @@
 				type="video/mp4"></video>
 		</c:if>
 
-		<h4>${detailPost.post.title}</h4>
+		<h4><c:out value="${detailPost.post.title }" /></h4>
 		<p>${detailPost.post.description }</p>
 		<div class="small">
 			<p>
@@ -84,7 +84,7 @@
 							<a href="/user/detail/${comment.user_pk }"> <strong>${comment.name }</strong>
 							</a> • ${comment.create_at }
 						</p>
-						<p>${comment.content }</p>
+						<p><c:out value="${comment.content }" /></p>
 
 						<button class="button"
 							@click="deleteComment(${comment.pk }, ${comment.user_pk })">
@@ -103,7 +103,7 @@
 	var user_role = <%=(String) session.getAttribute("role")%>
 	var user_name = "<%=(String) session.getAttribute("name")%>"
 	
-	var post_title = "${detailPost.post.title}";
+	var post_title = '<c:out value="${detailPost.post.title }" />'
 	var p_user_pk = "${detailPost.post.user_pk}";
 	var post_pk = "${detailPost.post.pk}";
 	var post_kind = "${detailPost.post.kind}";

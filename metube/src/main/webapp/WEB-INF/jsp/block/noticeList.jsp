@@ -12,7 +12,7 @@
 			<div class="oneContent">
 				<a href="/post/${noticeList.pk}/notice/0">
 					<p>* NOTICE *</p>
-					<p>${noticeList.title}</p>
+					<p><c:out value="${noticeList.title}" /></p>
 					<div class="small">
 						<p>${noticeList.name }</p>
 						<c:if test="${noticeList.update_at eq null}">

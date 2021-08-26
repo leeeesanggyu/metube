@@ -103,26 +103,26 @@
 <summary>기타 메모(접기/펼치기)</summary>
 
 subscribe<br>
-p_user_pk : parents_user_pk
-c_user_pk: child_user_pk
+p_user_pk : parents_user_pk<br>
+c_user_pk: child_user_pk<br>
 
 **role**<br>
-1 = 게스트
-2 = user
-3 = admin
+1 = 게스트<br>
+2 = user<br>
+3 = admin<br>
 
 **kind**<br>
-1 커뮤 게시판
-2 자유 게시판 (user, admin)
-3 공지 게시판 (admin만)
+1 커뮤 게시판<br>
+2 자유 게시판 (user, admin)<br>
+3 공지 게시판 (admin만)<br>
 
 **is_delete**<br>
-0 정상
-1 삭제
+0 정상<br>
+1 삭제<br>
 
 **lock**<br>
-0 정상
-1 잠금
+0 정상<br>
+1 잠금<br>
 
 
 </details>

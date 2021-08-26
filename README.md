@@ -142,7 +142,7 @@ Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때�
 ## :factory: 시스템 구조
 
 ## :link: ERD 설계
-![Metube ERD](erd.PNG)
+![erd](https://user-images.githubusercontent.com/76906458/130908917-b39398ea-4471-4225-8965-de5550bb4b12.PNG)
 
 ## :link: 더 추가해볼만한 것
 * **무한 스크롤**

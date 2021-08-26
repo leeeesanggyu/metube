@@ -50,7 +50,6 @@
 ## :clipboard: 주요 키워드
 * **REST API**
 * **트랜잭션**
-* **Lucy-XSS-Servlet-Filter**
 * **Git 버전관리**
 * **Docker**
 * **AWS EC2 배포**
@@ -74,6 +73,11 @@
 * **Bcrypt 비밀번호 암호화**
 
 ![user table](https://user-images.githubusercontent.com/76906458/130413904-b62114d5-dd23-484e-8f3d-719337cf4bd1.PNG)
+
+
+* **Lucy-XSS-Servlet-Filter**
+
+<img src="https://user-images.githubusercontent.com/76906458/130905525-29a12da6-e854-43a3-a0c4-e23c16781879.PNG" />
 
 
 * **Simple captcha**

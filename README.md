@@ -50,6 +50,7 @@
 ## :clipboard: 주요 키워드
 * **REST API**
 * **트랜잭션**
+* **Lucy-XSS-Servlet-Filter**
 * **Git 버전관리**
 * **Docker**
 * **AWS EC2 배포**
@@ -95,5 +96,36 @@
 ## :link: ERD 설계
 ![Metube ERD](erd.PNG)
 
-## :link: Rest API 문서
-* [Metube Rest API 문서](https://github.com/didrlgus/springboot-shoppingmall/issues/58)
+## :link: 더 추가해볼만한 것
+* **무한 스크롤**
+* **영상 썸네일**
+
+
+<br><br><br><br><br>
+<details markdown="1">
+<summary>기타 메모(접기/펼치기)</summary>
+
+**subscribe**<br>
+p_user_pk : parents_user_pk<br>
+c_user_pk: child_user_pk<br>
+
+**role**<br>
+1 = 게스트<br>
+2 = user<br>
+3 = admin<br>
+
+**kind**<br>
+1 커뮤 게시판<br>
+2 자유 게시판 (user, admin)<br>
+3 공지 게시판 (admin만)<br>
+
+**is_delete**<br>
+0 정상<br>
+1 삭제<br>
+
+**lock**<br>
+0 정상<br>
+1 잠금<br>
+
+
+</details>

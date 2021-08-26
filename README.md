@@ -70,11 +70,9 @@
 
 <img src="https://user-images.githubusercontent.com/76906458/130545397-12016392-ab0e-42a9-a4bc-f147091250c5.gif" width="60%" height="60%"/>
 
-과도한 트래픽 방지<br>
-동영상 파일이 클경우 로딩이 덜되어도 재생가능<br>
+과도한 트래픽 방지하고 동영상 파일이 클경우 로딩이 덜되어도 재생가능<br>
 <br>
-request 헤더에서 range를 읽고<br>
-시작 위치를 지정해주고 range 범위만큼 전송 내용을 넣는다<br>
+request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범위만큼 전송 내용을 넣는다<br>
 <br>
 8kb로 잘라서 파일의 크기가 크더라도 문제가 되지않게 만들었다<br>
 
@@ -87,8 +85,7 @@ request 헤더에서 range를 읽고<br>
 ![실시간 알림](https://user-images.githubusercontent.com/76906458/130413923-5875410f-3ccc-4f4f-a078-d4889537fbfa.gif)
 ![알림 목록](https://user-images.githubusercontent.com/76906458/130413966-df17f542-c88c-44eb-a984-16704b27516a.gif)
 
-알림창은 toastr로 구현하였고 onshown함수를 이용하여 <br>
-알림이 떴을때 DB에 저장하였고<br>
+알림창은 toastr로 구현하였고 onshown함수를 이용하여 알림이 떴을때 DB에 저장하였고<br>
 비동기로 작성해 새로고침하지 않아도 동작하게 만들었다.<br>
 
 </details>
@@ -101,8 +98,7 @@ request 헤더에서 range를 읽고<br>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545161-b2db0ea5-260a-4bbb-a755-f816712e46f1.PNG" width="70%" height="70%"/>
 
-알림창은 toastr로 구현하였고 onshown함수를 이용하여 <br>
-알림이 떴을때 DB에 저장하였고<br>
+알림창은 toastr로 구현하였고 onshown함수를 이용하여 알림이 떴을때 DB에 저장하였고<br>
 비동기로 작성해 새로고침하지 않아도 동작하게 만들었다.<br>
 
 </details>
@@ -126,9 +122,7 @@ request 헤더에서 range를 읽고<br>
 <img src="https://user-images.githubusercontent.com/76906458/130905525-29a12da6-e854-43a3-a0c4-e23c16781879.PNG" />
 
 lucy 의 필터링은 서블릿 설정으로 적용을 했기 때문에 form-data에 대해서만 적용되고 <br>
-Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때문에<br>
-
-Row Body의 JSON데이터는 jstl로 처리하였다.<br>
+Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때문에 JSON데이터는 jstl로 처리하였다.<br>
 
 </details>
 
@@ -160,8 +154,7 @@ Row Body의 JSON데이터는 jstl로 처리하였다.<br>
 
 <img src="https://user-images.githubusercontent.com/76906458/130413990-e3a7d394-feb6-4898-83be-23e5e28bb28b.gif" width="70%" height="70%"/>
 
-쿠키에 조회한 게시물PK를 넣고<br>
-다시 게시물에 방문할때 현재 게시물PK가 쿠키에 있나 확인후 없다면 <br>
+쿠키에 조회한 게시물PK를 넣고 다시 게시물에 방문할때 현재 게시물PK가 쿠키에 있나 확인후 없다면 <br>
 조회수를 증가시키고 있다면 조회수를 증가시키지 않는다.<br>
 
 </details>

@@ -65,8 +65,8 @@
 * **DB RDS 배포**
 
 * **Http request range(비디오 스트리밍)**
-<details markdown="1">
--<summary>펼치기</summary>
+&nbsp;&nbsp;&nbsp;<details markdown="1">
+<summary>펼치기</summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545397-12016392-ab0e-42a9-a4bc-f147091250c5.gif" width="60%" height="60%"/>
 

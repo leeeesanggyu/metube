@@ -75,9 +75,8 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 
 </details>
 
-* **소켓 알림 구현**
 <details markdown="1">
-<summary>이미지/설명</summary>
+<summary><strong>소켓 알림 구현</strong></summary>
 
 ![실시간 알림](https://user-images.githubusercontent.com/76906458/130413923-5875410f-3ccc-4f4f-a078-d4889537fbfa.gif)
 ![알림 목록](https://user-images.githubusercontent.com/76906458/130413966-df17f542-c88c-44eb-a984-16704b27516a.gif)
@@ -87,11 +86,8 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 
 </details>
 
-
-
-* **썸네일 자동생성(크롭)**
 <details markdown="1">
-<summary>이미지/설명</summary>
+<summary><strong>썸네일 자동생성(크롭)</strong></summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545161-b2db0ea5-260a-4bbb-a755-f816712e46f1.PNG" width="70%" height="70%"/>
 
@@ -100,21 +96,15 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 
 </details>
 
-
-
-* **Bcrypt 비밀번호 암호화**
 <details markdown="1">
-<summary>이미지/설명</summary>
+<summary><strong>Bcrypt 비밀번호 암호화</strong></summary>
 
 ![user table](https://user-images.githubusercontent.com/76906458/130413904-b62114d5-dd23-484e-8f3d-719337cf4bd1.PNG)
 
 </details>
 
-
-
-* **Lucy-XSS-Servlet-Filter**
 <details markdown="1">
-<summary>이미지/설명</summary>
+<summary><strong>Lucy-XSS-Servlet-Filte</strong></summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130905525-29a12da6-e854-43a3-a0c4-e23c16781879.PNG" />
 
@@ -123,31 +113,22 @@ Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때�
 
 </details>
 
-
-
-* **Simple captcha**
 <details markdown="1">
-<summary>이미지/설명</summary>
+<summary><strong>Simple captcha</strong></summary>
 
 ![캡챠](https://user-images.githubusercontent.com/76906458/130418765-99a31e8b-9621-46e6-9c7d-4a297d5c878c.PNG)
 
 </details>
 
-
-
-* **CKEditor**
 <details markdown="1">
-<summary>이미지/설명</summary>
+<summary><strong>CKEditor</strong></summary>
 
 ![ckeditor](https://user-images.githubusercontent.com/76906458/130413853-fb088b0d-dbb6-43eb-a358-d839f38ab457.PNG)
 
 </details>
 
-
-
-* **조회수 반복증가 쿠키로 막기**
 <details markdown="1">
-<summary>이미지/설명</summary>
+<summary><strong>조회수 반복증가 쿠키로 막기</strong></summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130413990-e3a7d394-feb6-4898-83be-23e5e28bb28b.gif" width="70%" height="70%"/>
 

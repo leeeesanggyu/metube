@@ -51,7 +51,6 @@
 * **REST API**
 * **트랜잭션**
 * **Lucy-XSS-Servlet-Filter**
-* **Message Converter**
 * **Git 버전관리**
 * **Docker**
 * **AWS EC2 배포**

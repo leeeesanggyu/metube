@@ -116,7 +116,7 @@
 
 
 ## 📝: 기타 메모
-<details markdown="2">
+<details markdown="1">
 <summary>펼치기</summary>
 
 **subscribe**<br>

@@ -1,7 +1,10 @@
 # ✔ Metube - eGovFrame
 
+
+
+## :office:동작 화면
 <details markdown="1">
-<summary>## :office:동작 화면</summary>
+<summary>펼치기</summary>
 
 * **Login Page**
 <img src="https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG" width="60%" height="60%"/>
@@ -17,19 +20,6 @@
 
 
 </details>
-
-## :office:동작 화면
-* **Login Page**
-<img src="https://user-images.githubusercontent.com/76906458/130413909-70c5baec-bd5f-424e-94c5-c509f71f1df6.PNG" width="60%" height="60%"/>
-
-* **Main Page**
-<img src="https://user-images.githubusercontent.com/76906458/130545155-aaab45af-0388-448d-a948-67b6ad966bbf.PNG"/>
-
-* **Detail Post**
-<img src="https://user-images.githubusercontent.com/76906458/130413915-9b6c469a-5024-4d05-a95f-30c2aff4d957.PNG"/>
-
-* **Create Post**
-<img src="https://user-images.githubusercontent.com/76906458/130413988-a1022f56-4cf2-42fc-90b3-782bdac35e71.PNG"/>
 
 ## :link: 배포 URL
 * ..

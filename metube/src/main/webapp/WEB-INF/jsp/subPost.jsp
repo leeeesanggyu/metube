@@ -22,25 +22,32 @@
 	<div class="content">
 		<c:forEach var="subPostList" items="${subPostList}">
 			<div class="oneContent">
-				<a href="/post/${subPostList.pk}/normal/0"> <c:if
-						test="${subPostList.kind eq 3}">
-						* Notice *
-					</c:if> <c:if test="${subPostList.kind ne 3}">
-						<img
-							src="/upload/image/${subPostList.img_name}/${subPostList.img_ext}" />
-					</c:if>
-					<p>${subPostList.title}</p>
-					<div class="small">
-						<p>${subPostList.name }</p>
-						<c:if test="${subPostList.update_at eq null}">
-							<p>조회수 ${subPostList.view_count }회 • ${subPostList.create_at }</p>
+				<c:if test="${subPostList.is_delete eq '0'}">
+					<a href="/post/${subPostList.pk}/normal/0">
+						<c:if test="${subPostList.kind eq 3}">
+							* Notice *
+						</c:if> 
+						<c:if test="${subPostList.kind ne 3}">
+							<img src="/upload/image/${subPostList.img_name}/${subPostList.img_ext}" />
 						</c:if>
-						<c:if test="${subPostList.update_at ne null}">
-							<p>조회수 ${subPostList.view_count }회 • 수정
-								${subPostList.update_at }</p>
-						</c:if>
-					</div>
-				</a>
+						<p><c:out value="${subPostList.title }" /></p>
+						<div class="small">
+							<a href="/user/detail/${subPostList.user_pk }"><p>${subPostList.name }</p></a>
+							<c:if test="${subPostList.update_at eq null}">
+								<p>조회수 ${subPostList.view_count }회 • ${subPostList.create_at }</p>
+							</c:if>
+							<c:if test="${subPostList.update_at ne null}">
+								<p>조회수 ${subPostList.view_count }회 • 수정 ${subPostList.update_at }</p>
+							</c:if>
+						</div>
+					</a>
+				</c:if>
+
+				<c:if test="${subPostList.is_delete eq '1'}"><br><br><br><br><br><br>
+					<p>======================</p>
+					<p>&nbsp;[ 관리자에 의해 삭제된 게시글 ]</p>
+					<p>======================</p><br><br><br><br><br><br>
+				</c:if>
 			</div>
 		</c:forEach>
 	</div>

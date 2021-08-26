@@ -13,9 +13,7 @@
 			<div class="oneContent">
 				<c:if test="${postList.is_delete eq '0'}">
 					<a href="/post/${postList.pk}/normal/0">
-						<p>
-							<img src="/upload/image/${postList.img_name}/${postList.img_ext}" />
-						</p>
+						<p><img src="/upload/image/${postList.img_name}/${postList.img_ext}" /></p>
 						<p><c:out value="${postList.title }" /></p>
 						<div class="small">
 							<a href="/user/detail/${postList.user_pk }"><p>${postList.name }</p></a>

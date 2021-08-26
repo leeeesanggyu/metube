@@ -18,11 +18,11 @@
 	<div class="header">
 		<%@ include file="./header.jsp"%>
 	</div>
-	<h4 class="layout">&nbsp;&nbsp;구독 동영상🚻</h4>
+	<h4 class="layout">&nbsp;&nbsp;구독 동영상</h4>
 	<div class="content">
 		<c:forEach var="subPostList" items="${subPostList}">
 			<div class="oneContent">
-				<a href="/post/${subPostList.pk}/normal"> <c:if
+				<a href="/post/${subPostList.pk}/normal/0"> <c:if
 						test="${subPostList.kind eq 3}">
 						* Notice *
 					</c:if> <c:if test="${subPostList.kind ne 3}">

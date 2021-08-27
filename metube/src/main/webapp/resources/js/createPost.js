@@ -60,10 +60,12 @@ const upload_form = new Vue({
 
 			if(image_data.files[0] == null || image_data.files[0].type.includes("image") == false){
 				alert("사진을 등록하세요.");
+				console.log("no image");
 				return;
 			}
 			if( video_data.files[0] == null || video_data.files[0].type != "video/mp4"){
 				alert("동영상을 등록하세요.");
+				console.log("no video");
 				return;
 			}
 			

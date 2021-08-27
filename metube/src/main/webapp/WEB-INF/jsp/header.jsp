@@ -16,7 +16,6 @@
 </head>
 <body>
 	<%@ include file="./block/socket.jsp"%>
-
 	<a href="/post/list"><img src="/resources/images/logo.png" width="150"></a>
 	<span class="text_area" style="float: right;">
 		<form id="search_form" v-on:submit="search" >

@@ -76,7 +76,7 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 </details>
 
 <details markdown="1">
-<summary><strong>소켓 알림 구현</strong></summary>
+<summary><strong>socket (실시간 알림 구현)</strong></summary>
 
 ![실시간 알림](https://user-images.githubusercontent.com/76906458/130413923-5875410f-3ccc-4f4f-a078-d4889537fbfa.gif)
 ![알림 목록](https://user-images.githubusercontent.com/76906458/130413966-df17f542-c88c-44eb-a984-16704b27516a.gif)
@@ -87,7 +87,7 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 </details>
 
 <details markdown="1">
-<summary><strong>썸네일 자동생성(scalr)</strong></summary>
+<summary><strong> scalr (썸네일 자동생성)</strong></summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545161-b2db0ea5-260a-4bbb-a755-f816712e46f1.PNG" width="70%" height="70%"/>
 
@@ -97,7 +97,7 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 </details>
 
 <details markdown="1">
-<summary><strong>Bcrypt 비밀번호 암호화</strong></summary>
+<summary><strong>Bcrypt (비밀번호 암호화)</strong></summary>
 
 ![user table](https://user-images.githubusercontent.com/76906458/130413904-b62114d5-dd23-484e-8f3d-719337cf4bd1.PNG)
 
@@ -114,7 +114,7 @@ Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때�
 </details>
 
 <details markdown="1">
-<summary><strong>Simple captcha</strong></summary>
+<summary><strong>Simple captcha(자동로그인 방지)</strong></summary>
 
 ![캡챠](https://user-images.githubusercontent.com/76906458/130418765-99a31e8b-9621-46e6-9c7d-4a297d5c878c.PNG)
 
@@ -124,6 +124,7 @@ Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때�
 <summary><strong>CKEditor</strong></summary>
 
 ![ckeditor](https://user-images.githubusercontent.com/76906458/130413853-fb088b0d-dbb6-43eb-a358-d839f38ab457.PNG)
+![cke](https://user-images.githubusercontent.com/76906458/131061878-d469c682-91eb-42fa-b8bd-f4ef3afb4c4e.PNG)
 
 </details>
 

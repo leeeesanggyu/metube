@@ -76,29 +76,29 @@ request 헤더에서 range를 읽고 시작 위치를 지정해주고 range 범�
 </details>
 
 <details markdown="1">
-<summary><strong>소켓 알림 구현</strong></summary>
+<summary><strong>socket (실시간 알림 구현)</strong></summary>
 
 ![실시간 알림](https://user-images.githubusercontent.com/76906458/130413923-5875410f-3ccc-4f4f-a078-d4889537fbfa.gif)
 ![알림 목록](https://user-images.githubusercontent.com/76906458/130413966-df17f542-c88c-44eb-a984-16704b27516a.gif)
 
-알림창은 toastr로 구현하였고 onshown함수를 이용하여 알림이 떴을때 DB에 저장하였고<br>
-비동기로 작성해 새로고침하지 않아도 동작하게 만들었다.<br>
+알림창은 toastr로 구현하였고 onshown함수를 이용하여 알림이 떴을때<br>
+해당 회원이 접속중이라면 toarstr을 띄우고 DB에 저장하고 알림 목록을 다시 가져왔다.<br>
+알림을 받는 회원이 접속중이지 않다면 디비에만 저장하여 접속시 확인할 수 있게 구현하였다.
 
 </details>
 
 <details markdown="1">
-<summary><strong>썸네일 자동생성(크롭)</strong></summary>
+<summary><strong> scalr (썸네일 자동생성)</strong></summary>
 
 <img src="https://user-images.githubusercontent.com/76906458/130545161-b2db0ea5-260a-4bbb-a755-f816712e46f1.PNG" width="70%" height="70%"/>
 
-알림창은 toastr로 구현하였고 onshown함수를 이용하여 알림이 떴을때 <br>
-해당 회원이 접속중이라면 toarstr을 띄우고 DB에 저장하고 알림 목록을 다시 가져왔다.<br>
-알림을 받는 회원이 접속중이지 않다면 디비에만 저장하여 접속시 확인할 수 있게 구현하였다.<br>
+원본 사진의 높이와 너비를 기준으로 하여 썸네일의 비율로 높이와 너비를 계산한 후<br>
+계산된 크기로 원본이미지를 가운데를 기준으로 scalr 라이브러리의 crop을 이욯하여 자른다.<br>
 
 </details>
 
 <details markdown="1">
-<summary><strong>Bcrypt 비밀번호 암호화</strong></summary>
+<summary><strong>Bcrypt (비밀번호 암호화)</strong></summary>
 
 ![user table](https://user-images.githubusercontent.com/76906458/130413904-b62114d5-dd23-484e-8f3d-719337cf4bd1.PNG)
 
@@ -115,7 +115,7 @@ Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때�
 </details>
 
 <details markdown="1">
-<summary><strong>Simple captcha</strong></summary>
+<summary><strong>Simple captcha(자동로그인 방지)</strong></summary>
 
 ![캡챠](https://user-images.githubusercontent.com/76906458/130418765-99a31e8b-9621-46e6-9c7d-4a297d5c878c.PNG)
 
@@ -125,6 +125,7 @@ Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때�
 <summary><strong>CKEditor</strong></summary>
 
 ![ckeditor](https://user-images.githubusercontent.com/76906458/130413853-fb088b0d-dbb6-43eb-a358-d839f38ab457.PNG)
+![cke](https://user-images.githubusercontent.com/76906458/131061878-d469c682-91eb-42fa-b8bd-f4ef3afb4c4e.PNG)
 
 </details>
 
@@ -145,7 +146,7 @@ Request Raw Body로 넘어가는 JSON에 대해서는 처리해주지 않기때�
 ## :link: ERD 설계
 ![erd](https://user-images.githubusercontent.com/76906458/130908917-b39398ea-4471-4225-8965-de5550bb4b12.PNG)
 
-## :link: 더 추가해볼만한 것
+## :link: 추가할 예정
 * **무한 스크롤**
 * **영상 썸네일**
 * **데이터 서버 분리**

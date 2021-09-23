@@ -64,6 +64,7 @@
 * **AWS EC2 배포**
 * **DB RDS 배포**
 
+#### >펼쳐서 확인해주세요.<
 <details markdown="1">
 <summary><strong>Http request range(비디오 스트리밍)</strong></summary>
 

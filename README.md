@@ -22,8 +22,9 @@
 </details>
 
 ## :link: 배포 URL
-* ..
-* ..
+* http://metube.o-r.kr/
+* testID: user@user.com
+* testPW: user
 
 ## :clipboard: 개발환경
 * Eclipse
